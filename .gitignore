@@ -1,0 +1,14 @@
+# Local AERIS implementation state
+.aeris/
+
+# Local-only evidence / scratch / machine state
+.local/
+.tmp/
+tmp/
+*.local
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
