@@ -1,82 +1,96 @@
 (() => {
-  const STORAGE_KEY = 'aeris-theme-preference';
+  const THEME_KEY = 'aeris-theme-preference';
+  const SIDEBAR_KEY = 'aeris-sidebar-state';
   const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-  function getPreference() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return ['light', 'dark', 'system'].includes(saved) ? saved : 'system';
+  const savedTheme = localStorage.getItem(THEME_KEY);
+  const initialTheme = savedTheme === 'light' || savedTheme === 'dark'
+    ? savedTheme
+    : (media.matches ? 'dark' : 'light');
+  document.documentElement.dataset.theme = initialTheme;
+  document.documentElement.style.colorScheme = initialTheme;
+
+  const savedSidebar = localStorage.getItem(SIDEBAR_KEY);
+  if (savedSidebar === 'collapsed') document.documentElement.dataset.sidebar = 'collapsed';
+
+  function applyTheme(theme, persist = true) {
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+    if (persist) localStorage.setItem(THEME_KEY, theme);
+    syncThemeButton();
   }
 
-  function resolveTheme(preference) {
-    if (preference === 'system') return media.matches ? 'dark' : 'light';
-    return preference;
+  function syncThemeButton() {
+    const btn = document.querySelector('[data-theme-toggle]');
+    if (!btn) return;
+    const dark = document.documentElement.dataset.theme === 'dark';
+    const icon = btn.querySelector('.ico');
+    const label = btn.querySelector('[data-theme-label]');
+    if (icon) icon.textContent = dark ? '☀' : '☾';
+    if (label) label.textContent = dark ? 'Light Mode' : 'Dark Mode';
+    btn.setAttribute('aria-label', dark ? '切換淺色模式' : '切換深色模式');
+    btn.title = dark ? '切換 Light Mode' : '切換 Dark Mode';
   }
 
-  function applyTheme(preference, persist = false) {
-    const resolved = resolveTheme(preference);
-    document.documentElement.dataset.theme = resolved;
-    document.documentElement.dataset.themePreference = preference;
-    document.documentElement.style.colorScheme = resolved;
-    if (persist) localStorage.setItem(STORAGE_KEY, preference);
-
-    document.querySelectorAll('[data-theme-choice]').forEach((button) => {
-      const active = button.dataset.themeChoice === preference;
-      button.classList.toggle('active', active);
-      button.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-
-    document.querySelectorAll('[data-theme-current]').forEach((node) => {
-      const label = preference === 'system'
-        ? `系統 · ${resolved === 'dark' ? '深色' : '淺色'}`
-        : (resolved === 'dark' ? '深色' : '淺色');
-      node.textContent = label;
-    });
+  function syncSidebarButton() {
+    const btn = document.querySelector('[data-sidebar-toggle]');
+    if (!btn) return;
+    const collapsed = document.documentElement.dataset.sidebar === 'collapsed';
+    const icon = btn.querySelector('.ico');
+    const label = btn.querySelector('[data-sidebar-label]');
+    if (icon) icon.textContent = collapsed ? '→' : '←';
+    if (label) label.textContent = collapsed ? 'Expand' : 'Collapse';
+    btn.setAttribute('aria-label', collapsed ? '展開側欄' : '收合側欄');
+    btn.title = collapsed ? 'Expand sidebar' : 'Collapse sidebar';
   }
 
-  function makeButton(value, icon, label) {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'theme-choice';
-    button.dataset.themeChoice = value;
-    button.setAttribute('aria-label', `切換為${label}模式`);
-    button.innerHTML = `<span aria-hidden="true">${icon}</span><span>${label}</span>`;
-    button.addEventListener('click', () => applyTheme(value, true));
-    return button;
-  }
-
-  function injectThemeControls() {
+  function injectUtilities() {
     const sidebar = document.querySelector('.sidebar');
-    if (!sidebar || sidebar.querySelector('.theme-dock')) return;
+    if (!sidebar || sidebar.querySelector('.sidebar-utilities')) return;
 
-    const dock = document.createElement('div');
-    dock.className = 'theme-dock';
-    dock.innerHTML = '<div class="theme-label"><span>APPEARANCE</span><small data-theme-current></small></div>';
-
-    const choices = document.createElement('div');
-    choices.className = 'theme-choices';
-    choices.append(
-      makeButton('system', '◐', '系統'),
-      makeButton('light', '☀', '淺色'),
-      makeButton('dark', '☾', '深色')
-    );
-    dock.appendChild(choices);
+    const utilities = document.createElement('div');
+    utilities.className = 'sidebar-utilities';
+    utilities.innerHTML = `
+      <button class="utility-btn" type="button" data-theme-toggle>
+        <span class="ico" aria-hidden="true">☾</span>
+        <span data-theme-label>Dark Mode</span>
+      </button>
+      <button class="utility-btn" type="button" data-sidebar-toggle>
+        <span class="ico" aria-hidden="true">←</span>
+        <span data-sidebar-label>Collapse</span>
+      </button>`;
 
     const spacer = sidebar.querySelector('.spacer');
-    if (spacer) spacer.insertAdjacentElement('afterend', dock);
-    else sidebar.appendChild(dock);
+    if (spacer) spacer.insertAdjacentElement('afterend', utilities);
+    else sidebar.appendChild(utilities);
 
-    applyTheme(getPreference(), false);
+    utilities.querySelector('[data-theme-toggle]').addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(next, true);
+    });
+    utilities.querySelector('[data-sidebar-toggle]').addEventListener('click', () => {
+      const collapsed = document.documentElement.dataset.sidebar === 'collapsed';
+      if (collapsed) {
+        delete document.documentElement.dataset.sidebar;
+        localStorage.setItem(SIDEBAR_KEY, 'expanded');
+      } else {
+        document.documentElement.dataset.sidebar = 'collapsed';
+        localStorage.setItem(SIDEBAR_KEY, 'collapsed');
+      }
+      syncSidebarButton();
+    });
+
+    syncThemeButton();
+    syncSidebarButton();
   }
 
-  applyTheme(getPreference(), false);
-
-  media.addEventListener?.('change', () => {
-    if (getPreference() === 'system') applyTheme('system', false);
+  media.addEventListener?.('change', (event) => {
+    if (!localStorage.getItem(THEME_KEY)) applyTheme(event.matches ? 'dark' : 'light', false);
   });
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', injectThemeControls, { once: true });
+    document.addEventListener('DOMContentLoaded', injectUtilities, { once: true });
   } else {
-    injectThemeControls();
+    injectUtilities();
   }
 })();
