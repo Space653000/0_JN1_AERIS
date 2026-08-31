@@ -4,29 +4,40 @@
 
 本 repository 用於建立一套可長期保存、模型可替換、證據可追溯、工程結果可驗證的 AI 聲學工程組織系統。
 
-## Web UI
+## Web UI — AERIS UI v0.3
 
-AERIS 第一版固定三個主要入口：
+目前 UI baseline：
+
+> **Kairos Calm Personal OS UX × AERIS Engineering Evidence System**
+
+三個 canonical entrances：
 
 1. [Dashboard / Mission Control](index.html)  
-   AERIS 全域狀態、100-seat Role Library、Acoustic Autonomous R&D Loop、Evidence / Trust North-Star KPI。
+   Identity-first 系統首頁、100-seat Role Library、Autonomous R&D Loop、Engineering Trust、Research modules。
 
 2. [Engineering Workspace](workspace.html)  
-   Human Chief Engineer 的單一工作入口；輸入產品、工程問題、風險與證據需求，由 AERIS 動態組建 Temporary Engineering Pod。
+   Human Chief Engineer 的單一工程入口；Product / Transducer / Lifecycle / Risk / Evidence → Dynamic Temporary Pod。
 
 3. [Service Console](services.html)  
-   Control / Knowledge / Execution / Trust / Operations 五個 backend planes；Verification G0–G5、Risk R0–R4、Evidence Bundle、Health semantics。
+   Control / Knowledge / Execution / Trust / Operations 五個 planes；Verification G0–G5、Risk R0–R4、Evidence Bundle、Health semantics。
 
-### Kairos-inspired Light / Dark UX
+### Kairos-inspired interaction baseline
 
-三頁共用：
+三頁現在共用：
 
-- `System / Light / Dark` 三態 Appearance control
-- 預設跟隨 OS (`System`)
-- 手動選擇會透過 `localStorage` 跨頁保留
-- Kairos-inspired persistent sidebar、teal identity、soft semantic chips、summary-first / detail-on-demand hierarchy
-- `prefers-reduced-motion` support
-- desktop / compact desktop / mobile responsive navigation
+- 窄型 persistent sidebar
+- Light / Dark 同一套 semantic hierarchy
+- 第一次載入若沒有 explicit preference，跟隨 OS `prefers-color-scheme`
+- Kairos-style sidebar bottom toggle：`Dark Mode ↔ Light Mode`
+- `Collapse ↔ Expand` sidebar control
+- Theme 與 sidebar state 透過 `localStorage` 跨頁保留
+- pale-teal active navigation + left accent
+- identity-first hero + compact capability cards
+- 4-card summary rhythm
+- chapter-based progressive disclosure
+- summary → search → filter → detail UX
+- `prefers-reduced-motion`
+- desktop / compact desktop / mobile responsive behavior
 
 > **重要：**目前三頁仍是 Target-state static prototype。任何 `HEALTHY` / 完成狀態在未連接真實 telemetry、Evidence 與 Verification backend 前，都不得視為正式工程事實。
 
@@ -36,22 +47,19 @@ AERIS 第一版固定三個主要入口：
 - Workspace: `https://space653000.github.io/0_JN1_AERIS/workspace.html`
 - Services: `https://space653000.github.io/0_JN1_AERIS/services.html`
 
-## Research / Architecture Baseline
+Repository 中檔案存在 ≠ Pages 已被外部 HTTP 驗證上線；公開部署狀態必須另外驗收。
 
-1. [AERIS Master Research & Architecture Baseline](docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md)  
-   主 RFC：AERIS × Kairos、AI-native organization、Speaker/Microphone 六大專業、100 Virtual Engineering Seats、Evidence / Verification / Reproducibility、Standards Intelligence、P0–P3 Roadmap。
+## Research / Architecture
 
-2. [AERIS Research Data Index](docs/research/AERIS_RESEARCH_DATA_INDEX_20260831.md)  
-   研究數據索引：SOURCE-FACT、SYNTHESIS、AERIS-DECISION、TARGET、VERIFY-LATER 分離。
+完整索引：[`docs/research/README.md`](docs/research/README.md)
 
-3. [Kairos / LifeOS Deep Research](docs/research/2026-08-31_Kairos_LifeOS_AERIS_Deep_Research.md)  
-   Kairos Agent Harness、Memory、Skills、Workflow、事故、Evidence-before-Done、Human Approval 與 AERIS 可移植設計。
+目前主要文件：
 
-4. [AERIS Web UI / Control Plane Baseline](docs/research/AERIS_WEB_UI_CONTROL_PLANE_BASELINE_20260831.md)  
-   三個正式 Web 入口、Dashboard truth semantics、Temporary Pod UX、Service Console、Benchmark 100 與 UI/Backend 分工。
-
-5. [Kairos Light / Dark UX & UI Deep Research → AERIS Theme Baseline](docs/research/2026-09-01_Kairos_Dark_Light_UX_UI_Research.md)  
-   以第一方 Kairos Dashboard 實際截圖、AI Expo 與 Skills Dashboard 為依據，拆解 Light UI、Dark Mode evidence boundary、sidebar、card、semantic chip、summary/search/filter/detail UX，並定義 AERIS System/Light/Dark theme contract。
+1. [AERIS Master Research & Architecture Baseline](docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md)
+2. [Kairos / LifeOS Deep Research](docs/research/2026-08-31_Kairos_LifeOS_AERIS_Deep_Research.md)
+3. [AERIS Research Data Index](docs/research/AERIS_RESEARCH_DATA_INDEX_20260831.md)
+4. [AERIS Web UI / Control Plane Baseline](docs/research/AERIS_WEB_UI_CONTROL_PLANE_BASELINE_20260831.md)
+5. [Kairos Light / Dark UX & UI Deep Research — AERIS UI v0.3](docs/research/2026-09-01_Kairos_Dark_Light_UX_UI_Research.md)
 
 ## Core Architecture
 
