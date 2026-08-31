@@ -1,78 +1,92 @@
-<!doctype html>
-<html lang="zh-Hant">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#43b8b2">
-<title>AERIS — Dashboard</title>
-<link rel="stylesheet" href="aeris.css">
-<script src="aeris-theme.js"></script>
-<script src="aeris-data.js" defer></script>
-</head>
-<body>
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#62c5ba"><title>AERIS — Dashboard</title><link rel="stylesheet" href="aeris.css"><script src="aeris-theme.js"></script><script src="aeris-data.js" defer></script></head><body>
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="logo">A</div><div class="brand-copy"><div class="brand-name">AERIS</div><div class="tiny">聲學工程 OS</div></div></div>
-  <div class="sidebar-status"><span class="status-dot"></span>AERIS<br><span class="sidebar-status-detail">UI Shell · Target Baseline</span></div>
-  <div class="nav-label">AERIS</div>
-  <nav class="nav">
-    <a class="active" href="index.html"><span class="ico">◉</span><span class="nav-copy"><b>Dashboard</b><small>系統首頁</small></span></a>
-    <a href="workspace.html"><span class="ico">⚡</span><span class="nav-copy"><b>Workspace</b><small>工程工作台</small></span></a>
-    <a href="#activity"><span class="ico">🧭</span><span class="nav-copy"><b>Activity</b><small>工程流程</small></span></a>
-    <a href="#roles"><span class="ico">🌳</span><span class="nav-copy"><b>Roles</b><small>100 席能力庫</small></span></a>
-    <a href="#research"><span class="ico">▰</span><span class="nav-copy"><b>Research</b><small>研究與標準</small></span></a>
-    <a href="services.html"><span class="ico">▣</span><span class="nav-copy"><b>Services</b><small>後端服務</small></span></a>
-    <a href="#trust"><span class="ico">✦</span><span class="nav-copy"><b>Health</b><small>Trust / Evidence</small></span></a>
-  </nav>
-  <div class="spacer"></div>
-  <div class="sidebar-foot">Dashboard is a projection, not truth.</div>
+  <div class="brand"><div class="brand-mark">A</div><div class="brand-copy"><div class="brand-name">AERIS</div><div class="brand-sub">Acoustic Engineering OS</div></div></div>
+  <div class="sidebar-live"><span class="live-dot"></span><span>TARGET BASELINE</span></div>
+  <div class="nav-group"><div class="nav-label">AERIS</div><nav class="nav">
+    <a class="active" href="index.html"><span class="nav-icon">◎</span><span class="nav-copy"><b>Dashboard</b><small>系統首頁</small></span></a>
+    <a href="workspace.html"><span class="nav-icon">⌁</span><span class="nav-copy"><b>Workspace</b><small>工程工作台</small></span></a>
+    <a href="#activity"><span class="nav-icon">↻</span><span class="nav-copy"><b>Activity</b><small>研發流程</small></span></a>
+    <a href="#roles"><span class="nav-icon">◇</span><span class="nav-copy"><b>Roles</b><small>100 席能力庫</small></span></a>
+  </nav></div>
+  <div class="nav-group"><div class="nav-label">Intelligence</div><nav class="nav">
+    <a href="#research"><span class="nav-icon">▤</span><span class="nav-copy"><b>Research</b><small>研究基線</small></span></a>
+    <a href="#research"><span class="nav-icon">≡</span><span class="nav-copy"><b>Skills</b><small>工程方法</small></span></a>
+    <a href="#research"><span class="nav-icon">§</span><span class="nav-copy"><b>Standards</b><small>標準生命週期</small></span></a>
+  </nav></div>
+  <div class="nav-group"><div class="nav-label">Trust</div><nav class="nav">
+    <a href="#trust"><span class="nav-icon">✓</span><span class="nav-copy"><b>Evidence</b><small>證據與來源</small></span></a>
+    <a href="services.html"><span class="nav-icon">▣</span><span class="nav-copy"><b>Services</b><small>後端服務</small></span></a>
+  </nav></div>
+  <div class="spacer"></div><div class="sidebar-note">Dashboard is a projection, not truth.</div>
 </aside>
-<main class="main">
-  <header class="topbar"><div><h1>◉ AERIS</h1><div class="subtitle">Acoustic Engineering & Research Intelligence System · static snapshot</div></div><div class="actions"><button class="btn" onclick="location.reload()">⟳ 刷新</button></div></header>
+<main class="main"><div class="content">
+  <header class="topbar"><div><div class="page-title">AERIS</div><div class="page-meta">Acoustic Engineering & Research Intelligence System</div></div><div class="actions"><button class="btn" onclick="location.reload()">刷新</button></div></header>
+  <div class="sync-line"><span>AERIS 在線_</span><span class="sync-online">ONLINE · UI SHELL</span></div>
 
-  <section class="hero">
-    <div class="identity-status">AERIS Shell · <span class="pill teal">TARGET BASELINE</span></div>
-    <div class="identity"><div class="identity-avatar">A</div><div><h2>我是 AERIS</h2><div class="identity-sub">AI 聲學工程團隊 ｜ 研發設計 ｜ 量測驗證 ｜ 模擬調校 ｜ 演算法 ｜ 工廠品質</div></div></div>
-    <div class="quick-systems">
-      <div class="quick-system purple"><small>AI Runtime</small><b>Replaceable Models</b></div>
-      <div class="quick-system teal"><small>Role Library</small><b>100 Virtual Seats</b></div>
-      <div class="quick-system blue"><small>Knowledge</small><b>3-layer Context</b></div>
-      <div class="quick-system amber"><small>Verification</small><b>G0 → G5</b></div>
-      <div class="quick-system green"><small>Dynamic Pod</small><b>5–15 Specialists</b></div>
+  <section class="panel identity-panel">
+    <div class="identity-row">
+      <div class="identity-main"><div class="avatar">A</div><div><div class="identity-name">我是 AERIS</div><div class="identity-role">AI 聲學工程團隊｜研發設計｜量測驗證｜模擬調校｜演算法｜工廠品質</div></div></div>
+      <div class="identity-side"><b>LOCAL-FIRST</b>MODEL-NEUTRAL<br>EVIDENCE-FIRST</div>
     </div>
-    <p>AERIS 不是單一聊天機器人，也不是 100 個永久常駐 Agent。它是一個由 Human Chief Engineer 指揮的聲學工程組織：根據產品、生命週期、Speaker / Microphone 與工程問題，自動選擇需要的專業角色、方法、工具與驗證流程。</p>
-    <p>工程結論不能只因為 AI 說「完成」就成立。Requirement、Method、Execution、Evidence、Verification、Approval 與 Reproduction 必須分層記錄；Memory 可以被整理，Evidence 不可以被任意改寫。</p>
-    <div class="quote">「讓不是工程判斷的雜訊留給系統；把真正需要人做的取捨、責任與最終工程決策留給 Human Chief Engineer。」</div>
-    <div class="tags"><span class="tag">speaker</span><span class="tag">microphone</span><span class="tag">acoustic</span><span class="tag">audio</span><span class="tag">validation</span><span class="tag">tuning</span><span class="tag">simulation</span><span class="tag">algorithm</span><span class="tag">evidence-first</span><span class="tag">local-first</span></div>
+    <div class="identity-metrics">
+      <div class="metric"><div class="metric-label">AI 引擎</div><div class="metric-value">Model Router</div><div class="metric-sub">Claude / Codex / Local</div></div>
+      <div class="metric"><div class="metric-label">角色架構</div><div class="metric-value">100 席位</div><div class="metric-sub">Capability contracts</div></div>
+      <div class="metric"><div class="metric-label">工程矩陣</div><div class="metric-value">2 × 6</div><div class="metric-sub">Speaker / Mic × Domains</div></div>
+      <div class="metric"><div class="metric-label">驗證閘門</div><div class="metric-value">G0–G5</div><div class="metric-sub">Evidence → Approval</div></div>
+      <div class="metric"><div class="metric-label">動態團隊</div><div class="metric-value">5–15</div><div class="metric-sub">Typical active pod</div></div>
+    </div>
+    <div class="chips"><span class="chip">insights</span><span class="chip">evidence</span><span class="chip">verification</span><span class="chip">reproduction</span><span class="chip">cross-agent</span></div>
   </section>
 
-  <section class="stats">
-    <div class="stat teal"><div class="label">虛擬專業席位</div><div class="value">100</div><div class="small">Capability contracts</div></div>
-    <div class="stat purple"><div class="label">Product Chiefs</div><div class="value">24</div><div class="small">跨產品垂直整合</div></div>
-    <div class="stat amber"><div class="label">核心工程領域</div><div class="value">2×6</div><div class="small">Speaker / Mic × 六域</div></div>
-    <div class="stat green"><div class="label">False-Done 目標</div><div class="value">0</div><div class="small">Execution ≠ Completion</div></div>
+  <section class="section"><div class="section-title"><div><div class="section-kicker">About AERIS</div><h2>為什麼是 Acoustic Engineering Organization OS？</h2></div></div>
+    <div class="panel prose"><b>AERIS 不是一個聊天機器人，也不是 100 個常駐 Agent。</b> 它是一個由 Human Chief Engineer 指揮、能依任務動態組建專業工程 Pod 的本機優先聲學組織。每個結論都必須區分 Requirement、Theory、Simulation、Measurement、Standard、Factory / Field Evidence，並經過 Verification Gate 才能升級為工程事實。</div>
   </section>
 
-  <section class="panel chapter" id="activity">
-    <div class="chapter-kicker">CHAPTER 01</div><h3>AERIS 怎麼把一個工程問題變成可驗證結論？</h3>
-    <div class="pipeline"><div class="step done"><b>REQUIREMENT</b><span>需求 / 限制</span></div><div class="step done"><b>METHOD</b><span>方法 / 標準</span></div><div class="step active"><b>EXECUTION</b><span>CAE / Test / DSP</span></div><div class="step"><b>EVIDENCE</b><span>Raw / Hash / Log</span></div><div class="step"><b>VERIFY</b><span>G0–G4</span></div><div class="step"><b>APPROVE</b><span>Human Gate</span></div><div class="step"><b>REPRODUCE</b><span>Manifest replay</span></div><div class="step"><b>LEARN</b><span>Knowledge promotion</span></div></div>
+  <section class="section"><div class="section-title"><h2>Engineering Overview</h2><p>摘要先行，需要時再下鑽</p></div>
+    <div class="grid4">
+      <div class="summary-card"><div class="label">Virtual Engineering Roles</div><div class="value">100</div><div class="small">8 Council · 18 Speaker · 18 Mic · 24 Product · 20 Expert · 12 Ops</div></div>
+      <div class="summary-card"><div class="label">Product Chiefs</div><div class="value">24</div><div class="small">Hearing aid → TWS → Laptop → Vehicle → Robot</div></div>
+      <div class="summary-card"><div class="label">False-Done Target</div><div class="value">0</div><div class="small">Execution ≠ Completion</div></div>
+      <div class="summary-card"><div class="label">Tier-A Evidence</div><div class="value">100%</div><div class="small">正式工程結果的 North-Star target</div></div>
+    </div>
   </section>
 
-  <div class="grid2 section">
-    <section class="panel"><div class="section-head"><div><h3>Temporary Engineering Pod</h3><div class="desc">Laptop speaker + microphone 示範；角色按任務臨時組隊，不是永久啟動。</div></div><span class="pill amber">DEMO POD</span></div><div class="pod"><div class="person"><b>#053 Laptop</b>Product Chief</div><div class="person"><b>#009 Speaker Acoustic</b>Architecture</div><div class="person"><b>#015 Speaker Measurement</b>Validation</div><div class="person"><b>#027 Mic Acoustic</b>Architecture</div><div class="person"><b>#034 Array Validation</b>Microphone</div><div class="person"><b>#042 AEC</b>Algorithm</div><div class="person"><b>#043 Beamforming</b>Algorithm</div><div class="person"><b>#069 Psychoacoustics</b>Perception</div><div class="person"><b>#079 Metrology</b>Uncertainty</div><div class="person"><b>#089 Standards</b>Revision status</div><div class="person"><b>#098 Red Team</b>DFMEA</div><div class="person"><b>#099 Evidence Curator</b>Traceability</div></div></section>
-    <section class="panel" id="trust"><h3>Engineering Trust</h3><div class="desc">以下是 North-Star target，不是假裝已連線的 live telemetry。</div><div class="kpi"><span>Tier-A Evidence completeness</span><b>100%</b><div class="bar"><i style="width:100%"></i></div><span>Calibration validity</span><b>100%</b><div class="bar"><i style="width:100%"></i></div><span>Tier-A reproduction</span><b>100%</b><div class="bar"><i style="width:100%"></i></div><span>Unauthorized R3/R4</span><b>0</b><div class="bar"><i style="width:100%"></i></div></div><div class="tags"><span class="pill">UNKNOWN</span><span class="pill amber">STALE</span><span class="pill rose">FAILED</span><span class="pill green">VERIFIED</span></div></section>
-  </div>
-
-  <section class="panel section" id="roles"><div class="section-head"><div><h3>100-Seat Role Library</h3><div class="desc">Kairos Skills Dashboard 的 Summary → Search → Filter → Detail pattern，映射成 AERIS capability registry。</div></div><span id="count" class="pill teal">100 roles</span></div><div class="searchbar"><input id="q" placeholder="搜尋角色，例如 Beamforming / Laptop / Evidence"><select id="group"><option value="">全部群組</option><option>Chief Council</option><option>Speaker CoE</option><option>Microphone CoE</option><option>Product Chiefs</option><option>Distinguished Experts</option><option>Engineering Ops</option></select></div><div id="roleGrid" class="roles"></div></section>
-
-  <section class="grid3 section" id="research">
-    <div class="panel"><h3>Permanent Assets</h3><div class="list"><div class="row"><div><div class="name">Constitution + Core Rules</div><div class="meta">Authority / invariants / SSOT</div></div><span class="pill">Portable</span></div><div class="row"><div><div class="name">Versioned Skills + Methods</div><div class="meta">SOP + schema + scripts + evals</div></div><span class="pill">Testable</span></div><div class="row"><div><div class="name">Standards Registry</div><div class="meta">Edition / lifecycle / applicability</div></div><span class="pill">Freshness</span></div></div></div>
-    <div class="panel"><h3>Knowledge Flywheel</h3><div class="list"><div class="row"><div><div class="name">Problem → Cause</div><div class="meta">工程關係</div></div></div><div class="row"><div><div class="name">Evidence → Fix</div><div class="meta">量測 / 模擬支撐</div></div></div><div class="row"><div><div class="name">Fix → Verified Result</div><div class="meta">Regression / reproduction</div></div></div></div></div>
-    <div class="panel"><h3>Benchmark 100</h3><div class="desc">不是虛構世界排名，而是 100 個可轉移 AI operating models 的持續研究資料集。</div><div class="tags"><span class="tag">AI Scientist</span><span class="tag">Engineering Agent</span><span class="tag">Harness</span><span class="tag">Evaluation</span><span class="tag">Autonomous Ops</span></div></div>
+  <section class="section" id="research"><div class="section-title"><div><div class="section-kicker">Core Systems</div><h2>AERIS 的五個永久資產層</h2></div></div>
+    <div class="grid5">
+      <div class="feature-card"><div class="feature-index">01</div><h3>Rules</h3><p>Constitution、Core Rules、Risk / Approval，模型可換但規則不可漂移。</p></div>
+      <div class="feature-card"><div class="feature-index">02</div><h3>Skills</h3><p>Versioned methods、scripts、schemas、evals、golden cases。</p></div>
+      <div class="feature-card"><div class="feature-index">03</div><h3>Knowledge</h3><p>Problem → Cause → Evidence → Fix → Result 的工程知識。</p></div>
+      <div class="feature-card"><div class="feature-index">04</div><h3>Evidence</h3><p>Raw data、hash、tool/version、calibration、standards、review。</p></div>
+      <div class="feature-card"><div class="feature-index">05</div><h3>Tool Bus</h3><p>Python / MATLAB / CAE / APx / KLIPPEL / SoundCheck / ACQUA。</p></div>
+    </div>
   </section>
-  <div class="footer">AERIS Dashboard · Kairos-inspired calm control surface · Evidence before Done.</div>
-</main>
-</div>
-<script>
-window.addEventListener('DOMContentLoaded',()=>{const roles=window.AERIS_ROLES||[];const q=document.getElementById('q'),group=document.getElementById('group'),grid=document.getElementById('roleGrid'),count=document.getElementById('count');function render(){const term=q.value.toLowerCase(),g=group.value;const rows=roles.filter(r=>(!term||(r.name+' '+r.group).toLowerCase().includes(term))&&(!g||r.group===g));count.textContent=rows.length+' roles';grid.innerHTML=rows.map(r=>`<div class="role"><div class="id">#${String(r.id).padStart(3,'0')}</div><b>${r.name}</b><div class="role-meta"><span>${r.group}</span></div></div>`).join('')}q.addEventListener('input',render);group.addEventListener('change',render);render();});
-</script>
+
+  <section class="section" id="activity"><div class="section-title"><div><div class="section-kicker">Engineering Loop</div><h2>Autonomous R&D Flow</h2></div><span class="pill teal">TARGET STATE</span></div>
+    <div class="panel"><div class="timeline">
+      <div class="step done"><b>REQUIREMENT</b><span>需求</span></div><div class="step done"><b>METHOD</b><span>方法</span></div><div class="step active"><b>EXECUTION</b><span>CAE / Test</span></div><div class="step"><b>EVIDENCE</b><span>Raw / Hash</span></div><div class="step"><b>VERIFY</b><span>G0–G4</span></div><div class="step"><b>APPROVE</b><span>Human Gate</span></div><div class="step"><b>REPRODUCE</b><span>Replay</span></div><div class="step"><b>LEARN</b><span>Knowledge</span></div>
+    </div></div>
+  </section>
+
+  <section class="section"><div class="grid2">
+    <div class="panel"><div class="section-title"><h2>Temporary Engineering Pod</h2><span class="pill amber">DEMO</span></div><div class="list">
+      <div class="row"><div><div class="row-name">#053 Laptop Product Chief</div><div class="row-meta">垂直產品整合與生命週期約束</div></div><span class="pill">Product</span></div>
+      <div class="row"><div><div class="row-name">#009 Speaker Acoustic Architect</div><div class="row-meta">Enclosure / leakage / port / acoustic architecture</div></div><span class="pill teal">Speaker</span></div>
+      <div class="row"><div><div class="row-name">#043 Beamforming / DOA</div><div class="row-meta">Array algorithm / spatial capture</div></div><span class="pill purple">Algorithm</span></div>
+      <div class="row"><div><div class="row-name">#098 Acoustic Red-Team</div><div class="row-meta">Counter-hypothesis / DFMEA / failure challenge</div></div><span class="pill rose">Review</span></div>
+    </div></div>
+    <div class="panel" id="trust"><div class="section-title"><h2>Trust Contract</h2><span class="pill green">EVIDENCE-FIRST</span></div><div class="list">
+      <div class="row"><div><div class="row-name">Memory ≠ Evidence</div><div class="row-meta">記憶可摘要；本次工程證據不可被任意重寫。</div></div></div>
+      <div class="row"><div><div class="row-name">Execution ≠ Completion</div><div class="row-meta">EXECUTED 不得直接變成 DONE。</div></div></div>
+      <div class="row"><div><div class="row-name">Reviewer ≠ Model Brand</div><div class="row-meta">Reviewer 是獨立角色與權限邊界。</div></div></div>
+      <div class="row"><div><div class="row-name">Dashboard ≠ Truth</div><div class="row-meta">所有綠燈都必須能下鑽到 evidence。</div></div></div>
+    </div></div>
+  </div></section>
+
+  <section class="section" id="roles"><div class="section-title"><div><div class="section-kicker">Capability Library</div><h2>100-Seat Role Library</h2></div><span id="count" class="pill teal">100 roles</span></div>
+    <div class="searchbar"><input id="q" placeholder="搜尋角色，例如 Beamforming / Laptop / Evidence"><select id="group"><option value="">全部群組</option><option>Chief Council</option><option>Speaker CoE</option><option>Microphone CoE</option><option>Product Chiefs</option><option>Distinguished Experts</option><option>Engineering Ops</option></select></div><div id="roleGrid" class="roles"></div>
+  </section>
+  <div class="footer">AERIS UI · Kairos reference geometry × Acoustic Engineering evidence model</div>
+</div></main></div>
+<script>window.addEventListener('DOMContentLoaded',()=>{const roles=window.AERIS_ROLES||[];const q=document.getElementById('q'),g=document.getElementById('group'),grid=document.getElementById('roleGrid'),count=document.getElementById('count');function render(){const query=q.value.toLowerCase(),group=g.value;const rows=roles.filter(r=>(!query||(r.name+' '+r.group).toLowerCase().includes(query))&&(!group||r.group===group));count.textContent=rows.length+' roles';grid.innerHTML=rows.map(r=>`<div class="role"><div class="role-id">#${String(r.id).padStart(3,'0')}</div><b>${r.name}</b><div class="role-group">${r.group}</div></div>`).join('')}q.addEventListener('input',render);g.addEventListener('change',render);render()});</script>
 </body></html>
