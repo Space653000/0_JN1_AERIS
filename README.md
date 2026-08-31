@@ -2,7 +2,57 @@
 
 **AERIS — Acoustic Engineering & Research Intelligence System**
 
-本 repository 用於建立一套可長期保存、模型可替換、證據可追溯、工程結果可驗證的 AI 聲學工程組織系統。
+> ## 🔒 Remote SSOT / Codex Local-Only
+>
+> **This GitHub `main` is the official AERIS target baseline. Codex may READ / CLONE / FETCH / COMPARE it, but Codex must NOT PUSH / PR / WRITE / MERGE / UPDATE REFS in this repository.**
+>
+> All Codex implementation, testing, experiments and local commits happen **only in local folders** using `origin/main` as the target reference.
+>
+> ```text
+> GitHub main (read-only target)
+>          ↓ fetch / compare
+> Local AERIS implementation
+>          ↓ code / test / verify
+> Local handoff only
+>          X no Codex push back to GitHub
+> ```
+>
+> Codex authority contract: [`AGENTS.md`](AGENTS.md)  
+> Machine-readable policy: [`aeris.policy.yaml`](aeris.policy.yaml)  
+> Local-only SOP: [`docs/governance/CODEX_LOCAL_ONLY_WORKFLOW.md`](docs/governance/CODEX_LOCAL_ONLY_WORKFLOW.md)
+
+本 repository 用於保存 AERIS 的**官方目標、架構、研究基線、UI reference 與治理契約**。它不是 Codex 的日常施工區。
+
+## Local implementation — required protection
+
+任何本機 AERIS workspace 建立後，先執行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\local-only\Protect-AERISReadOnly.ps1
+powershell -ExecutionPolicy Bypass -File .\tools\local-only\Verify-AERISReadOnly.ps1
+```
+
+每次 Codex 開工前同步 target：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\local-only\Sync-AERISTarget.ps1
+```
+
+本機防線會設定：
+
+```text
+origin fetch = https://github.com/Space653000/0_JN1_AERIS.git
+origin push  = DISABLED://AERIS-REMOTE-READ-ONLY
+pre-push     = always DENY
+```
+
+因此正常資料流是：
+
+> **GitHub `main` → Local AERIS only.**
+
+正式更新這個 GitHub 是另一個 **Human-controlled publication** 流程，不屬於 Codex 本機實作權限。
+
+---
 
 ## Web UI — AERIS UI v0.4
 
