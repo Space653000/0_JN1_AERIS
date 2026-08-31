@@ -1,7 +1,7 @@
 # AERIS Research Index
 
 **Repository:** `Space653000/0_JN1_AERIS`  
-**Current UI baseline:** **AERIS UI v0.3 — Kairos Interaction Baseline**  
+**Current UI baseline:** **AERIS UI v0.4 — Kairos User-Screenshot Calibration**  
 **Updated:** 2026-09-01
 
 此資料夾區分「研究事實」「AERIS 架構決策」「未來 Target」，避免後續 AI 把推論當成已完成實作。
@@ -21,7 +21,10 @@
    Dashboard / Workspace / Services 三個 canonical web entrances 與 backend five-plane control surface。
 
 5. [`2026-09-01_Kairos_Dark_Light_UX_UI_Research.md`](2026-09-01_Kairos_Dark_Light_UX_UI_Research.md)  
-   **目前最新 UI/UX 規格。** 依 Kairos 第一方 Dashboard 實際畫面重新拆解 sidebar、identity hero、summary cards、chapter hierarchy、Light/Dark、Collapse、Progressive Disclosure，並定義 AERIS UI v0.3。
+   Kairos 第一方 Dashboard、Light/Dark、Collapse、Progressive Disclosure 的前一版 UI/UX 深度研究。
+
+6. [`2026-09-01_Kairos_User_Screenshot_UI_Calibration_v0.4.md`](2026-09-01_Kairos_User_Screenshot_UI_Calibration_v0.4.md)  
+   **目前最新視覺規格。** 依 Human Chief Engineer 直接操作 `os.lifehacker.tw` 時提供的 Light / Dark 實際截圖重新校準：228px sidebar、低對比灰階 canvas、12px card radius、幾乎無陰影、8–13px compact UI typography、monochrome icons、soft-teal active state、Dark charcoal hierarchy，以及 Identity-first dashboard rhythm。
 
 ## Current web entrances
 
@@ -48,13 +51,21 @@ Pretty UI
 → therefore system is healthy
 ```
 
-## Kairos UI source facts currently used
+## Current visual rule
 
-- `https://os.lifehacker.tw/`
-- `https://expo.lifehacker.tw/`
-- `https://expo.lifehacker.tw/assets/AI%20Expo/v25.avif`
-- `https://works.lifehacker.tw/works/skills-dashboard.html`
+```text
+Kairos Personal OS restraint
+×
+AERIS Acoustic Engineering evidence rigor
+```
 
-Current UI design principle:
+UI regressions include, unless explicitly approved by the Human:
 
-> **Kairos Calm Personal OS UX × AERIS Engineering Evidence System.**
+- heavy shadows;
+- oversized round cards;
+- giant SaaS KPI typography;
+- emoji-heavy navigation;
+- high-saturation teal used as large page surfaces;
+- pure-black / neon cyberpunk Dark mode;
+- dashboard-first analytics wall before identity/context;
+- remote visual redesign that ignores the v0.4 screenshot calibration.
