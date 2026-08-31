@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AERIS — Dashboard</title><link rel="stylesheet" href="aeris.css">
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">A</div><div class="brand-copy"><div class="brand-name">AERIS</div><div class="tiny">Acoustic Engineering OS</div></div></div>
+  <div class="system-card"><div><span class="status-dot"></span><b style="font-size:10px">TARGET BASELINE</b></div><div class="tiny system-copy" style="margin-top:5px">UI prototype · not live telemetry</div></div>
+  <div class="nav-label">CONTROL</div>
+  <nav class="nav">
+    <a class="active" href="index.html"><b class="ico">◉</b><span>Dashboard</span></a>
+    <a href="workspace.html"><b class="ico">⌁</b><span>Workspace</span></a>
+    <a href="services.html"><b class="ico">⚙</b><span>Services</span></a>
+  </nav>
+  <div class="nav-label">FUTURE MODULES</div>
+  <nav class="nav">
+    <a href="#roles"><b class="ico">▦</b><span>100-Seat Roles</span></a>
+    <a href="#trust"><b class="ico">✓</b><span>Evidence / Trust</span></a>
+    <a href="#benchmark"><b class="ico">◎</b><span>Benchmark 100</span></a>
+  </nav>
+  <div class="spacer"></div><div class="sidebar-foot">Kairos-inspired visual language.<br>Engineering truth comes from evidence.</div>
+</aside>
+<main class="main">
+  <header class="topbar"><div><h1>AERIS</h1><div class="subtitle">聲學工程組織儀表板 · Mission Control</div></div><div class="actions"><span class="pill teal">LOCAL-FIRST</span><span class="pill purple">MODEL-NEUTRAL</span><button class="btn" onclick="location.reload()">重新整理</button></div></header>
+  <div class="notice"><b>狀態說明：</b>此頁目前是 AERIS vNext Target-state Prototype。任何數值或綠燈均為架構目標／示範，不代表後端服務已部署。正式版必須從 Evidence、Verification、Health telemetry 投影真實狀態。</div>
+
+  <section class="hero">
+    <div class="eyebrow">AERIS Engineering OS · North Star</div>
+    <h2>我是 AERIS</h2>
+    <p><b>1 位 Human Chief Engineer 指揮的 100 席位 AI Acoustic Engineering Organization。</b> 以 Speaker / Microphone × Acoustic / Audio / Validation / Tuning / Simulation / Algorithm 為核心矩陣，延伸至 Product Pods、Distinguished Experts、Engineering Operations，並以 Evidence、Verification、Human Approval 與 Reproducibility 收斂工程結論。</p>
+    <div class="tags"><span class="tag">Speaker</span><span class="tag">Microphone</span><span class="tag">Acoustic</span><span class="tag">Audio</span><span class="tag">Validation</span><span class="tag">Tuning</span><span class="tag">Simulation</span><span class="tag">Algorithm</span><span class="tag">Autonomous Lab</span><span class="tag">Evidence-first</span></div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><div class="label">虛擬專業席位</div><div class="value">100</div><div class="small">Role Library，不是 100 個常駐 Agent</div></div>
+    <div class="stat"><div class="label">核心聲學矩陣</div><div class="value">2×6</div><div class="small">Speaker / Mic × 六大工程領域</div></div>
+    <div class="stat"><div class="label">Product Chiefs</div><div class="value">24</div><div class="small">跨產品垂直整合</div></div>
+    <div class="stat"><div class="label">Verification Gates</div><div class="value">G0–G5</div><div class="small">Deterministic → Human approval</div></div>
+    <div class="stat"><div class="label">Typical Active Pod</div><div class="value">5–15</div><div class="small">任務發生時動態組隊</div></div>
+  </section>
+
+  <div class="grid2">
+    <section class="panel">
+      <h3>Acoustic Autonomous R&D Loop</h3><div class="desc">Execution 不等於 Done；正式完成必須經 Evidence 與 Verification。</div>
+      <div class="pipeline">
+        <div class="step done"><b>REQUIREMENT</b><span>需求 / 規格</span></div><div class="step done"><b>METHOD</b><span>方法 / 標準</span></div>
+        <div class="step active"><b>EXECUTION</b><span>CAE / Test / DSP</span></div><div class="step"><b>EVIDENCE</b><span>Raw / Hash / Log</span></div>
+        <div class="step"><b>VERIFY</b><span>G0–G4</span></div><div class="step"><b>APPROVE</b><span>Human Gate</span></div>
+        <div class="step"><b>REPRODUCE</b><span>Manifest replay</span></div><div class="step"><b>LEARN</b><span>Knowledge graph</span></div>
+      </div>
+      <div class="section-head section"><h3>Temporary Engineering Pod — Laptop Voice + Speaker Example</h3><span class="pill amber">DEMO POD</span></div>
+      <div class="pod">
+        <div class="person"><b>#053 Laptop</b>Product Chief</div><div class="person"><b>#009 Speaker Acoustic</b>Architecture</div><div class="person"><b>#015 Speaker Measurement</b>Validation</div>
+        <div class="person"><b>#027 Mic Acoustic</b>Architecture</div><div class="person"><b>#034 Array Validation</b>Microphone</div><div class="person"><b>#042 AEC</b>Algorithm</div>
+        <div class="person"><b>#043 Beamforming / DOA</b>Algorithm</div><div class="person"><b>#069 Psychoacoustics</b>Perception</div><div class="person"><b>#079 Metrology</b>Uncertainty</div>
+        <div class="person"><b>#089 Standards</b>Revision status</div><div class="person"><b>#098 Red Team</b>DFMEA</div><div class="person"><b>#099 Evidence Curator</b>Traceability</div>
+      </div>
+    </section>
+    <section class="panel" id="trust">
+      <h3>Engineering Trust — North-Star Targets</h3><div class="desc">正式版應由 live telemetry 計算，而非前端自行判斷。</div>
+      <div class="kpi">
+        <span>Tier-A Evidence completeness</span><b>100%</b><div class="bar"><i style="width:100%"></i></div>
+        <span>Calibration validity</span><b>100%</b><div class="bar"><i style="width:100%"></i></div>
+        <span>Tier-A reproduction</span><b>100%</b><div class="bar"><i style="width:100%"></i></div>
+        <span>False-Done</span><b>0</b><div class="bar"><i style="width:100%"></i></div>
+        <span>Unauthorized R3/R4</span><b>0</b><div class="bar"><i style="width:100%"></i></div>
+      </div>
+      <div class="section"><h3>Canonical Engineering States</h3><div class="tags"><span class="tag">DRAFT</span><span class="tag">READY</span><span class="tag">EXECUTING</span><span class="tag">EXECUTED</span><span class="tag">EVIDENCED</span><span class="tag">VERIFIED</span><span class="tag">APPROVED</span><span class="tag">RELEASED</span></div></div>
+    </section>
+  </div>
+
+  <section class="panel section" id="roles">
+    <div class="section-head"><div><h3>100-Seat Role Library</h3><div class="desc">角色是 Capability Contract；Task Router 實際只喚醒與任務相關的 2–15 席。</div></div><span id="count" class="pill teal">100 roles</span></div>
+    <div class="searchbar"><input id="q" placeholder="搜尋角色，例如 Beamforming / Laptop / Evidence"><select id="group"><option value="">全部群組</option><option>Chief Council</option><option>Speaker CoE</option><option>Microphone CoE</option><option>Product Chiefs</option><option>Distinguished Experts</option><option>Engineering Ops</option></select></div>
+    <div id="roleGrid" class="roles"></div>
+  </section>
+
+  <section class="grid3 section" id="benchmark">
+    <div class="panel"><h3>Permanent Assets</h3><div class="list"><div class="row"><div><div class="name">Constitution + Core Rules</div><div class="meta">Authority / invariants / SSOT</div></div><span class="pill">Portable</span></div><div class="row"><div><div class="name">Versioned Skills + Methods</div><div class="meta">SOP + schema + script + eval</div></div><span class="pill">Testable</span></div><div class="row"><div><div class="name">Standards Registry</div><div class="meta">Edition / status / superseded-by</div></div><span class="pill">Freshness</span></div></div></div>
+    <div class="panel"><h3>Knowledge Flywheel</h3><div class="list"><div class="row"><div><div class="name">Problem → Cause</div><div class="meta">Engineering relation</div></div><span class="pill">Graph</span></div><div class="row"><div><div class="name">Evidence → Fix</div><div class="meta">Measured / simulated support</div></div><span class="pill">Trace</span></div><div class="row"><div><div class="name">Fix → Verified Result</div><div class="meta">Regression / reproduction</div></div><span class="pill">Learn</span></div></div></div>
+    <div class="panel"><h3>Global AI Benchmark 100</h3><div class="desc">不是虛構 Top 100 排名，而是 100 個可轉移 AI Operating Models 的持續研究資料集。</div><div class="tags"><span class="tag">AI Scientist</span><span class="tag">Engineering Agent</span><span class="tag">Vertical AI</span><span class="tag">Autonomous Ops</span><span class="tag">Harness</span><span class="tag">Evaluation</span></div><div class="callout" style="margin-top:10px">Seed examples 已收錄於研究基線：FutureHouse、LILA、Siemens Eigen、Harvey、Intercom Fin、Coinbase、Cisco、Project Vend / Vending-Bench 等。</div></div>
+  </section>
+  <div class="footer">AERIS vNext Dashboard · Kairos-inspired UI · Dashboard is a projection, not truth.</div>
+</main>
+</div>
+<script>
+const groups={
+"Chief Council":["Chief Acoustic Architect","Speaker Engineering Director","Microphone Engineering Director","Product Audio System Architect","DSP & Algorithm Director","Validation & Quality Director","NPI & Manufacturing Director","Research / Standards / Knowledge Director"],
+"Speaker CoE":["Speaker Acoustic System Architect","Transducer / T-S / Nonlinear Specialist","Enclosure / Port / Waveguide Specialist","Audio Circuit Architect","Amp / Codec / Power Integrity Specialist","Embedded Audio Interface Specialist","Speaker Measurement Engineer","Nonlinear / Power / Reliability Validation Engineer","Directivity / Spatial Validation Engineer","Tonal Tuning Engineer","Dynamics / Bass / Protection Tuning Engineer","Psychoacoustic Speaker Tuning Engineer","Lumped / FEM Acoustic Simulation Engineer","BEM / Vibro-acoustic Simulation Engineer","Room / Ray / System Simulation Engineer","Speaker DSP Engineer","Smart-Amp / Protection Algorithm Engineer","Spatial / Room-Correction Algorithm Engineer"],
+"Microphone CoE":["Microphone Acoustic Architect","MEMS / ECM Capsule Specialist","Port / Mesh / Wind / Isolation Specialist","Microphone Audio Circuit Architect","ADC / PDM / Clock / Noise Specialist","Embedded Capture Pipeline Engineer","Microphone Measurement Engineer","Array / Directivity Validation Engineer","Far-field / Noise Scenario Validation Engineer","Microphone Tonal Tuning Engineer","Array Pattern Tuning Engineer","Speech Quality Tuning Engineer","Mic-Port / Thermoviscous Simulation Engineer","Array / Wave Propagation Simulation Engineer","Room / Wind / Structure Simulation Engineer","AEC / Echo Control Engineer","Beamforming / DOA Engineer","NR / AGC / Dereverb / Speech Enhancement Engineer"],
+"Product Chiefs":["Medical Hearing Aid","OTC Hearing Aid / PSAP","Assistive Listening / Auracast","TWS Earbuds","ANC Over-Ear Headphone","Gaming / Communication Headset","Smartphone","Tablet","Laptop","Monitor / All-in-One","Smart Speaker","Soundbar","Home Theater / Multichannel","TV / Display Audio","Doorbell / Security Camera","IoT / Smart Appliance","AR Glasses","VR / XR Headset","Automotive Audio / Hands-Free","AMR / Robot Vehicle","Quadruped Robot","Humanoid / Service Robot","Conference / UC Device","Directional / Array Microphone System"],
+"Distinguished Experts":["Psychoacoustics","Objective Perceptual Metrics / MOS","Spatial Audio / Binaural / HRTF","Room Acoustics","Vibration / NVH","Acoustic Materials / Foam / Mesh / Porous Media","Thermal / Power / Reliability","EMC / EMI / Ground Noise","Mechanical Tolerance / Leakage / Assembly","DOE / Statistics / Monte-Carlo","Metrology / Measurement Uncertainty","Sensor Fusion / IMU / Head Tracking","Bluetooth / LE Audio / Wireless Audio","OS Audio Stack / Latency / Sync","Codec / Transport / Network Audio","Audio Machine Learning","Acoustic Data Engineering","Competitive Benchmark / Teardown","Patent / Prior-Art Intelligence","Frontier Acoustic Research Scientist"],
+"Engineering Ops":["International Standards & Regulation Engineer","OEM / Customer Certification Engineer","Test Automation Engineer","Laboratory Instrument Controller","Factory EOL / QC Engineer","Failure Analysis / FACA Engineer","Supplier Quality / Incoming Quality Engineer","Reliability / HALT / Environmental Engineer","Requirement / Traceability / Configuration Manager","Acoustic Red-Team / DFMEA Reviewer","Technical Report / Evidence / Knowledge Curator","Autonomous Experiment & Optimization Engineer"]};
+let id=1,roles=[];Object.entries(groups).forEach(([g,names])=>names.forEach(name=>roles.push({id:id++,name,group:g})));
+function render(){const q=document.getElementById('q').value.toLowerCase(),g=document.getElementById('group').value;const f=roles.filter(r=>(!q||(r.name+' '+r.group).toLowerCase().includes(q))&&(!g||r.group===g));document.getElementById('count').textContent=f.length+' roles';document.getElementById('roleGrid').innerHTML=f.map(r=>`<div class="role"><div class="id">#${String(r.id).padStart(3,'0')}</div><b>${r.name}</b><div class="role-meta"><span>${r.group}</span></div></div>`).join('')}
+q.addEventListener('input',render);group.addEventListener('change',render);render();
+</script>
+</body></html>
