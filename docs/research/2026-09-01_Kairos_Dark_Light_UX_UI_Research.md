@@ -1,648 +1,760 @@
-# Kairos（雷小蒙）Light / Dark UX & UI 深度研究 → AERIS Theme Baseline
+# Kairos（雷小蒙）Light / Dark UX & UI 深度研究 → AERIS UI v0.3 Baseline
 
 **Research date:** 2026-09-01 (Asia/Taipei)  
-**Target:** `os.lifehacker.tw` / Kairos（雷小蒙）公開 Dashboard 與相關第一方公開展示  
+**Target:** `os.lifehacker.tw` / Kairos（雷小蒙）公開 Dashboard、AI Expo 第一方展示、Skills Dashboard 案例  
 **Repository:** `Space653000/0_JN1_AERIS`  
-**Status:** Research + AERIS implementation baseline  
+**Implementation status:** AERIS UI v0.3 — Kairos Interaction Baseline  
 
 ---
 
 # 0. Executive Summary
 
-本次研究的目標不是「抄一張 Kairos 截圖」，而是抽取雷小蒙公開 UI 中真正可移植的 UX 規則，再映射到 AERIS 的 Dashboard / Workspace / Services。
+這次研究不只抽象談「淺色、深色、Teal」，而是把 Kairos 公開 Dashboard 拆成真正的 UX 元件與資訊節奏。
 
-研究後的核心結論：
+核心結論：
 
-> **Kairos 的視覺優勢不是高密度炫技，而是 Calm Control Surface：固定側欄、Identity-first、低對比卡片、少量 pastel semantic colors、摘要先行、需要時才 drill-down。**
+> **Kairos 是 Calm Personal OS，而不是 Enterprise Analytics Dashboard。**
 
-AERIS 應保留這個哲學，但把內容換成工程級資訊：
+它的辨識度來自：
 
 ```text
-Identity
-→ North-Star KPI
-→ Current Engineering State
-→ Human Attention
-→ Search / Filter
-→ Drill-down Evidence
+窄型 persistent sidebar
+→ 小型同步 / uptime context
+→ Identity-first hero
+→ compact capability cards
+→ narrative explanation
+→ pastel tags
+→ 4-card summary
+→ chapter-based drill-down
 ```
 
-Theme 決策：
+而不是：
 
-> **Light / Dark 必須是同一套資訊架構與 semantic hierarchy 的兩種觀看模式，而不是兩套不同 UI。**
+```text
+巨大 KPI
++ 大量圖表
++ 厚重陰影
++ 寬 sidebar
++ 高彩度 cyberpunk
+```
 
-AERIS 已實作：
+因此 AERIS v0.3 將三個頁面統一成同一個 Kairos-inspired shell：
 
-- `System / Light / Dark` 三態切換
-- 預設 `System`
-- 手動選擇寫入 `localStorage`
-- OS theme 變更時，System 模式即時跟隨
-- Theme control 固定在側欄底部，呼應 Kairos 公開截圖的 `Dark Mode / Collapse` 低優先層級位置
-- 深色模式保留 Teal identity 與 Green / Amber / Rose / Purple semantic colors
-- 支援 `prefers-reduced-motion`
-- 桌面 / 窄桌機 / 手機皆保留 theme control
+- Dashboard：Who / What / Current Engineering System
+- Workspace：What do I want AERIS to engineer?
+- Services：Can the Harness / Trust / Operations prove its state?
+
+AERIS 仍然保留自己的工程差異化：
+
+> **Kairos UX × Acoustic Engineering Evidence / Verification / Authority.**
 
 ---
 
-# 1. Evidence Boundary：哪些是公開可證實，哪些不是
+# 1. Source / Evidence Boundary
 
-## 1.1 可直接證實
+## 1.1 第一方可直接觀察資料
 
-### A. Kairos 公開實際 Dashboard 截圖
+### A. AI Expo — Kairos Dashboard 實際畫面
 
-第一方課程頁公開的 Kairos Dashboard 截圖可以直接觀察到：
-
-- 左側固定 navigation rail
-- 白 / 暖白 canvas
-- 極淡灰 border
-- Teal / aqua 作為 AI identity 主色
-- 大型 soft-gradient identity card
-- 多個淡色 pastel tag / chip
-- 主要資訊由大標題 → 摘要 → tags → KPI cards 向下展開
-- 側欄底部有 `Dark Mode`
-- 側欄底部另有 `Collapse`
-- 左側 navigation 至少可見 Kairos / Activity / Timeline / Skills / Projects / Health / Inbox 等分類
-
-第一方截圖 URL：
-
-`https://s.teachifycdn.com/image/width%3D1920%2Cquality%3D80/attachment/public_image/95279a3a-e796-4778-842a-053cc152bcf4/c4f70870-8a70-419d-93d9-b6df6cdc25f5.jpg`
-
-來源頁：
-
-`https://lifehacker.tw/courses/24hr-claude-code-tutorial`
-
-### B. AI Expo 對 Dashboard 用途的第一方描述
-
-AI Expo 2026 頁面直接描述：
-
-> 雷小蒙的系統主頁把「專案進度、技能模組與每日自動化任務」集中在單一介面。
-
-這確認 Dashboard 的核心目的不是裝飾，而是 **single operational overview**。
-
-來源：
+第一方 AI Expo 頁面：
 
 `https://expo.lifehacker.tw/`
 
-### C. Skills Dashboard 的 UX 取捨
+Dashboard 圖片資產：
 
-雷蒙作品平台的 Skills Dashboard 案例公開描述：
+`https://expo.lifehacker.tw/assets/AI%20Expo/v25.avif`
 
-- 頁面頂部先顯示 Skill 總數、分類數、平均文件大小、參考文件數
-- 下方再提供搜尋與分類標籤
-- 卡片只顯示最重要摘要
-- 點卡片後才看完整說明
-- 分類優先於「最近更新」排序
+AI Expo 對畫面的第一方描述：
 
-這對 AERIS 非常重要，因為 100-seat Role Library / Skill Registry / Standards Registry 都會面臨同樣的資訊規模問題。
+> 雷小蒙的系統主頁。專案進度、技能模組與每日自動化任務，集中在單一介面。
 
-來源：
+這張圖是目前最重要的 UI source fact。
+
+### B. Skills Dashboard UX 案例
 
 `https://works.lifehacker.tw/works/skills-dashboard.html`
 
-## 1.2 目前不能直接證實
+公開案例明確記載：
 
-截至本次研究，公開索引中沒有找到與 Light 截圖同等可信度、可直接檢視的 Kairos Dark Mode 全頁實拍。
+- 40 Skills / 14 categories
+- 首屏先看 summary metrics
+- 關鍵字搜尋
+- category filter
+- drag ordering
+- compact cards
+- 點卡片才看完整說明
+- 分類優先於最近更新排序
 
-此外 `https://os.lifehacker.tw/` 對公開 crawler 目前只回傳：
+這提供 Kairos / LifeOS 生態系很清楚的 Progressive Disclosure pattern。
+
+### C. os.lifehacker.tw
+
+`https://os.lifehacker.tw/`
+
+公開 crawler 目前只能直接讀到：
 
 ```text
 啟動 Kairos 中...
 ```
 
-因此不能嚴謹反推：
-
-- Kairos frontend framework
-- Tailwind / React / Next / Vue 等實作
-- 原始 design token
-- Dark Mode 精確 hex
-- theme storage implementation
-- component library
-
-**AERIS 不把推論偽裝成 source fact。**
-
-所以本文件的 Dark token 是：
-
-> **AERIS implementation decision inspired by the observable Kairos hierarchy, not a claim that these are Kairos original CSS values.**
+所以不可依 crawler 結果聲稱知道 frontend framework、CSS source 或完整 runtime implementation。
 
 ---
 
-# 2. Kairos Observable Visual Grammar
+# 2. Kairos Dashboard — Direct Visual Observation
 
-## 2.1 Canvas
+以下只記錄第一方 Dashboard 截圖可以直接看到的視覺結構。
 
-Light UI 的感覺不是純白 SaaS，也不是高彩度科技風，而是：
+## 2.1 Sidebar 比一般 SaaS 更窄
+
+可觀察到：
+
+- 左側欄是窄型 persistent rail
+- logo 約 30 px 級，而不是大型 brand block
+- `KAIROS` 是小型 uppercase brand
+- 下一行是更小的中文名稱
+- sidebar 內資訊密度高，但字級非常克制
+
+AERIS 決策：
 
 ```text
-warm / neutral near-white canvas
-+
-white cards
-+
-very low-contrast dividers
+expanded sidebar ≈ 176 px
+collapsed sidebar ≈ 64 px
 ```
 
-效果：
+目的：把畫面空間留給工程內容，不讓 navigation 成為主角。
 
-- 長時間觀看負擔較低
-- 多卡片同時出現時不會產生「表格牆」壓力
-- identity color 可以很突出，但不需要大面積高飽和
+## 2.2 Uptime / sync 是 secondary context
 
-## 2.2 Identity-first Hero
+Kairos sidebar brand 下方可見小型 uptime 資訊；主內容 header 下方有 synced context。
 
-Kairos 首頁先回答：
+這個 UX 的重點不是數值本身，而是：
 
-> 「我是誰、現在是否在線、我有哪些核心能力？」
-
-而不是先丟 project table。
+> **Operational context 要看得到，但不搶內容注意力。**
 
 AERIS 對應：
 
+- 靜態 prototype 顯示 `UI Shell · Target Baseline`
+- 未接 live telemetry 前，不假裝 uptime / synced / healthy 是真實資料
+- 未來接 backend 後才可顯示 live `last_sync`, `heartbeat`, `artifact_freshness`
+
+## 2.3 Navigation：一個主標籤 + 一個更小的副標籤
+
+Kairos sidebar 可見：
+
+- Kairos
+- Activity
+- Timeline
+- Skills
+- Projects
+- Health
+- Inbox
+
+每個 navigation item 有 icon、主要文字與更小的 secondary label。
+
+AERIS v0.3 對應：
+
 ```text
-AERIS
-Acoustic Engineering OS
-100-seat AI Acoustic Engineering Organization
-Local-first / Model-neutral / Evidence-first
+Dashboard   / 系統首頁
+Workspace   / 工程工作台
+Activity    / 工程流程
+Roles       / 100 席能力庫
+Research    / 研究與標準
+Services    / 後端服務
+Health      / Trust / Evidence
 ```
 
-這是產品 identity，也是資訊架構 anchor。
+## 2.4 Active navigation 不是高飽和色塊
 
-## 2.3 Sidebar
+Kairos active item 使用的是：
 
-可觀察原則：
+- 極淡 cyan / teal surface
+- 左側細 accent
+- 文字與 icon 才提高 teal contrast
 
-- persistent desktop sidebar
-- active item 用淡 teal background，不使用高飽和整塊色
-- navigation 文字偏小
-- icon + label
-- theme / collapse 放在最底部，避免搶工程任務的主要注意力
+這比整塊 teal button 更安靜。
 
-AERIS 對應：
+AERIS v0.3 已採：
 
 ```text
-CONTROL
-Dashboard
-Workspace
-Services
-
-INTELLIGENCE / TRUST / WORKFLOW
-...
-
-(bottom)
-Appearance
-System / Light / Dark
+pale-teal gradient background
++ 2 px left active bar
++ teal text/icon
 ```
 
-## 2.4 Cards
+## 2.5 Sidebar bottom：Dark Mode + Collapse
 
-Kairos 的 card grammar：
+第一方截圖可直接看到側欄最底部：
 
-- 大圓角
-- 極輕陰影或幾乎無陰影
-- 細 border
-- 內容摘要優先
-- card 間距規律
-- 不用大量強烈 outline
+```text
+🌙 Dark Mode
+← Collapse
+```
 
-AERIS 對應：
+這是一個很重要的資訊架構訊號：
 
-- KPI card = one metric + one sentence
-- Role card = ID + name + group
-- Service card = service + one-line purpose
-- Evidence / verification detail留到下鑽頁
+> Theme / layout control 是 persistent utility，但屬於低優先層，不應放在 topbar 搶工程內容。
 
-## 2.5 Semantic Chips
+AERIS v0.3 已改成同樣的 UX 位置：
 
-公開截圖可觀察到多種柔和色 chip。
+- Light 狀態顯示 `☾ Dark Mode`
+- Dark 狀態顯示 `☀ Light Mode`
+- Sidebar `Collapse / Expand`
+- Theme 與 sidebar state 都跨頁 persistence
 
-AERIS 定義 semantic mapping：
+---
 
-| Color family | AERIS meaning |
-|---|---|
-| Teal | Identity / active / primary system context |
-| Green | Verified / positive / deterministic pass |
-| Amber | Attention / reviewer / pending |
-| Rose | Risk / failed / unverified / Human gate |
-| Purple | Meta / model-neutral / loop / blocked context |
-| Neutral gray | Informational / inactive / target-only |
+# 3. Main Header Grammar
+
+Kairos 主內容頂部很克制：
+
+```text
+◉ Kairos
+雷小蒙 · synced ...
+                         [刷新]
+```
+
+不是巨大 page title。
+
+AERIS v0.3 對應：
+
+```text
+◉ AERIS
+Acoustic Engineering & Research Intelligence System · static snapshot
+                                                  [刷新]
+```
+
+字級策略：
+
+- top title 約 14 px 級
+- secondary context 約 8 px 級
+- refresh 是小型 outline control
+
+---
+
+# 4. Identity-first Hero
+
+Kairos Dashboard 最大的視覺 anchor 不是 KPI，而是「我是誰」。
+
+第一方截圖可以直接看到：
+
+1. `Kairos Online · ONLINE`
+2. teal square avatar
+3. `我是雷小蒙`
+4. 一排能力定位文字
+5. 多個 compact system cards
+6. narrative paragraphs
+7. quote / statement box
+8. pastel tags
+
+這是非常典型的 **identity → capability → context → detail**。
+
+AERIS v0.3 對應：
+
+```text
+AERIS Shell · TARGET BASELINE
+
+[A]
+我是 AERIS
+AI 聲學工程團隊 ｜ 研發設計 ｜ 量測驗證 ｜ 模擬調校 ｜ 演算法 ｜ 工廠品質
+
+AI Runtime     Replaceable Models
+Role Library   100 Virtual Seats
+Knowledge      3-layer Context
+Verification   G0 → G5
+Dynamic Pod    5–15 Specialists
+```
+
+重要差異：
+
+Kairos 可以顯示 `ONLINE`，但 AERIS 目前沒有 live backend，所以只顯示 `TARGET BASELINE`。
+
+這是 Evidence-before-Done 在 UI 上的直接體現。
+
+---
+
+# 5. Hero Background
+
+Kairos Identity card 並不是單一純色。
+
+可觀察特徵：
+
+- 很淡的 teal / warm / lavender gradient
+- 低強度 texture / particle feeling
+- 1 px soft border
+- rounded corner
+- shadow 幾乎不可察覺
+
+AERIS v0.3 已改成：
+
+```text
+soft teal → warm white → lavender gradient
++ sparse 1 px radial particles
++ very low shadow
++ 14 px radius
+```
+
+目標不是 pixel clone，而是重現「calm identity surface」。
+
+---
+
+# 6. Typography / Density
+
+這次最需要修正的地方是：舊 AERIS 字太大、card 太大、sidebar 太寬。
+
+Kairos 截圖呈現的是高資訊密度，但不是擁擠。
+
+AERIS v0.3 baseline：
+
+| Element | Approx. UI scale |
+|---|---:|
+| Brand | 11 px |
+| Sidebar primary | 9 px |
+| Sidebar secondary | 7 px |
+| Top title | 14 px |
+| Identity title | 22 px |
+| Body explanation | 9 px |
+| Panel title | 10 px |
+| Table / compact data | 7–8 px |
+| Tag / state chip | 7 px |
 
 原則：
 
-> **Color supplements state; color never becomes the only carrier of state.**
+> **小字不是目的；高 signal-to-noise 才是目的。**
 
-文字仍必須顯示 `VERIFIED`, `FAILED`, `UNKNOWN`, `DESIGN TARGET` 等。
+工程詳細資料仍必須在可讀性與 accessibility 下調整，不可為了仿 Kairos 犧牲測試報告的可讀性。
 
 ---
 
-# 3. UX Pattern：Summary → Search → Filter → Detail
+# 7. Card Geometry
 
-Skills Dashboard 公開案例最值得複製的是資訊探索順序：
+Kairos 公開畫面中的卡片不是大型 Material Design cards。
+
+AERIS v0.3：
 
 ```text
-Summary metrics
-↓
-Search
-↓
-Category filter
-↓
-Compact cards
-↓
-Detail on demand
+small cards: 8–9 px radius
+main panels: 12 px radius
+identity hero: 14 px radius
+border: 1 px very low contrast
+shadow: minimal
 ```
 
-這個 pattern 直接套用到 AERIS：
+舊版 AERIS 的 18–22 px radius 與較大陰影已降低。
 
-### Role Library
+---
+
+# 8. Four-card Summary Rhythm
+
+Kairos Identity card 下方緊接一排 4 個 summary cards。
+
+這種節奏非常適合 Dashboard：
+
+```text
+Identity / explanation
+↓
+4 fast metrics
+↓
+Chapter detail
+```
+
+AERIS Dashboard 現在使用：
+
+- 100 Virtual Roles
+- 24 Product Chiefs
+- 2 × 6 core matrix
+- False-Done target = 0
+
+這些是 architecture facts / targets，不冒充 runtime telemetry。
+
+---
+
+# 9. Chapter-based Progressive Disclosure
+
+第一方截圖在 summary cards 下方開始出現：
+
+```text
+CHAPTER 01
+為什麼叫 Kairos？
+```
+
+代表 Dashboard 不只是一組 tile，而是帶有 narrative / chapter structure。
+
+AERIS 對應：
+
+```text
+CHAPTER 01
+AERIS 怎麼把一個工程問題變成可驗證結論？
+```
+
+Services：
+
+```text
+CHAPTER 01 Five-Plane Architecture
+CHAPTER 02 Verification G0–G5
+```
+
+Workspace：
+
+```text
+TASK INTAKE
+CHAPTER 01 Engineering Contract
+```
+
+這讓複雜工程系統仍然可以用「先理解，再深入」的方式閱讀。
+
+---
+
+# 10. Skills Dashboard Pattern → AERIS Role / Skill / Standards UX
+
+第一方案例提供完整 UX：
+
+```text
+Summary
+→ Search
+→ Filter
+→ Compact Card
+→ Detail on demand
+```
+
+AERIS 直接採用：
+
+## Role Library
 
 ```text
 100 roles
-↓
-Search role
-↓
-Filter by organization block
-↓
-Role card
-↓
-Role contract / tools / evidence / authority
+→ keyword search
+→ group filter
+→ compact role cards
+→ future role contract drawer
 ```
 
-### Skill Registry
+## Skills
 
 ```text
-Skill count / categories / failing evals
-↓
-Search
-↓
-Domain filter
-↓
-Skill card
-↓
-SKILL.md / method / tests / golden cases
+skill count / failing evals
+→ domain filter
+→ compact skill card
+→ SKILL.md / method / test / golden detail
 ```
 
-### Standards Registry
+## Standards
 
 ```text
-current / stale / withdrawn count
-↓
-Search standard
-↓
-Product / body / status filter
-↓
-Standard card
-↓
-Edition / applicability / method mapping
+current / stale / withdrawn
+→ search
+→ product / body / lifecycle filter
+→ standard summary
+→ edition / applicability / method mapping
 ```
 
-**AERIS 不應把首頁做成完整工程資料庫。**
+因此 Dashboard 不應變成資料庫全部攤開。
 
 ---
 
-# 4. Light Theme — AERIS Token Baseline
+# 11. Light Mode — Observable Direction + AERIS Tokens
 
-Light Mode 高度貼近公開 Kairos 的可觀察視覺方向，但不是 pixel clone。
-
-| Token | AERIS Light | Purpose |
-|---|---|---|
-| Canvas | `#F7F8F7` | global background |
-| Sidebar | `#FBFCFB` | persistent navigation |
-| Panel | `#FFFFFF` | cards / work surface |
-| Main text | `#172322` | primary content |
-| Soft text | `#52615F` | explanatory text |
-| Accent teal | `#35B7AA` | identity / focus |
-| Teal soft | `#E9F8F5` | active nav / semantic background |
-| Green soft | `#EDF8F1` | positive state |
-| Amber soft | `#FFF7E7` | attention state |
-| Rose soft | `#FFF0F3` | risk state |
-| Purple soft | `#F4F0FF` | meta state |
-
-UI strategy：
-
-- 大面積不使用高飽和 teal
-- teal 只做 identity、active state、focus
-- white card 與 near-white canvas 只用 1 px 淺 border 分層
-- shadow 保持極低
-
----
-
-# 5. Dark Theme — Symmetric Engineering Mapping
-
-Dark Mode 不應變成「黑底 neon cyberpunk」。
-
-如果 Light 是 calm productivity UI，Dark 也應是 calm engineering UI。
-
-AERIS Dark baseline：
-
-| Token | AERIS Dark | Purpose |
-|---|---|---|
-| Canvas | `#0D1211` | global background |
-| Sidebar | `#0F1514` | navigation |
-| Panel | `#121918` | cards |
-| Control | `#151D1B` | button / input |
-| Main text | `#E7EFED` | primary content |
-| Soft text | `#B4C0BD` | explanatory text |
-| Accent teal | `#5ED2C3` | identity / focus |
-| Teal soft | `#15302C` | active / selected |
-| Green soft | `#182D21` | verified |
-| Amber soft | `#352A17` | attention |
-| Rose soft | `#371F25` | risk |
-| Purple soft | `#28223D` | meta |
-
-Dark principles：
-
-1. 不是 `#000000` pure black。
-2. Panel 只比 canvas 亮一階，避免「浮動卡片像白色洞」。
-3. Accent brightness 提高，但使用面積不增加。
-4. Pastel semantic colors 改為 dark-tinted surface + brighter text。
-5. Border 仍存在，以免只靠 shadow 分層。
-6. Chart / measurement color 在後續 Plot Theme 必須另外定義，不直接照 UI chip 色。
-
----
-
-# 6. Theme Interaction Contract
-
-AERIS theme controls：
+Light Mode 的視覺方向：
 
 ```text
-◐ System
-☀ Light
-☾ Dark
+near-white canvas
++ white cards
++ extremely subtle gray dividers
++ teal identity / active state
++ pastel semantic surfaces
 ```
 
-## Default
+AERIS v0.3 baseline：
 
-`System`
+| Token | Value |
+|---|---|
+| Canvas | `#FBFBF9` |
+| Sidebar | `#FAFAF8` |
+| Panel | `#FFFFFF` |
+| Text | `#202524` |
+| Soft text | `#5F6967` |
+| Border | `#ECEEEB` |
+| Teal | `#43B8B2` |
+| Teal soft | `#EDF9F7` |
+| Green soft | `#EFF8F1` |
+| Amber soft | `#FFF8E9` |
+| Rose soft | `#FFF1F4` |
+| Purple soft | `#F5F1FF` |
 
-理由：
+這些是 **AERIS token decisions**，不是宣稱 Kairos exact CSS。
 
-- 不強迫使用者選擇
-- Windows / macOS / mobile 已有成熟日夜偏好
-- 使用者手動指定後才 override OS
+---
 
-## Persistence
+# 12. Dark Mode — Evidence Boundary
+
+第一方公開截圖明確證明 Kairos 有 `Dark Mode` control，但目前沒有取得與 Light screenshot 同等可信度、可引用的完整 Dark screenshot / CSS source。
+
+因此不能把任何 dark hex 宣稱為 Kairos original token。
+
+AERIS 原則：
+
+> **Dark 是 Light semantic hierarchy 的對稱映射，不變成另一套 cyberpunk UI。**
+
+AERIS v0.3：
+
+| Token | Value |
+|---|---|
+| Canvas | `#0E1110` |
+| Sidebar | `#0C0F0E` |
+| Panel | `#141816` |
+| Control | `#171C1A` |
+| Text | `#E8ECEA` |
+| Soft text | `#B7C0BD` |
+| Border | `#252D2A` |
+| Teal | `#64D1C8` |
+| Teal soft | `#16302D` |
+| Green soft | `#192A1F` |
+| Amber soft | `#332817` |
+| Rose soft | `#342026` |
+| Purple soft | `#28233A` |
+
+禁止：
+
+- pure black everywhere
+- neon cyan / neon green flood
+- heavy glow
+- glassmorphism everywhere
+- Dark Mode 改變資訊架構
+
+---
+
+# 13. Theme Interaction Contract — v0.3
+
+前一版使用三段式：
 
 ```text
-localStorage key:
+System / Light / Dark
+```
+
+深入研究實際 Kairos sidebar 後，v0.3 改成更接近其 interaction pattern：
+
+```text
+☾ Dark Mode
+← Collapse
+```
+
+在 Dark Mode：
+
+```text
+☀ Light Mode
+← Collapse
+```
+
+技術行為：
+
+1. 第一次沒有 explicit preference 時，跟隨 OS `prefers-color-scheme`。
+2. 使用者按 theme toggle 後，寫入 `localStorage`。
+3. 三頁共用同一 preference。
+4. `Collapse / Expand` 也寫入 `localStorage`。
+5. Collapse 後只保留 logo / icons / utility icons。
+6. mobile 不強迫 desktop collapse model。
+
+Storage：
+
+```text
 aeris-theme-preference
+aeris-sidebar-state
 ```
-
-Values：
-
-```text
-system
-light
-dark
-```
-
-## OS change behavior
-
-若 preference = `system`：
-
-```text
-prefers-color-scheme changes
-→ AERIS immediately maps to new theme
-```
-
-若 preference = `light` / `dark`：
-
-```text
-OS change
-→ no override
-```
-
-這避免使用者明明選了 Dark，AERIS 卻被 OS 自行切回 Light。
 
 ---
 
-# 7. Responsive UX
+# 14. Semantic Color Contract
 
-Kairos 公開截圖主要是 desktop；AERIS 需要明確定義跨裝置策略。
+| Family | Meaning |
+|---|---|
+| Teal | identity / active / primary context |
+| Green | verified / deterministic pass |
+| Amber | attention / reviewer / pending |
+| Rose | risk / failed / unverified / Human gate |
+| Purple | meta / routing / model-neutral / blocked context |
+| Blue | knowledge / data / informational subsystem |
+| Neutral | inactive / unknown / target-only |
 
-## Desktop > 1100 px
+Hard rule：
 
-```text
-236 px persistent sidebar
-+
-full labels
-+
-3-way theme dock at bottom
-```
+> **Color is redundant encoding, never the only encoding.**
 
-## Compact desktop / tablet
-
-```text
-74 px icon rail
-+
-labels collapse
-+
-theme buttons become icon-only vertical controls
-```
-
-## Mobile <= 720 px
-
-```text
-sidebar becomes horizontal top rail
-+
-navigation horizontally scrollable
-+
-theme buttons remain visible
-+
-content grids collapse to 1–2 columns
-```
-
-這與 Kairos 公開 `Collapse` 控制的思想一致：
-
-> Navigation density 可以縮小，但核心入口不能消失。
+畫面仍必須寫 `FAILED`, `UNKNOWN`, `VERIFIED`, `DESIGN TARGET`。
 
 ---
 
-# 8. Accessibility / Human Factors
+# 15. Dashboard UX v0.3
 
-AERIS 是長時間工程工作台，不應只追求「看起來像 Kairos」。
-
-## Required baseline
-
-- keyboard focus visible
-- theme control uses button + `aria-pressed`
-- color state also has text label
-- `prefers-reduced-motion` disables nonessential motion
-- form controls inherit theme
-- `color-scheme` communicates current theme to browser-native controls
-- mobile theme switch remains reachable
-
-## Contrast note
-
-AERIS theme 使用高對比 main text：
-
-- Light `#172322` on `#F7F8F7` 約 **15.2:1**
-- Dark `#E7EFED` on `#0D1211` 約 **16.2:1**
-
-正式 release 前仍應用 axe / Lighthouse / Playwright 做完整 WCAG audit；本次不是 accessibility certification。
-
----
-
-# 9. AERIS Three-Page Mapping
-
-## Dashboard
-
-Kairos pattern：
+Canonical hierarchy：
 
 ```text
-Identity
-→ summary counts
-→ current capability / activity
-→ searchable modules
-```
-
-AERIS：
-
-```text
-Identity Hero
-→ 100 seats / 2×6 / 24 products / G0–G5
-→ Autonomous R&D Loop
-→ Trust KPI
-→ Role Library
-→ Benchmark 100
-```
-
-## Workspace
-
-不照搬 Dashboard 卡片，而保留 Kairos 的「簡單入口、後面系統展開」哲學：
-
-```text
-Human objective
-→ minimal structured inputs
-→ Temporary Pod
-→ Requirement / Hypothesis / Evidence
-→ Workflow states
-```
-
-## Services
-
-採同一 visual system，但資訊密度提高：
-
-```text
-Five Planes
-→ service registry
-→ verification
-→ risk
-→ evidence
-→ health semantics
-```
-
-重要：Services 即使是 Dark Mode，也不得用炫目的綠燈造成 false confidence。
-
----
-
-# 10. What AERIS Deliberately Does NOT Copy
-
-不複製：
-
-- Kairos 名稱與品牌 identity
-- 未公開 source code
-- 未公開 theme hex
-- 未公開 framework
-- 未公開 backend
-- 個人生活導向的 navigation vocabulary
-
-保留：
-
-- calm visual hierarchy
-- persistent navigation
-- identity-first dashboard
-- pastel semantic chips
-- summary-before-detail
-- search / category-first discovery
-- dark-mode control in low-priority persistent area
-- collapsible / responsive navigation philosophy
-
----
-
-# 11. Current GitHub Implementation
-
-Files：
-
-```text
-/index.html
-/workspace.html
-/services.html
-/aeris.css
-/aeris-theme.js
-/aeris-data.js
-```
-
-Live target URLs：
-
-```text
-https://space653000.github.io/0_JN1_AERIS/
-https://space653000.github.io/0_JN1_AERIS/workspace.html
-https://space653000.github.io/0_JN1_AERIS/services.html
-```
-
-Theme state is shared among all three pages through the same `localStorage` key, therefore：
-
-```text
-Dashboard → choose Dark
+Compact topbar
 ↓
-Workspace → remains Dark
+Identity hero
+  ├─ target status
+  ├─ avatar + identity
+  ├─ 5 capability cards
+  ├─ explanation
+  ├─ statement box
+  └─ tags
 ↓
-Services → remains Dark
+4 summary cards
+↓
+CHAPTER 01 Autonomous R&D loop
+↓
+Temporary Pod + Engineering Trust
+↓
+Role Library search/filter
+↓
+Research / Knowledge modules
 ```
 
-這是「一個 OS」，不是三個彼此無關的 microsites。
+這比舊版更接近 Kairos 的閱讀節奏。
 
 ---
 
-# 12. Sources
+# 16. Workspace UX v0.3
 
-## Primary / first-party
+Workspace 不複製 Dashboard 內容，而是沿用 shell / density / visual grammar。
 
-1. Kairos current public loader / dashboard endpoint  
-   `https://os.lifehacker.tw/`
+Canonical flow：
 
-2. AI Expo 2026 — 一人公司 AI 工作術  
-   `https://expo.lifehacker.tw/`
+```text
+Human intent
+↓
+Product / Transducer / Lifecycle / Risk
+↓
+Objective / Constraints
+↓
+Evidence + Standards strategy
+↓
+Role Router
+↓
+Temporary Pod
+↓
+STOP / ASK / REROUTE / VERIFY
+```
 
-3. 雷小蒙 actual Dashboard screenshot on first-party course page  
-   `https://lifehacker.tw/courses/24hr-claude-code-tutorial`
-
-4. Actual dashboard image CDN asset  
-   `https://s.teachifycdn.com/image/width%3D1920%2Cquality%3D80/attachment/public_image/95279a3a-e796-4778-842a-053cc152bcf4/c4f70870-8a70-419d-93d9-b6df6cdc25f5.jpg`
-
-5. Skills Dashboard — summary / search / categories / cards UX case  
-   `https://works.lifehacker.tw/works/skills-dashboard.html`
-
-6. Kairos work log — Dashboard / automation operational context  
-   `https://os.lifehacker.tw/posts/2026-03-20-ai-work-log-03`
-
-7. Kairos work log — model portability / agent identity  
-   `https://os.lifehacker.tw/posts/2026-06-18-ai-work-log-10`
-
-8. Kairos work log — false-Done / long-running operational lessons  
-   `https://os.lifehacker.tw/posts/2026-08-07-ai-work-log-12`
+使用者不需要選 100 個 Agent。
 
 ---
 
-# 13. Final UX Decision
+# 17. Services UX v0.3
 
-> **AERIS should feel like Kairos grew into an engineering operating system — not like an ERP, not like Grafana, and not like a cyberpunk AI demo.**
+Services 保留相同 shell，但允許較高資訊密度。
 
-The visual priority is：
-
-```text
-Calm
-→ Scannable
-→ Searchable
-→ Trustworthy
-→ Drillable
-```
-
-not：
+Canonical flow：
 
 ```text
-More panels
-→ more colors
-→ more animations
-→ more apparent complexity
+Harness identity
+↓
+5 plane quick summary
+↓
+Five-Plane Architecture
+↓
+Service Registry
+↓
+Verification G0–G5
+↓
+Risk / Authority
+↓
+Evidence Bundle
+↓
+Health semantics
 ```
 
-Final theme principle：
+最重要 UX guard：
 
-> **Light for clarity, Dark for sustained focus, System for zero-friction default — same truth, same information hierarchy, same engineering state semantics.**
+> `DESIGN TARGET` 絕不等於 `HEALTHY`。
+
+---
+
+# 18. Responsive / Accessibility
+
+Desktop：
+
+- expanded sidebar 176 px
+- optional 64 px collapsed rail
+- main content max-width 1480 px
+
+Narrow desktop：
+
+- sidebar 150 px
+- multi-column cards reduce columns
+
+Mobile：
+
+- navigation becomes horizontal compact strip
+- desktop collapse utilities hidden
+- primary page content becomes one-column where needed
+
+Accessibility：
+
+- keyboard focus ring
+- theme / collapse are buttons, not clickable divs
+- `aria-label`
+- theme color not sole state signal
+- `prefers-reduced-motion`
+- input focus visible
+
+---
+
+# 19. What AERIS deliberately does NOT copy
+
+AERIS 不複製：
+
+- Kairos proprietary text / branding
+- unknown frontend framework
+- unknown CSS source
+- exact private dashboard data
+- any unverified dark-mode source token
+
+AERIS 吸收的是：
+
+```text
+visual hierarchy
+interaction priority
+information density
+progressive disclosure
+persistent utility placement
+identity-first control surface
+```
+
+---
+
+# 20. Source Registry
+
+Primary first-party sources：
+
+1. `https://os.lifehacker.tw/`
+2. `https://expo.lifehacker.tw/`
+3. `https://expo.lifehacker.tw/assets/AI%20Expo/v25.avif`
+4. `https://works.lifehacker.tw/works/skills-dashboard.html`
+5. `https://os.lifehacker.tw/posts/2026-03-20-ai-work-log-03`
+6. `https://os.lifehacker.tw/posts/2026-08-07-ai-work-log-12`
+
+Relevant Kairos operations lessons：
+
+- Dashboard consolidates projects / Skills / daily automations.
+- Silent failures demonstrate why a dashboard cannot manufacture truth.
+- Evidence-before-Done must override visually pleasant status states.
+
+---
+
+# 21. Final AERIS UI Decision
+
+Current canonical UI version：
+
+> **AERIS UI v0.3 — Kairos Interaction Baseline**
+
+Formula：
+
+> **Kairos Calm Personal OS UX × AERIS Engineering Evidence System.**
+
+Visual target：
+
+> **安靜、精準、小而密、容易掃描；複雜度在需要時才展開。**
+
+Engineering target：
+
+> **畫面可以像 Kairos 一樣輕，但每一個工程狀態必須比一般 Dashboard 更重視 Evidence、Verification、Authority 與 Reproducibility。**
