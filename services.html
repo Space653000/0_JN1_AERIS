@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AERIS — Service Console</title><link rel="stylesheet" href="aeris.css">
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">A</div><div class="brand-copy"><div class="brand-name">AERIS</div><div class="tiny">Acoustic Engineering OS</div></div></div>
+  <div class="system-card"><div><span class="status-dot"></span><b style="font-size:10px">ARCHITECTURE VIEW</b></div><div class="tiny system-copy" style="margin-top:5px">No live backend connected</div></div>
+  <div class="nav-label">CONTROL</div>
+  <nav class="nav"><a href="index.html"><b class="ico">◉</b><span>Dashboard</span></a><a href="workspace.html"><b class="ico">⌁</b><span>Workspace</span></a><a class="active" href="services.html"><b class="ico">⚙</b><span>Services</span></a></nav>
+  <div class="nav-label">TRUST</div>
+  <nav class="nav"><a href="#verification"><b class="ico">✓</b><span>Verification</span></a><a href="#risk"><b class="ico">!</b><span>Risk / Approval</span></a><a href="#evidence"><b class="ico">▤</b><span>Evidence</span></a></nav>
+  <div class="spacer"></div><div class="sidebar-foot">Harness is the permanent asset.<br>Models are replaceable compute.</div>
+</aside>
+<main class="main">
+  <header class="topbar"><div><h1>Service Console</h1><div class="subtitle">Harness / Tool Bus / Evidence / Verification / Observability</div></div><div class="actions"><span class="pill amber">DESIGN TARGET</span><span class="pill rose">NO LIVE TELEMETRY</span></div></header>
+  <div class="notice"><b>False-Done 防護：</b>本頁刻意不顯示 HEALTHY。現在只描述 Target Architecture；未連接 heartbeat / state store / artifact freshness / verification telemetry 前，任何 backend 健康狀態都必須視為 UNKNOWN / NOT CONNECTED。</div>
+
+  <section class="panel">
+    <h3>AERIS Backend — Five-Plane Architecture</h3><div class="desc">Kairos Harness pattern + AERIS Engineering Trust Plane。</div>
+    <div class="arch">
+      <div class="layer"><h4>01 · CONTROL PLANE</h4><div class="svc">AERIS Orchestrator<small>Planner / state coordination</small></div><div class="svc">Intent / Requirement Parser<small>task / constraint decomposition</small></div><div class="svc">Role / Pod Router<small>100 seats → 2–15 active roles</small></div><div class="svc">Workflow State Machine<small>retry / cancel / approval</small></div></div>
+      <div class="layer"><h4>02 · KNOWLEDGE PLANE</h4><div class="svc">Constitution / Core Rules<small>model-neutral SSOT</small></div><div class="svc">Skill + Method Registry<small>versioned engineering modules</small></div><div class="svc">Standards Registry<small>edition / status / superseded-by</small></div><div class="svc">Memory + Knowledge Graph<small>context / problem-cause-fix-result</small></div></div>
+      <div class="layer"><h4>03 · EXECUTION PLANE</h4><div class="svc">Model Router<small>replaceable runtimes</small></div><div class="svc">Python / MATLAB<small>DSP / analysis / automation</small></div><div class="svc">CAE Adapters<small>COMSOL / Ansys / Simcenter</small></div><div class="svc">Lab Adapters<small>KLIPPEL / APx / SoundCheck / ACQUA</small></div></div>
+      <div class="layer"><h4>04 · TRUST PLANE</h4><div class="svc">Evidence Store<small>manifest / raw / hash / logs</small></div><div class="svc">Verification Engine<small>G0–G4</small></div><div class="svc">Approval Service<small>R2–R4 authority gates</small></div><div class="svc">Reproduction Runner<small>manifest replay</small></div></div>
+      <div class="layer"><h4>05 · OPERATIONS PLANE</h4><div class="svc">Observability<small>trace / metric / log</small></div><div class="svc">Audit Ledger<small>who / what / when</small></div><div class="svc">Health Monitor<small>heartbeat / expected-run</small></div><div class="svc">Artifact Freshness<small>expected output really exists</small></div></div>
+    </div>
+  </section>
+
+  <section class="panel section">
+    <div class="section-head"><div><h3>Service Registry</h3><div class="desc">Target services only. `DESIGN TARGET` explicitly means architecture exists in documentation, not production deployment.</div></div><span class="pill teal">15 target services</span></div>
+    <div class="table-wrap"><table class="table"><thead><tr><th>Service</th><th>Plane</th><th>Purpose</th><th>Status</th></tr></thead><tbody>
+      <tr><td><b>AERIS Orchestrator</b></td><td>Control</td><td>Task planning, routing, workflow state</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+      <tr><td><b>Role / Pod Router</b></td><td>Control</td><td>Select 2–15 specialists from 100-seat registry</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+      <tr><td><b>Workflow Engine</b></td><td>Control</td><td>Typed states, retry, timeout, cancellation, approval</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+      <tr><td><b>Skill + Method Registry</b></td><td>Knowledge</td><td>Versioned acoustic methods, scripts, schemas, evals</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+      <tr><td><b>Standards Registry</b></td><td>Knowledge</td><td>IEC / ISO / AES / CTA / ITU / Bluetooth / FDA lifecycle</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+      <tr><td><b>Engineering Memory</b></td><td>Knowledge</td><td>Hot context, structured knowledge, event history</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+      <tr><td><b>Knowledge Graph</b></td><td>Knowledge</td><td>Problem → Cause → Evidence → Fix → Result</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+      <tr><td><b>Model Router</b></td><td>Execution</td><td>Replaceable Claude / Codex / local-model adapters</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+      <tr><td><b>Tool Adapter Bus</b></td><td>Execution</td><td>Python / MATLAB / CAE / lab instruments</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+      <tr><td><b>Evidence Store</b></td><td>Trust</td><td>Immutable run manifests, raw/processed artifacts, hashes</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+      <tr><td><b>Verification Engine</b></td><td>Trust</td><td>G0 Contract through G4 Independent Review</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+      <tr><td><b>Approval Service</b></td><td>Trust</td><td>Risk-tier human approvals and release signature</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+      <tr><td><b>Reproduction Runner</b></td><td>Trust</td><td>Re-run from manifest within defined tolerance</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+      <tr><td><b>Observability + Health</b></td><td>Operations</td><td>Traces, metrics, logs, heartbeat, freshness, missed-run</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+      <tr><td><b>Audit Ledger</b></td><td>Operations</td><td>Append-only actor / action / evidence / decision history</td><td><span class="state target">DESIGN TARGET</span></td></tr>
+    </tbody></table></div>
+  </section>
+
+  <div class="grid2 section">
+    <section class="panel" id="verification"><h3>Verification Gate G0–G5</h3><div class="list">
+      <div class="row"><div><div class="name">G0 · Contract</div><div class="meta">Schema · unit · hash · required file existence</div></div><span class="pill green">Deterministic</span></div>
+      <div class="row"><div><div class="name">G1 · Numerical</div><div class="meta">NaN/Inf · range · dimensions · unit tests</div></div><span class="pill green">Deterministic</span></div>
+      <div class="row"><div><div class="name">G2 · Domain</div><div class="meta">Physics sanity · calibration · method preconditions</div></div><span class="pill green">Rules + Physics</span></div>
+      <div class="row"><div><div class="name">G3 · Regression</div><div class="meta">Golden data · approved baseline · negative cases</div></div><span class="pill green">Deterministic</span></div>
+      <div class="row"><div><div class="name">G4 · Independent Review</div><div class="meta">Requirement interpretation · suitability · exceptions</div></div><span class="pill amber">Reviewer Role</span></div>
+      <div class="row"><div><div class="name">G5 · Human Approval</div><div class="meta">High-impact execution / external formal release</div></div><span class="pill rose">Human</span></div>
+    </div></section>
+    <section class="panel" id="risk"><h3>Risk / Authority Matrix</h3><div class="table-wrap"><table class="table"><thead><tr><th>Tier</th><th>Agent Authority</th><th>Required Gate</th></tr></thead><tbody>
+      <tr><td>R0</td><td>Read-only / analysis</td><td>Evidence logging</td></tr><tr><td>R1</td><td>Reversible local change</td><td>Tests + Git diff</td></tr><tr><td>R2</td><td>Controlled engineering execution</td><td>Preconditions / reviewer</td></tr><tr><td>R3</td><td>Potential DUT / hardware risk</td><td>Explicit Human approval</td></tr><tr><td>R4</td><td>Official customer / external release</td><td>Independent review + Human signature</td></tr>
+    </tbody></table></div><div class="callout section"><b>Capability ≠ Authority.</b> 會操作儀器、會改設定、會產生報告，不代表 Agent 有權自行執行高風險或對外動作。</div></section>
+  </div>
+
+  <section class="grid3 section">
+    <div class="panel"><h3>Tool Bus</h3><div class="tags"><span class="tag">Python</span><span class="tag">MATLAB / Simulink</span><span class="tag">COMSOL</span><span class="tag">Ansys</span><span class="tag">Simcenter</span><span class="tag">KLIPPEL</span><span class="tag">APx</span><span class="tag">SoundCheck</span><span class="tag">ACQUA</span><span class="tag">DAQ / Chamber</span></div><div class="desc section">Tool adapter 必須 typed、可審計、可限制權限；Skill 不應散落 vendor-specific destructive commands。</div></div>
+    <div class="panel"><h3>Telemetry Contract</h3><div class="list"><div class="row"><div><div class="name">TRACE</div><div class="meta">Project → Skill → Tool → Verify → Approval</div></div></div><div class="row"><div><div class="name">METRIC</div><div class="meta">evidence / failure / freshness / reproduction</div></div></div><div class="row"><div><div class="name">LOG</div><div class="meta">actor / input / action / output / evidence / decision</div></div></div></div></div>
+    <div class="panel"><h3>Health ≠ Process Alive</h3><div class="list"><div class="row"><div><div class="name">Expected-run ledger</div><div class="meta">應執行 vs 實際執行</div></div></div><div class="row"><div><div class="name">Artifact freshness</div><div class="meta">檔案是否真的存在且更新</div></div></div><div class="row"><div><div class="name">Verification state</div><div class="meta">EXECUTED 不可直接 DONE</div></div></div></div></div>
+  </section>
+
+  <section class="panel section" id="evidence">
+    <h3>Canonical Evidence Bundle</h3><div class="desc">正式工程 run 的最低可重現封裝；Memory 與 Evidence 必須分離。</div>
+    <div class="code">evidence/&lt;run_id&gt;/
+├── run_manifest.json
+├── requirement_snapshot.yaml
+├── method_snapshot.yaml
+├── input_manifest.json
+├── checksums.sha256
+├── raw/
+├── processed/
+├── results.parquet
+├── plots/
+├── execution.log
+├── validation.json
+├── environment.lock
+├── standards.json
+├── reviewer.json
+└── approval.json</div>
+  </section>
+
+  <section class="grid2 section">
+    <div class="panel"><h3>Allowed Health States</h3><div class="tags"><span class="pill green">HEALTHY</span><span class="pill amber">DEGRADED</span><span class="pill rose">FAILED</span><span class="pill">UNKNOWN</span><span class="pill rose">NO_HEARTBEAT</span><span class="pill amber">STALE</span><span class="pill">NOT_CONFIGURED</span><span class="pill purple">BLOCKED</span></div><div class="desc section">正式版只有取得相應 backend evidence 才能使用 HEALTHY。</div></div>
+    <div class="panel"><h3>Dashboard Truth Flow</h3><div class="code">Real execution / data
+        ↓
+Evidence
+        ↓
+Verification
+        ↓
+Telemetry / State Store
+        ↓
+Dashboard Projection</div></div>
+  </section>
+  <div class="footer">AERIS Service Console · The UI must never manufacture engineering truth.</div>
+</main>
+</div>
+</body></html>
