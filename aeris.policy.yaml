@@ -1,0 +1,78 @@
+schema_version: 1
+policy_id: AERIS-REMOTE-SSOT-LOCAL-EXECUTION
+status: active
+
+repository:
+  owner: Space653000
+  name: 0_JN1_AERIS
+  canonical_branch: main
+  role: remote_read_only_ssot
+  purpose: canonical_target_for_local_aeris_implementation
+
+codex:
+  remote_access: read_only
+  remote_write: forbidden
+  local_execution: required
+  allowed_remote_operations:
+    - read
+    - clone
+    - fetch
+    - inspect_history
+    - compare
+  forbidden_remote_operations:
+    - push
+    - force_push
+    - create_remote_branch
+    - update_remote_branch
+    - delete_remote_branch
+    - create_remote_tag
+    - update_remote_tag
+    - delete_remote_tag
+    - create_pull_request
+    - update_pull_request
+    - merge_pull_request
+    - repository_file_write
+    - update_ref
+    - release_publish
+    - repository_settings_change
+    - pages_settings_change
+    - branch_protection_change
+    - ruleset_change
+
+local_workspace:
+  upstream_remote_name: origin
+  upstream_url: https://github.com/Space653000/0_JN1_AERIS.git
+  upstream_branch: main
+  target_reference: origin/main
+  work_branch_pattern: local/*
+  development_on_local_main: discouraged
+  local_commit: allowed
+  remote_push: denied
+  required_guards:
+    - disabled_push_url
+    - deny_pre_push_hook
+  required_start_checks:
+    - git_fetch_origin_main
+    - record_origin_main_sha
+    - verify_read_only_guard
+  required_delivery_fields:
+    - target_sha
+    - local_workspace
+    - local_branch
+    - changed_files
+    - tests
+    - drift_vs_origin_main
+    - remote_write_performed_no
+
+sync_direction:
+  normal: github_main_to_local
+  reverse_from_codex: forbidden
+
+publication:
+  authority: human_controlled_only
+  codex_output: local_handoff_package
+
+truth_rule:
+  remote_main: target_baseline
+  local_files: implementation_state
+  local_execution_does_not_modify_remote_truth: true
