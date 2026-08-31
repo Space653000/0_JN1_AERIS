@@ -2,77 +2,72 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#35b7aa">
-<title>AERIS — Engineering Workspace</title>
-<link rel="stylesheet" href="aeris.css">
-<script src="aeris-theme.js"></script>
+<meta name="theme-color" content="#43b8b2"><title>AERIS — Engineering Workspace</title>
+<link rel="stylesheet" href="aeris.css"><script src="aeris-theme.js"></script>
 </head>
 <body>
 <div class="app">
 <aside class="sidebar">
-  <div class="brand"><div class="logo">A</div><div class="brand-copy"><div class="brand-name">AERIS</div><div class="tiny">Acoustic Engineering OS</div></div></div>
-  <div class="system-card"><div><span class="status-dot"></span><b style="font-size:10px">HUMAN IN COMMAND</b></div><div class="tiny system-copy" style="margin-top:5px">Workspace prototype</div></div>
-  <div class="nav-label">CONTROL</div>
-  <nav class="nav"><a href="index.html"><b class="ico">◉</b><span>Dashboard</span></a><a class="active" href="workspace.html"><b class="ico">⌁</b><span>Workspace</span></a><a href="services.html"><b class="ico">⚙</b><span>Services</span></a></nav>
-  <div class="nav-label">WORKFLOW</div>
-  <nav class="nav"><a href="#task"><b class="ico">＋</b><span>New Engineering Task</span></a><a href="#pod"><b class="ico">▦</b><span>Temporary Pod</span></a><a href="#contract"><b class="ico">✓</b><span>Engineering Contract</span></a></nav>
-  <div class="spacer"></div><div class="sidebar-foot">One Human Command Surface.<br>Many specialized capabilities.</div>
+  <div class="brand"><div class="logo">A</div><div class="brand-copy"><div class="brand-name">AERIS</div><div class="tiny">聲學工程 OS</div></div></div>
+  <div class="sidebar-status"><span class="status-dot"></span>HUMAN IN COMMAND<br><span class="sidebar-status-detail">Workspace · Prototype</span></div>
+  <div class="nav-label">AERIS</div>
+  <nav class="nav">
+    <a href="index.html"><span class="ico">◉</span><span class="nav-copy"><b>Dashboard</b><small>系統首頁</small></span></a>
+    <a class="active" href="workspace.html"><span class="ico">⚡</span><span class="nav-copy"><b>Workspace</b><small>工程工作台</small></span></a>
+    <a href="#task"><span class="ico">＋</span><span class="nav-copy"><b>New Task</b><small>建立工程任務</small></span></a>
+    <a href="#pod"><span class="ico">🌳</span><span class="nav-copy"><b>Pod</b><small>動態專家組隊</small></span></a>
+    <a href="#contract"><span class="ico">✓</span><span class="nav-copy"><b>Contract</b><small>STOP / ASK / VERIFY</small></span></a>
+    <a href="services.html"><span class="ico">▣</span><span class="nav-copy"><b>Services</b><small>後端服務</small></span></a>
+  </nav>
+  <div class="spacer"></div><div class="sidebar-foot">One human command surface. Many specialized capabilities.</div>
 </aside>
 <main class="main">
-  <header class="topbar"><div><h1>Engineering Workspace</h1><div class="subtitle">Human Chief Engineer → AERIS · 單一工程工作入口</div></div><div class="actions"><span class="pill teal">ROLE ROUTING</span><span class="pill amber">DEMO / TARGET</span></div></header>
-  <div class="notice"><b>操作原則：</b>不需要開 100 個 Agent，也不需要先知道該問誰。描述產品、工程問題、限制、Evidence 與完成條件；AERIS 負責組建 2–15 席 Temporary Engineering Pod。此 prototype 不會真的執行儀器或修改工程資料。</div>
+  <header class="topbar"><div><h1>⚡ Engineering Workspace</h1><div class="subtitle">Human Chief Engineer → Requirement → Temporary Pod → Evidence</div></div><div class="actions"><span class="pill teal">ROLE ROUTING</span><span class="pill amber">DEMO / TARGET</span></div></header>
+  <div class="notice"><b>操作原則：</b>不要管理 100 個聊天視窗。你描述產品、問題、限制、證據等級與停止條件；AERIS 才根據 capability / risk / evidence 組建需要的 2–15 席 Temporary Engineering Pod。此頁目前不執行真實儀器。</div>
 
-  <div class="grid2" id="task">
-    <section class="panel">
-      <h3>建立工程任務</h3><div class="desc">Kairos 式 UX：先留下最必要的輸入，複雜度由系統在後面展開。</div>
-      <div class="formgrid">
-        <div class="field"><label>產品 Product</label><select id="product"><option>Laptop</option><option>TWS Earbuds</option><option>ANC Over-Ear Headphone</option><option>Soundbar</option><option>Doorbell / Security Camera</option><option>Medical Hearing Aid</option><option>Automotive Audio / Hands-Free</option><option>Humanoid / Service Robot</option><option>Conference / UC Device</option></select></div>
-        <div class="field"><label>系統 Transducer</label><select id="transducer"><option>Speaker + Microphone</option><option>Speaker</option><option>Microphone</option></select></div>
-        <div class="field"><label>生命週期 Lifecycle</label><select id="lifecycle"><option>Concept</option><option>Architecture</option><option>Feasibility</option><option>Prototype</option><option selected>EVT</option><option>DVT</option><option>PVT</option><option>MP</option><option>Field Return</option><option>Next Generation</option></select></div>
-        <div class="field"><label>風險 Risk Tier</label><select id="risk"><option>R0 — Read-only Analysis</option><option selected>R1 — Reversible Local Work</option><option>R2 — Controlled Engineering Execution</option><option>R3 — Hardware / DUT Risk</option><option>R4 — Formal External Release</option></select></div>
-        <div class="field"><label>Evidence Level</label><select id="evidence"><option selected>Tier-A — Formal Engineering</option><option>Tier-B — Design Exploration</option><option>Tier-C — Quick Study</option></select></div>
-        <div class="field"><label>標準策略</label><select id="standards"><option selected>Auto-load Current Standards Pack</option><option>Customer / OEM Spec Pack</option><option>Internal Method Only</option></select></div>
-        <div class="field full"><label>Engineering Objective / Constraints</label><textarea id="objective">Laptop Speaker 100–250 Hz 能量不足，但不能增加 enclosure volume；Xmax、THD、power、thermal 不得超規。請先提出可驗證 root-cause hypotheses，再規劃 lumped/FEM/measurement DOE；禁止使用 EQ 掩蓋尚未確認的 mechanical root cause。</textarea></div>
-        <div class="field"><label>Desired Output</label><select id="output"><option selected>Verified Engineering Recommendation</option><option>Measurement Plan</option><option>Simulation Study</option><option>Root-Cause Report</option><option>Draft Technical Report</option></select></div>
-        <div class="field"><label>Stop Condition</label><select id="stop"><option selected>Evidence + Verification complete</option><option>Design options ranked</option><option>Root cause isolated</option><option>Human review requested</option></select></div>
-        <div class="field"><label>Input Provenance</label><select><option selected>Required</option><option>Exploration only</option></select></div>
-      </div>
-      <div class="command"><button class="btn primary" id="route">組建 Temporary Engineering Pod</button><button class="btn" id="reset">重置 Pod</button></div>
-    </section>
-
-    <section class="panel" id="contract">
-      <h3>Engineering Contract</h3><div class="desc">Stop / Ask / Reroute / Verify 直接放在工作面，而不是藏在 Agent prompt。</div>
-      <div class="list"><div class="row"><div><div class="name">STOP</div><div class="meta">只有 Requirement + Evidence + Verification 達成才可停止。</div></div><span class="pill">Required</span></div><div class="row"><div><div class="name">ASK</div><div class="meta">規格衝突、R3/R4、高風險硬體、來源不明時必須詢問 Human。</div></div><span class="pill amber">Human Gate</span></div><div class="row"><div><div class="name">REROUTE</div><div class="meta">Correlation、method validity、data quality 不足時返回上一工程階段。</div></div><span class="pill purple">Loop</span></div><div class="row"><div><div class="name">VERIFY</div><div class="meta">G0–G4；正式 release 再進 G5 Human Approval。</div></div><span class="pill green">Evidence</span></div></div>
-      <div class="callout section"><b>硬規則：</b>Agent 自信、Agent 投票、漂亮曲線都不是工程驗證。Hypothesis 只能透過適用方法與 Evidence 升級。</div>
-    </section>
-  </div>
-
-  <section class="panel section" id="pod"><div class="section-head"><div><h3>Suggested Temporary Engineering Pod</h3><div id="podDesc" class="desc">尚未組隊。按上方「組建 Temporary Engineering Pod」。</div></div><span id="podSize" class="pill teal">0 specialists</span></div><div id="podGrid" class="pod"><div class="empty" style="width:100%">Role Router 尚未執行。這裡不會自動啟動任何真實模型或工具。</div></div></section>
-
-  <section class="grid3 section">
-    <div class="panel"><h3>1 · Requirement Board</h3><div class="list"><div class="row"><div><div class="name">Performance</div><div class="meta">FR / SPL / THD / Xmax / thermal / SNR</div></div></div><div class="row"><div><div class="name">Constraints</div><div class="meta">Volume / BOM / geometry / power / latency</div></div></div><div class="row"><div><div class="name">Traceability</div><div class="meta">unit / condition / source / standard edition</div></div></div></div></div>
-    <div class="panel"><h3>2 · Hypothesis Board</h3><div class="list"><div class="row"><div><div class="name">Enclosure / leakage</div><div class="meta">Acoustic-mechanical hypothesis</div></div><span class="pill rose">UNVERIFIED</span></div><div class="row"><div><div class="name">Port / compliance</div><div class="meta">Lumped + FEM candidate</div></div><span class="pill rose">UNVERIFIED</span></div><div class="row"><div><div class="name">Driver nonlinear limit</div><div class="meta">T/S + LSI candidate</div></div><span class="pill rose">UNVERIFIED</span></div></div></div>
-    <div class="panel"><h3>3 · Evidence Needed</h3><div class="list"><div class="row"><div><div class="name">Impedance + Near-field</div><div class="meta">Root-cause discrimination</div></div></div><div class="row"><div><div class="name">Seal / Geometry / Tolerance</div><div class="meta">Assembly sensitivity</div></div></div><div class="row"><div><div class="name">Excursion + Thermal</div><div class="meta">Protection boundary</div></div></div></div></div>
+  <section class="hero" style="margin-bottom:10px">
+    <div class="identity-status">ENGINEERING COMMAND · <span class="pill teal">HUMAN AUTHORITY</span></div>
+    <div class="identity"><div class="identity-avatar">⚙</div><div><h2>你定義工程問題，AERIS 負責展開複雜度</h2><div class="identity-sub">Product ｜ Transducer ｜ Lifecycle ｜ Risk ｜ Evidence ｜ Acceptance</div></div></div>
+    <div class="quick-systems"><div class="quick-system teal"><small>Input</small><b>Engineering Objective</b></div><div class="quick-system purple"><small>Router</small><b>Capability Match</b></div><div class="quick-system blue"><small>Method</small><b>Standards + Skills</b></div><div class="quick-system amber"><small>Guard</small><b>Risk / Human Gate</b></div><div class="quick-system green"><small>Output</small><b>Verified Recommendation</b></div></div>
   </section>
 
-  <section class="panel section"><h3>Canonical Run Timeline</h3><div class="desc">正式版 event 必須綁定 task_id / run_id / artifact hash / method / tool version / actor。</div><div class="pipeline"><div class="step done"><b>DRAFT</b><span>Human objective</span></div><div class="step"><b>READY</b><span>Preconditions</span></div><div class="step"><b>EXECUTING</b><span>Tool run</span></div><div class="step"><b>EXECUTED</b><span>Artifact exists</span></div><div class="step"><b>EVIDENCED</b><span>Bundle complete</span></div><div class="step"><b>VERIFIED</b><span>G0–G4 pass</span></div><div class="step"><b>APPROVED</b><span>if required</span></div><div class="step"><b>RELEASED</b><span>formal result</span></div></div></section>
+  <div class="grid2" id="task">
+    <section class="panel"><div class="chapter-kicker">TASK INTAKE</div><h3>建立工程任務</h3><div class="formgrid">
+      <div class="field"><label>產品 Product</label><select id="product"><option>Laptop</option><option>TWS Earbuds</option><option>ANC Over-Ear Headphone</option><option>Soundbar</option><option>Doorbell / Security Camera</option><option>Medical Hearing Aid</option><option>Automotive Audio / Hands-Free</option><option>Humanoid / Service Robot</option><option>Conference / UC Device</option></select></div>
+      <div class="field"><label>系統 Transducer</label><select id="transducer"><option>Speaker + Microphone</option><option>Speaker</option><option>Microphone</option></select></div>
+      <div class="field"><label>生命週期 Lifecycle</label><select id="lifecycle"><option>Concept</option><option>Architecture</option><option>Feasibility</option><option>Prototype</option><option selected>EVT</option><option>DVT</option><option>PVT</option><option>MP</option><option>Field Return</option><option>Next Generation</option></select></div>
+      <div class="field"><label>風險 Risk Tier</label><select id="risk"><option>R0 — Read-only Analysis</option><option selected>R1 — Reversible Local Work</option><option>R2 — Controlled Engineering Execution</option><option>R3 — Hardware / DUT Risk</option><option>R4 — Formal External Release</option></select></div>
+      <div class="field"><label>Evidence Level</label><select id="evidence"><option selected>Tier-A — Formal Engineering</option><option>Tier-B — Design Exploration</option><option>Tier-C — Quick Study</option></select></div>
+      <div class="field"><label>標準策略</label><select id="standards"><option selected>Auto-load Current Standards Pack</option><option>Customer / OEM Spec Pack</option><option>Internal Method Only</option></select></div>
+      <div class="field full"><label>Engineering Objective / Constraints</label><textarea id="objective">Laptop Speaker 100–250 Hz 能量不足，但不能增加 enclosure volume；Xmax、THD、power、thermal 不得超規。請先提出可驗證 root-cause hypotheses，再規劃 lumped/FEM/measurement DOE；禁止使用 EQ 掩蓋尚未確認的 mechanical root cause。</textarea></div>
+      <div class="field"><label>Desired Output</label><select id="output"><option selected>Verified Engineering Recommendation</option><option>Measurement Plan</option><option>Simulation Study</option><option>Root-Cause Report</option><option>Draft Technical Report</option></select></div>
+      <div class="field"><label>Stop Condition</label><select id="stop"><option selected>Evidence + Verification complete</option><option>Design options ranked</option><option>Root cause isolated</option><option>Human review requested</option></select></div>
+      <div class="field"><label>Input Provenance</label><select><option selected>Required</option><option>Exploration only</option></select></div>
+    </div><div class="command"><button class="btn primary" id="route">組建 Temporary Engineering Pod</button><button class="btn" id="reset">重置 Pod</button></div></section>
 
-  <section class="grid2 section"><div class="panel"><h3>Example Root-Cause Flow</h3><div class="code">Finding: 1.2 kHz peak may be enclosure standing wave
-Confidence: hypothesis only
-Evidence: none yet
-Counter-hypothesis: driver diaphragm breakup
-Missing evidence: vibrometry / pressure map
-Recommended test: BEM + near-field + Klippel scan
-Decision impact: tuning prohibited until root cause is separated</div></div><div class="panel"><h3>Theme-aware Engineering UX</h3><div class="list"><div class="row"><div><div class="name">Light</div><div class="meta">高照度辦公 / 報告閱讀 / 白底圖表</div></div><span class="pill teal">Calm</span></div><div class="row"><div><div class="name">Dark</div><div class="meta">夜間分析 / 長時間工作；語意色保持一致</div></div><span class="pill purple">Low glare</span></div><div class="row"><div><div class="name">System</div><div class="meta">預設跟隨 OS；手動選擇會記住</div></div><span class="pill">Default</span></div></div></div></section>
-  <div class="footer">AERIS Engineering Workspace · One Human Command Surface, many specialized roles, one evidence contract.</div>
-</main>
-</div>
+    <section class="panel chapter" id="contract"><div class="chapter-kicker">CHAPTER 01</div><h3>Engineering Contract</h3><div class="desc">把 Stop / Ask / Reroute / Verify 外部化，避免 Agent 默默自行判斷「完成」。</div><div class="list">
+      <div class="row"><div><div class="name">STOP</div><div class="meta">只有停止條件與必要 evidence / verification 達成，才可結束。</div></div><span class="pill">Required</span></div>
+      <div class="row"><div><div class="name">ASK</div><div class="meta">規格衝突、R3/R4、硬體風險、來源不明 → Human。</div></div><span class="pill amber">Human Gate</span></div>
+      <div class="row"><div><div class="name">REROUTE</div><div class="meta">Correlation、method validity、data quality 不足 → 回前一工程階段。</div></div><span class="pill purple">Loop</span></div>
+      <div class="row"><div><div class="name">VERIFY</div><div class="meta">G0–G4；正式 release 再進 G5 Human Approval。</div></div><span class="pill green">Evidence</span></div>
+    </div><div class="callout section"><b>硬規則：</b>Agent 自信、Agent 投票或漂亮曲線都不是工程驗證。</div></section>
+  </div>
+
+  <section class="panel section" id="pod"><div class="section-head"><div><h3>Suggested Temporary Engineering Pod</h3><div id="podDesc" class="desc">尚未組隊。按上方「組建 Temporary Engineering Pod」。</div></div><span id="podSize" class="pill teal">0 specialists</span></div><div id="podGrid" class="pod"><div class="empty" style="width:100%">Role Router 尚未執行；不會自動啟動真實模型或工具。</div></div></section>
+
+  <section class="grid3 section"><div class="panel"><h3>Requirement Board</h3><div class="list"><div class="row"><div><div class="name">Performance</div><div class="meta">FR / SPL / THD / Xmax / thermal / SNR</div></div></div><div class="row"><div><div class="name">Constraints</div><div class="meta">Volume / BOM / geometry / power / latency</div></div></div><div class="row"><div><div class="name">Traceability</div><div class="meta">unit / condition / source / standard edition</div></div></div></div></div>
+  <div class="panel"><h3>Hypothesis Board</h3><div class="list"><div class="row"><div><div class="name">Enclosure / leakage</div><div class="meta">Acoustic-mechanical hypothesis</div></div><span class="pill rose">UNVERIFIED</span></div><div class="row"><div><div class="name">Port / compliance</div><div class="meta">Lumped + FEM candidate</div></div><span class="pill rose">UNVERIFIED</span></div><div class="row"><div><div class="name">Driver nonlinear limit</div><div class="meta">T/S + LSI candidate</div></div><span class="pill rose">UNVERIFIED</span></div></div></div>
+  <div class="panel"><h3>Evidence Needed</h3><div class="list"><div class="row"><div><div class="name">Impedance + Near-field</div><div class="meta">Root-cause discrimination</div></div></div><div class="row"><div><div class="name">Seal / Geometry / Tolerance</div><div class="meta">Assembly sensitivity</div></div></div><div class="row"><div><div class="name">Excursion + Thermal</div><div class="meta">Protection boundary</div></div></div></div></div></section>
+
+  <section class="panel section"><h3>Canonical Run Timeline</h3><div class="pipeline"><div class="step done"><b>DRAFT</b><span>Human objective</span></div><div class="step"><b>READY</b><span>Preconditions</span></div><div class="step"><b>EXECUTING</b><span>Tool run</span></div><div class="step"><b>EXECUTED</b><span>Artifact exists</span></div><div class="step"><b>EVIDENCED</b><span>Bundle complete</span></div><div class="step"><b>VERIFIED</b><span>G0–G4 pass</span></div><div class="step"><b>APPROVED</b><span>if required</span></div><div class="step"><b>RELEASED</b><span>formal result</span></div></div></section>
+  <div class="footer">AERIS Workspace · Human intent first · Complexity on demand · Evidence before Done.</div>
+</main></div>
 <script>
 const productRole={"Laptop":[53,"Laptop Product Chief"],"TWS Earbuds":[48,"TWS Earbuds Product Chief"],"ANC Over-Ear Headphone":[49,"ANC Over-Ear Headphone Product Chief"],"Soundbar":[56,"Soundbar Product Chief"],"Doorbell / Security Camera":[59,"Doorbell / Security Camera Product Chief"],"Medical Hearing Aid":[45,"Medical Hearing Aid Product Chief"],"Automotive Audio / Hands-Free":[63,"Automotive Audio / Hands-Free Product Chief"],"Humanoid / Service Robot":[66,"Humanoid / Service Robot Product Chief"],"Conference / UC Device":[67,"Conference / UC Device Product Chief"]};
 const speaker=[[1,"Chief Acoustic Architect"],[4,"Product Audio System Architect"],[6,"Validation & Quality Director"],[9,"Speaker Acoustic System Architect"],[10,"T/S / Nonlinear Specialist"],[11,"Enclosure / Port / Waveguide Specialist"],[15,"Speaker Measurement Engineer"],[16,"Power / Reliability Validation"],[19,"Bass / Protection Tuning"],[21,"Lumped / FEM Simulation"],[25,"Smart-Amp / Protection Algorithm"]];
 const mic=[[1,"Chief Acoustic Architect"],[4,"Product Audio System Architect"],[6,"Validation & Quality Director"],[27,"Microphone Acoustic Architect"],[29,"Port / Mesh / Wind Specialist"],[33,"Microphone Measurement Engineer"],[34,"Array / Directivity Validation"],[42,"AEC / Echo Control"],[43,"Beamforming / DOA"],[44,"Speech Enhancement"]];
 const cross=[[69,"Psychoacoustics"],[75,"Thermal / Power / Reliability"],[78,"DOE / Statistics"],[79,"Metrology / Measurement Uncertainty"],[89,"Standards & Regulation"],[98,"Acoustic Red-Team / DFMEA"],[99,"Evidence / Knowledge Curator"],[100,"Autonomous Experiment & Optimization"]];
-function routePod(){const p=product.value,t=transducer.value,r=risk.value;let selected=[];if(t.includes('Speaker'))selected=selected.concat(speaker);if(t.includes('Microphone'))selected=selected.concat(mic);selected.push(productRole[p]);selected=selected.concat(cross);const map=new Map();selected.forEach(x=>map.set(x[0],x));let arr=[...map.values()];if(r.startsWith('R0'))arr=arr.filter(x=>![75,100].includes(x[0]));if(r.startsWith('R3')||r.startsWith('R4'))if(!arr.some(x=>x[0]===97))arr.push([97,"Requirement / Traceability / Configuration Manager"]);arr=arr.slice(0,15);podSize.textContent=arr.length+' specialists';podDesc.textContent=`${p} · ${t} · ${lifecycle.value} · ${r}. Dynamic selection; no persistent agents started.`;podGrid.innerHTML=arr.map(x=>`<div class="person"><b>#${String(x[0]).padStart(3,'0')} ${x[1]}</b>Temporary capability slot</div>`).join('')}
-route.addEventListener('click',routePod);reset.addEventListener('click',()=>{podSize.textContent='0 specialists';podDesc.textContent='尚未組隊。按上方「組建 Temporary Engineering Pod」。';podGrid.innerHTML='<div class="empty" style="width:100%">Role Router 尚未執行。這裡不會自動啟動任何真實模型或工具。</div>'});
+function routePod(){const p=product.value,t=transducer.value,r=risk.value;let s=[];if(t.includes('Speaker'))s=s.concat(speaker);if(t.includes('Microphone'))s=s.concat(mic);s.push(productRole[p]);s=s.concat(cross);const m=new Map();s.forEach(x=>m.set(x[0],x));let arr=[...m.values()];if(r.startsWith('R0'))arr=arr.filter(x=>![75,100].includes(x[0]));if((r.startsWith('R3')||r.startsWith('R4'))&&!arr.some(x=>x[0]===97))arr.push([97,"Requirement / Traceability / Configuration Manager"]);arr=arr.slice(0,15);podSize.textContent=arr.length+' specialists';podDesc.textContent=`${p} · ${t} · ${lifecycle.value} · ${r}. Dynamic selection; no persistent agents started.`;podGrid.innerHTML=arr.map(x=>`<div class="person"><b>#${String(x[0]).padStart(3,'0')} ${x[1]}</b>Temporary capability slot</div>`).join('')}
+route.addEventListener('click',routePod);reset.addEventListener('click',()=>{podSize.textContent='0 specialists';podDesc.textContent='尚未組隊。按上方「組建 Temporary Engineering Pod」。';podGrid.innerHTML='<div class="empty" style="width:100%">Role Router 尚未執行；不會自動啟動真實模型或工具。</div>'});
 </script>
 </body></html>
