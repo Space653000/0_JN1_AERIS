@@ -48,10 +48,10 @@ codex:
     - auto_accept_core_drift
 
 claude:
-  role: independent_reviewer_acceptance_auditor
+  role: optional_independent_reviewer_when_human_explicitly_requests
+  launch_by_default: false
   core_remote_access: read_only
   core_remote_write_during_deployment_review: forbidden
-  default_acceptance_behavior: independent_falsification
   self_repair_and_same_context_approval: forbidden
   repair_requires_fresh_review: true
 
@@ -79,20 +79,41 @@ local_workspace:
     - local_inference
     - offline_state
     - company_opening_state
+    - dashboard_frontend_backend_state
+    - persistence_watchdog_state
     - evidence_paths
-    - remaining_blockers
+    - unresolved_software_gaps
+    - remaining_external_blockers
     - remote_write_performed_no
 
 autopilot:
-  trigger_required_inputs:
-    - canonical_core_repository
-    - implementation_repository
-    - local_target_path
-  trigger_interpretation: AERIS_AUTOPILOT_REQUEST
+  canonical_urls:
+    - https://github.com/Space653000/0_JN1_AERIS
+    - https://github.com/Space653000/0_JN1_AERIS_Local-computer-implementation
+  active_workspace_counts_as_target_path: true
+  explicit_target_path_overrides_active_workspace: true
+  ask_for_path_only_if_missing_or_ambiguous: true
+  trigger_interpretation: AERIS_FULL_BUILD_AUTOPILOT_REQUEST
+  requires_additional_prompt: false
+  requires_plan_confirmation: false
   machine_readable_contract: aeris.autopilot.json
   canonical_read_order: docs/governance/AI_READ_ORDER.md
   sop: docs/governance/AI_AUTOPILOT_SOP.md
+  default_execution_policy:
+    primary_executor: codex
+    launch_claude_code: false
+    launch_second_model_reviewer: false
+    use_codex_tasks_or_scheduler: false
+    ask_human_only_at_human_gate: true
+    close_software_only_gaps_before_final_opening: true
+    continue_until_no_safe_software_gap_remains: true
+    prefer_github_ci_before_local_debugging: true
+    normal_real_machine_acceptance_cycles: 1
   automatically_attempt:
+    - read_core_authority
+    - sync_latest_ci_passed_implementation_main
+    - gap_inventory
+    - software_gap_closure_loop
     - safe_workspace_inventory
     - machine_detection
     - implementation_acquire_or_update
@@ -101,11 +122,24 @@ autopilot:
     - supported_dependency_install
     - local_model_setup
     - knowledge_build
-    - deterministic_tests
+    - deterministic_security_tests
     - real_machine_acceptance_when_prerequisites_exist
     - scoped_company_opening
-    - local_supervisor_start
+    - dashboard_frontend_backend_start
+    - os_native_unattended_persistence
+    - watchdog_self_recovery
     - evidence_and_audit_write
+  software_gap_closure:
+    auto_implement_when: software_only_and_safe_and_not_human_or_external_blocked
+    add_or_update_deterministic_tests: true
+    do_not_stop_just_to_report_not_implemented: true
+    stop_only_when:
+      - no_safe_software_only_gap_remains
+      - genuine_human_or_external_gate
+  continuity:
+    codex_tasks_or_scheduler: not_used
+    windows: scheduled_task_or_startup_fallback_plus_watchdog
+    linux_jetson: systemd_user_or_cron_fallback_plus_watchdog
   never_bypass:
     - privacy
     - checksum_or_signature_failure
@@ -118,11 +152,13 @@ autopilot:
 
 human_gate:
   ask_only_when_blocked_by:
-    - operating_system_elevation_denied
+    - no_safe_or_unambiguous_local_target
+    - operating_system_elevation_or_persistence_policy_denied
     - proprietary_license_or_eula
     - credential_secret_or_hardware_token
     - physical_fixture_cable_chamber_instrument_or_calibration
     - destructive_network_storage_firewall_change_outside_aeris_scope
+    - one_time_reboot_or_logoff_for_persistence_acceptance
     - external_publication
     - production_customer_formal_release
     - canonical_core_policy_change
@@ -141,6 +177,8 @@ truth_rule:
   dashboard: projection_not_truth
   model_consensus: not_engineering_evidence
   installation: not_verification
+  two_canonical_urls_are_command_when_safe_workspace_selected: true
+  safely_implementable_software_gap_must_not_be_returned_to_human: true
   local_execution_does_not_modify_remote_truth: true
 
 maturity_states:
