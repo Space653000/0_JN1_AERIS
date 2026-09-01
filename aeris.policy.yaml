@@ -1,4 +1,4 @@
-schema_version: 1
+schema_version: 2
 policy_id: AERIS-REMOTE-SSOT-LOCAL-EXECUTION
 status: active
 
@@ -9,10 +9,17 @@ repository:
   role: remote_read_only_ssot
   purpose: canonical_target_for_local_aeris_implementation
 
+human_authority:
+  role: chief_engineer
+  final_release_authority: true
+  core_publication: human_controlled_separate_process
+
 codex:
+  role: primary_local_executor_installer_implementer
   remote_access: read_only
   remote_write: forbidden
   local_execution: required
+  ask_optional_questions_before_autopilot_preflight: false
   allowed_remote_operations:
     - read
     - clone
@@ -38,41 +45,114 @@ codex:
     - pages_settings_change
     - branch_protection_change
     - ruleset_change
+    - auto_accept_core_drift
+
+claude:
+  role: independent_reviewer_acceptance_auditor
+  core_remote_access: read_only
+  core_remote_write_during_deployment_review: forbidden
+  default_acceptance_behavior: independent_falsification
+  self_repair_and_same_context_approval: forbidden
+  repair_requires_fresh_review: true
 
 local_workspace:
+  implementation_repository: https://github.com/Space653000/0_JN1_AERIS_Local-computer-implementation.git
   upstream_remote_name: origin
   upstream_url: https://github.com/Space653000/0_JN1_AERIS.git
   upstream_branch: main
   target_reference: origin/main
-  work_branch_pattern: local/*
-  development_on_local_main: discouraged
   local_commit: allowed
-  remote_push: denied
-  required_guards:
+  core_remote_push: denied
+  required_core_guards:
+    - canonical_fetch_url
     - disabled_push_url
     - deny_pre_push_hook
-  required_start_checks:
-    - git_fetch_origin_main
-    - record_origin_main_sha
-    - verify_read_only_guard
+    - detached_checkout
+    - clean_worktree
+    - head_equals_recorded_core_sha
   required_delivery_fields:
     - target_sha
+    - implementation_sha
     - local_workspace
-    - local_branch
-    - changed_files
     - tests
-    - drift_vs_origin_main
+    - core_integrity
+    - local_inference
+    - offline_state
+    - company_opening_state
+    - evidence_paths
+    - remaining_blockers
     - remote_write_performed_no
 
+autopilot:
+  trigger_required_inputs:
+    - canonical_core_repository
+    - implementation_repository
+    - local_target_path
+  trigger_interpretation: AERIS_AUTOPILOT_REQUEST
+  machine_readable_contract: aeris.autopilot.json
+  canonical_read_order: docs/governance/AI_READ_ORDER.md
+  sop: docs/governance/AI_AUTOPILOT_SOP.md
+  automatically_attempt:
+    - safe_workspace_inventory
+    - machine_detection
+    - implementation_acquire_or_update
+    - core_read_only_guard
+    - core_lock_alignment_check
+    - supported_dependency_install
+    - local_model_setup
+    - knowledge_build
+    - deterministic_tests
+    - real_machine_acceptance_when_prerequisites_exist
+    - scoped_company_opening
+    - local_supervisor_start
+    - evidence_and_audit_write
+  never_bypass:
+    - privacy
+    - checksum_or_signature_failure
+    - core_drift
+    - unsupported_machine
+    - failed_verification
+    - proprietary_license
+    - hardware_calibration
+    - irreversible_release_approval
+
+human_gate:
+  ask_only_when_blocked_by:
+    - operating_system_elevation_denied
+    - proprietary_license_or_eula
+    - credential_secret_or_hardware_token
+    - physical_fixture_cable_chamber_instrument_or_calibration
+    - destructive_network_storage_firewall_change_outside_aeris_scope
+    - external_publication
+    - production_customer_formal_release
+    - canonical_core_policy_change
+
 sync_direction:
-  normal: github_main_to_local
-  reverse_from_codex: forbidden
+  normal: github_core_main_to_local_implementation
+  reverse_from_normal_codex_deployment: forbidden
 
 publication:
   authority: human_controlled_only
-  codex_output: local_handoff_package
+  normal_codex_output: local_handoff_and_evidence
 
 truth_rule:
   remote_main: target_baseline
   local_files: implementation_state
+  dashboard: projection_not_truth
+  model_consensus: not_engineering_evidence
+  installation: not_verification
   local_execution_does_not_modify_remote_truth: true
+
+maturity_states:
+  - NOT_IMPLEMENTED
+  - IMPLEMENTED
+  - TESTED
+  - VERIFIED
+  - BLOCKED_EXTERNAL
+
+operational_states:
+  - CLOSED
+  - BOOTSTRAPPING
+  - BLOCKED
+  - OPEN_WITH_LIMITS
+  - OPEN_VERIFIED_SCOPE

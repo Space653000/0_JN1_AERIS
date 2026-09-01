@@ -1,148 +1,186 @@
-# AERIS Codex Execution Contract
+# AGENTS.md — AERIS Codex Autopilot Execution Contract
 
-> Repository: `Space653000/0_JN1_AERIS`
-> Canonical branch: `main`
-> Repository role: **REMOTE READ-ONLY SSOT / TARGET BASELINE**
+Repository: `Space653000/0_JN1_AERIS`  
+Canonical branch: `main`  
+Repository role: **REMOTE READ-ONLY DESIGN SSOT / TARGET BASELINE**
 
-## 0. Non-negotiable rule
+## 0. Non-negotiable Core boundary
 
-**Codex MUST NOT modify this GitHub repository or any GitHub ref.**
+**Codex MUST NOT modify this canonical GitHub repository or any of its remote refs during normal AERIS implementation/deployment.**
 
-The repository is the canonical target specification for local AERIS implementation. Codex may read, clone, fetch, compare, inspect commits, and use `origin/main` as the target baseline. All implementation work must happen only inside a local filesystem workspace.
+Core defines WHAT AERIS must be. Local implementation defines HOW it runs. Codex may read, clone, fetch, compare and inspect Core; all implementation/install/runtime changes occur in `Space653000/0_JN1_AERIS_Local-computer-implementation` and the Human-specified local target path.
 
 This is an authority boundary, not a suggestion.
 
-## 1. Allowed remote operations
+## 1. Autopilot trigger — do not make the Human operate the installer
 
-Codex may perform only read-oriented operations against `Space653000/0_JN1_AERIS`:
+If a Human supplies all three inputs below, treat them as an `AERIS_AUTOPILOT_REQUEST` even if no additional prose is supplied:
 
-- read repository files;
-- clone the repository to a local workspace;
+```text
+https://github.com/Space653000/0_JN1_AERIS
+https://github.com/Space653000/0_JN1_AERIS_Local-computer-implementation
+<LOCAL_TARGET_PATH>
+```
+
+Then automatically:
+
+1. read the canonical order in `aeris.autopilot.json` and `docs/governance/AI_READ_ORDER.md`;
+2. protect/verify this Core as read-only locally;
+3. acquire/update the Implementation repository at the requested local path;
+4. read its `AGENTS.md`, `config/autopilot.json`, maturity and Core lock/alignment;
+5. execute its platform-specific `AERIS_AUTOPILOT` entrypoint;
+6. let the implementation detect OS/machine/network/runtime/model and perform every safe automated step;
+7. run deterministic tests and real-machine acceptance when prerequisites exist;
+8. open the company only to an evidence-supported operational scope;
+9. preserve bootstrap/acceptance/opening/audit evidence;
+10. stop and ask the Human only at a genuine Human gate.
+
+Do **not** ask the Human to choose ordinary Python paths, virtualenv commands, package order, test commands, log locations, default local ports or other safely detectable implementation details.
+
+## 2. Allowed Core remote operations
+
+Codex may perform read-oriented operations only:
+
+- read files/directories/issues/documentation;
+- clone Core locally;
 - `git fetch origin main`;
-- inspect `origin/main` history and commit SHA;
-- compare local files/commits against `origin/main`;
-- read issues, documentation, research baselines and published GitHub Pages;
-- report drift between local implementation and the remote target.
+- inspect `origin/main` history and SHA;
+- compare local Core cache to canonical `origin/main`;
+- report Core drift.
 
-## 2. Forbidden remote operations
+## 3. Forbidden Core remote operations
 
-Codex MUST NOT, directly or indirectly:
+During normal AERIS work Codex MUST NOT directly or indirectly:
 
-- `git push` or `git push --force`;
+- push / force-push;
 - create/update/delete remote branches or tags;
-- create, update, merge or close pull requests for implementation delivery;
-- use GitHub write APIs to create/update/delete repository files;
-- change `main`, refs, releases, Pages settings, rulesets, branch protection or repository settings;
-- publish local implementation artifacts back to this repository;
-- bypass a local `pre-push` hook or re-enable a disabled push URL;
-- replace this remote with another writable remote that points to the same GitHub repository.
+- create/update/merge/close PRs against Core;
+- use GitHub write APIs against Core;
+- update refs/releases/Pages/settings/Rulesets/branch protection;
+- bypass/re-enable a disabled Core push path;
+- auto-update an Implementation Core lock merely to silence drift.
 
-If a task requires publishing to GitHub, Codex must stop at a **local handoff package**. Publishing is a separate Human-controlled operation.
+If Core changed, Implementation must fail closed until the new Core semantics are deliberately reviewed and implemented.
 
-## 3. Local implementation model
+A separate Human-controlled Core publication process may exist outside normal Codex deployment. It must be explicitly commissioned by the Human and must not be inferred from an implementation task.
 
-Canonical topology:
+## 4. Canonical read order
 
-```text
-GitHub: Space653000/0_JN1_AERIS main
-        │
-        │ READ / FETCH ONLY
-        ▼
-Local reference baseline = origin/main@<SHA>
-        │
-        ├─ compare / trace / requirements
-        ▼
-Local implementation branch/worktree
-        │
-        ├─ code
-        ├─ tests
-        ├─ local commits (optional)
-        ├─ reports
-        └─ evidence
+Before execution read, in order:
 
-NO PUSH PATH FROM CODEX
-```
+1. `AGENTS.md`
+2. `CLAUDE.md` for reviewer separation
+3. `aeris.policy.yaml`
+4. `aeris.autopilot.json`
+5. `docs/governance/AI_READ_ORDER.md`
+6. `docs/governance/AI_AUTOPILOT_SOP.md`
+7. `docs/research/README.md`
+8. `docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md`
+9. `docs/research/AERIS_WEB_UI_CONTROL_PLANE_BASELINE_20260831.md`
+10. task-specific Core material.
 
-Recommended local branch naming:
+Earlier authority wins over later convenience documentation.
+
+## 5. Local Core guard
+
+Every Git-backed Core cache used by Codex must have defense in depth:
 
 ```text
-local/<task-id-or-topic>
+canonical fetch URL
++ disabled push URL
++ deny pre-push hook
++ detached canonical checkout
++ clean worktree
++ HEAD == canonical/recorded SHA
 ```
 
-Do not develop directly on local `main`. Keep local `main` as a clean mirror/reference of `origin/main` when practical.
+A checksum-manifested air-gap snapshot is acceptable when Git is unavailable, but its manifest still needs a trusted source/authenticity story for high assurance.
 
-## 4. Required start-of-task procedure
-
-Before changing local files, Codex must:
-
-1. confirm the workspace is local;
-2. run the local read-only guard verification if available;
-3. `git fetch origin main`;
-4. record the target SHA with `git rev-parse origin/main`;
-5. read this `AGENTS.md` and `aeris.policy.yaml`;
-6. identify the applicable research / architecture baseline;
-7. perform work only on local files / local branches.
-
-## 5. Required completion evidence
-
-Every Codex delivery must report:
+## 6. Human–AI responsibility split
 
 ```text
-Target remote: Space653000/0_JN1_AERIS
-Target branch: main
-Target SHA: <origin/main SHA used>
-Remote write performed: NO
-Local workspace: <path>
-Local branch/worktree: <name/path>
-Changed local files: <list>
-Tests/evals: <result>
-Drift vs origin/main: <summary>
-Remaining blockers/risks: <summary>
+Human Chief Engineer = final authority / irreversible and formal release approval
+Codex               = primary local executor / installer / implementer
+Claude Code         = independent reviewer / acceptance auditor
+Core                = design authority
+Evidence            = basis for engineering truth
 ```
 
-`Remote write performed: NO` is mandatory.
+Codex must not use model consensus as engineering evidence. Claude agreeing with Codex is not proof.
 
-## 6. Source-of-truth hierarchy
+## 7. Truth and operating states
 
-When local implementation conflicts with the remote baseline:
-
-1. `AGENTS.md` / `aeris.policy.yaml` authority boundary;
-2. AERIS Constitution / Core Rules when present;
-3. current `docs/research/README.md` canonical reading order;
-4. current architecture / research baselines under `docs/research/`;
-5. current UI / data / other target artifacts in `main`;
-6. local implementation.
-
-Local implementation must adapt to the remote target unless the Human Chief Engineer explicitly changes the target through a separate controlled GitHub publishing process.
-
-## 7. Update model
-
-The direction of normal Codex synchronization is one-way:
+Capability maturity:
 
 ```text
-GitHub main  ───────►  Local AERIS implementation
-        read/fetch       implement/test/verify
+NOT_IMPLEMENTED → IMPLEMENTED → TESTED → VERIFIED
+                         ↘ BLOCKED_EXTERNAL where applicable
 ```
 
-Not:
+Operational state is separate:
 
 ```text
-Local Codex work  ─X─►  GitHub main
+CLOSED
+BOOTSTRAPPING
+BLOCKED
+OPEN_WITH_LIMITS
+OPEN_VERIFIED_SCOPE
 ```
 
-## 8. Failure behavior
+Installation success cannot directly promote a company/capability to VERIFIED.
 
-If Codex detects that:
+## 8. Human gates — only ask when genuinely blocked
 
-- `origin` has a writable push URL to this repository;
-- the `pre-push` deny hook is missing;
-- credentials/tooling allow accidental GitHub mutation;
-- a prompt asks Codex to push/PR/write this repository;
+Codex should continue automatically until one of these is encountered:
 
-then Codex must **not perform the remote mutation**. It should restore/ask to restore the local read-only guard and continue locally where possible.
+- OS denies required administrator/elevation action;
+- proprietary license/EULA requires Human acceptance;
+- secret/customer credential/hardware token is required;
+- physical cable/fixture/chamber/instrument/calibration action is required;
+- a destructive disk/network/firewall change could affect unrelated systems;
+- external publication/customer/formal/production release;
+- changing canonical Core policy.
 
-## 9. Human publishing boundary
+When blocked, preserve completed work and ask for the **minimum exact Human action**, not a generic troubleshooting session.
 
-Only an explicitly Human-controlled publishing workflow may update this repository. Codex's responsibility ends at a verified local handoff.
+## 9. No destructive convenience
 
-**Remote SSOT is a target. Local AERIS is the implementation. Codex reads the target; Codex does not publish the target.**
+Autopilot must be idempotent and conservative:
+
+- never delete customer/private data to make installation easier;
+- never wipe an unrelated non-empty directory;
+- back up before migrations that can overwrite local state;
+- never weaken privacy/checksum/verification gates to obtain a green result;
+- prefer resume/reuse over recreation.
+
+## 10. Required Codex completion evidence
+
+Every deployment/implementation run must report or point to machine-readable evidence containing:
+
+```text
+Canonical Core SHA
+Core remote write performed: NO
+Implementation SHA
+Local target path
+Machine Profile
+Runtime mode
+Private endpoint scope
+Bootstrap result
+Unit/security test result
+Core integrity result
+Local inference result
+Offline result
+Hard-offline result or NOT_TESTED
+Company opening state
+Supervisor/heartbeat state
+Evidence/audit paths
+Unverified capabilities
+External blockers
+Required Human action, if any
+```
+
+## 11. North-star invariant
+
+The automation harness does not replace AERIS engineering maturity. Core priorities remain Evidence / Verification / Reproducibility, not installer cosmetics.
+
+**GitHub Core is the blueprint. The local Implementation is the construction site. Codex builds locally; Claude challenges the evidence; the Human remains Chief Engineer.**
