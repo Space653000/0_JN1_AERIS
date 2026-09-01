@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "contract_id": "AERIS-AUTOPILOT-HUMAN-AI-V1",
+  "canonical_core": {
+    "repository": "Space653000/0_JN1_AERIS",
+    "branch": "main",
+    "authority": "read_only_design_ssot"
+  },
+  "implementation": {
+    "repository": "Space653000/0_JN1_AERIS_Local-computer-implementation",
+    "branch": "main",
+    "authority": "local_executable_company_image"
+  },
+  "trigger": {
+    "required_inputs": ["canonical_core_repository", "implementation_repository", "local_target_path"],
+    "interpretation": "AERIS_AUTOPILOT_REQUEST",
+    "ask_optional_questions_before_preflight": false
+  },
+  "human_ai_roles": {
+    "human_chief_engineer": "final_authority_and_irreversible_release_approval",
+    "codex": "primary_local_executor_installer_implementer",
+    "claude_code": "independent_reviewer_acceptance_auditor",
+    "models": "replaceable_compute_not_identity",
+    "evidence": "decision_basis_not_agent_consensus"
+  },
+  "core_remote_policy": {
+    "codex_write": "FORBIDDEN",
+    "claude_write": "FORBIDDEN_DURING_DEPLOYMENT_AND_REVIEW",
+    "normal_direction": "core_main_to_local_implementation",
+    "publication": "separate_human_controlled_process"
+  },
+  "canonical_read_order": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "aeris.policy.yaml",
+    "aeris.autopilot.json",
+    "docs/governance/AI_READ_ORDER.md",
+    "docs/governance/AI_AUTOPILOT_SOP.md",
+    "docs/research/README.md",
+    "docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md",
+    "docs/research/AERIS_WEB_UI_CONTROL_PLANE_BASELINE_20260831.md"
+  ],
+  "implementation_entrypoints": {
+    "windows_autopilot": "AERIS_AUTOPILOT.ps1",
+    "linux_jetson_autopilot": "AERIS_AUTOPILOT.sh",
+    "windows_claude_acceptance": "CLAUDE_VERIFY_AERIS.ps1",
+    "linux_jetson_claude_acceptance": "CLAUDE_VERIFY_AERIS.sh"
+  },
+  "autopilot_intent": {
+    "auto_detect_machine": true,
+    "auto_inventory": true,
+    "auto_install_redistributable_dependencies": true,
+    "auto_sync_read_only_core": true,
+    "auto_configure_local_runtime": true,
+    "auto_build_knowledge": true,
+    "auto_run_tests": true,
+    "auto_run_real_machine_acceptance_when_prerequisites_exist": true,
+    "auto_open_company_when_acceptance_allows": true,
+    "auto_write_evidence": true,
+    "auto_start_local_supervisor": true,
+    "no_false_done": true
+  },
+  "never_auto_bypass": [
+    "canonical_core_write_guard",
+    "privacy_boundary",
+    "checksum_or_signature_failure",
+    "unsupported_machine_profile",
+    "failed_test_or_verification_gate",
+    "required_license_or_eula",
+    "missing_customer_or_private_credential",
+    "hardware_calibration_requirement",
+    "destructive_storage_or_network_change",
+    "production_or_customer_release_approval"
+  ],
+  "human_gate_only_when_blocked": [
+    "operating_system_denies_required_admin_privilege",
+    "vendor_license_or_eula_requires_human_acceptance",
+    "credential_secret_or_hardware_key_is_required",
+    "physical_cable_fixture_calibration_or_instrument_action_is_required",
+    "firewall_or_air_gap_change_would affect unrelated_systems",
+    "irreversible_or_external_publication_action",
+    "production_customer_or_formal_release"
+  ],
+  "truth_states": ["NOT_IMPLEMENTED", "IMPLEMENTED", "TESTED", "VERIFIED", "BLOCKED_EXTERNAL"],
+  "operational_states": ["CLOSED", "BOOTSTRAPPING", "BLOCKED", "OPEN_WITH_LIMITS", "OPEN_VERIFIED_SCOPE"],
+  "opening_rule": "installation alone never equals company opening; opening requires scoped operational evidence and preserved limitations",
+  "review_rule": "primary executor and independent reviewer must not use agreement as evidence"
+}
