@@ -1,4 +1,4 @@
-# AGENTS.md — AERIS Codex Autopilot Execution Contract
+# AGENTS.md — AERIS Codex Full-Build Autopilot Contract
 
 Repository: `Space653000/0_JN1_AERIS`  
 Canonical branch: `main`  
@@ -6,84 +6,96 @@ Repository role: **REMOTE READ-ONLY DESIGN SSOT / TARGET BASELINE**
 
 ## 0. Non-negotiable Core boundary
 
-**Codex MUST NOT modify this canonical GitHub repository or any of its remote refs during normal AERIS implementation/deployment.**
+During normal AERIS deployment/build, Codex may read/clone/fetch/compare this Core but MUST NOT push, PR, merge, change refs/settings/Rulesets, or otherwise write the canonical Core. Core publication is a separate Human-authorized governance action.
 
-Core defines WHAT AERIS must be. Local implementation defines HOW it runs. Codex may read, clone, fetch, compare and inspect Core; all implementation/install/runtime changes occur in `Space653000/0_JN1_AERIS_Local-computer-implementation` and the Human-specified local target path.
+Core defines WHAT AERIS must become. `Space653000/0_JN1_AERIS_Local-computer-implementation` and the selected local workspace define HOW it is built and run.
 
-This is an authority boundary, not a suggestion.
+## 1. Canonical zero-prompt trigger
 
-## 1. Autopilot trigger — do not make the Human operate the installer
-
-If a Human supplies all three inputs below, treat them as an `AERIS_AUTOPILOT_REQUEST` even if no additional prose is supplied:
+If the Human pastes these two canonical URLs:
 
 ```text
 https://github.com/Space653000/0_JN1_AERIS
 https://github.com/Space653000/0_JN1_AERIS_Local-computer-implementation
-<LOCAL_TARGET_PATH>
 ```
 
-Then automatically:
+and Codex already has exactly one explicit/active safe writable workspace, that alone is a complete **`AERIS_FULL_BUILD_AUTOPILOT_REQUEST`**.
 
-1. read the canonical order in `aeris.autopilot.json` and `docs/governance/AI_READ_ORDER.md`;
-2. protect/verify this Core as read-only locally;
-3. acquire/update the Implementation repository at the requested local path;
-4. read its `AGENTS.md`, `config/autopilot.json`, maturity and Core lock/alignment;
-5. execute its platform-specific `AERIS_AUTOPILOT` entrypoint;
-6. let the implementation detect OS/machine/network/runtime/model and perform every safe automated step;
-7. run deterministic tests and real-machine acceptance when prerequisites exist;
-8. open the company only to an evidence-supported operational scope;
-9. preserve bootstrap/acceptance/opening/audit evidence;
-10. stop and ask the Human only at a genuine Human gate.
+No additional prose, no repeated long prompt, and no `確認執行` step is required. The selected workspace is the local target path. If the Human also supplies a path, use it. Ask for a path only when no safe path exists or multiple targets are genuinely ambiguous.
 
-Do **not** ask the Human to choose ordinary Python paths, virtualenv commands, package order, test commands, log locations, default local ports or other safely detectable implementation details.
+The two-URL trigger itself authorizes all safe/reversible R0/R1 software work and controlled R2 steps whose preconditions are already satisfied. Do not ask for plan confirmation. Ask only at a genuine Human Gate.
 
-## 2. Allowed Core remote operations
+## 2. Required FULL BUILD sequence
 
-Codex may perform read-oriented operations only:
+Codex must continue automatically:
 
-- read files/directories/issues/documentation;
-- clone Core locally;
-- `git fetch origin main`;
-- inspect `origin/main` history and SHA;
-- compare local Core cache to canonical `origin/main`;
-- report Core drift.
+```text
+READ CORE AUTHORITY
+→ SYNC LATEST CI-PASSED IMPLEMENTATION MAIN
+→ GAP INVENTORY
+→ SOFTWARE GAP CLOSURE LOOP
+→ MACHINE INVENTORY
+→ INSTALL / CONFIGURE
+→ DETERMINISTIC + SECURITY TESTS
+→ REAL LOCAL + OFFLINE INFERENCE ACCEPTANCE
+→ COMPANY OPENING
+→ DASHBOARD / FRONTEND / BACKEND
+→ OS-NATIVE UNATTENDED PERSISTENCE
+→ WATCHDOG / SELF-RECOVERY
+→ EVIDENCE / AUDIT HANDOFF
+```
 
-## 3. Forbidden Core remote operations
+### Software Gap Closure Loop
 
-During normal AERIS work Codex MUST NOT directly or indirectly:
+Before declaring the local company ready, inspect `config/maturity.json`, `docs/DEFINITION_OF_COMPANY_DONE.md`, tests, UI/API/workflows and Core requirements.
 
-- push / force-push;
-- create/update/delete remote branches or tags;
-- create/update/merge/close PRs against Core;
-- use GitHub write APIs against Core;
-- update refs/releases/Pages/settings/Rulesets/branch protection;
-- bypass/re-enable a disabled Core push path;
-- auto-update an Implementation Core lock merely to silence drift.
+For every missing capability that is **software-only, safely implementable, and not blocked by a real external/Human dependency**, Codex must implement it rather than merely reporting `NOT_IMPLEMENTED` and stopping.
 
-If Core changed, Implementation must fail closed until the new Core semantics are deliberately reviewed and implemented.
+Loop:
 
-A separate Human-controlled Core publication process may exist outside normal Codex deployment. It must be explicitly commissioned by the Human and must not be inferred from an implementation task.
+```text
+inventory gap
+→ classify software-only vs Human/external
+→ implement software-only gap
+→ add/update deterministic tests
+→ run affected tests
+→ continue to next gap
+```
 
-## 4. Canonical read order
+Stop this loop only when:
 
-Before execution read, in order:
+1. no safely implementable software-only gap remains for the requested full-build scope; or
+2. the next missing item is a genuine Human/external gate.
 
-1. `AGENTS.md`
-2. `CLAUDE.md` for reviewer separation
-3. `aeris.policy.yaml`
-4. `aeris.autopilot.json`
-5. `docs/governance/AI_READ_ORDER.md`
-6. `docs/governance/AI_AUTOPILOT_SOP.md`
-7. `docs/research/README.md`
-8. `docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md`
-9. `docs/research/AERIS_WEB_UI_CONTROL_PLANE_BASELINE_20260831.md`
-10. task-specific Core material.
+Do not consume local Token rediscovering defects that GitHub CI can catch. Prefer the latest CI-passed Implementation main and cloud/GitHub validation first; local execution is for machine-specific installation/runtime evidence and unavoidable local implementation work.
 
-Earlier authority wins over later convenience documentation.
+## 3. Default execution policy
 
-## 5. Local Core guard
+- **Codex is the only default AI executor.**
+- **Do not launch Claude Code or any second-model reviewer unless the Human explicitly asks.**
+- **Do not use Codex Tasks / Codex scheduling for company continuity.**
+- Company continuity must use AERIS/local-OS mechanisms (Windows Scheduled Task/Startup fallback; Linux systemd-user/cron fallback) plus watchdog/self-recovery.
+- Do not return safely detectable Python/venv/package/port/log/test choices to the Human.
+- Do not stop merely to present a plan.
 
-Every Git-backed Core cache used by Codex must have defense in depth:
+## 4. Genuine Human Gates only
+
+Stop and ask for the minimum exact Human action only when blocked by:
+
+- OS elevation/admin or persistence policy denial;
+- License/EULA acceptance;
+- secret/customer credential/hardware token;
+- physical cable/fixture/chamber/instrument/calibration action;
+- destructive unrelated disk/network/firewall impact;
+- canonical Core policy change;
+- one-time reboot/logoff required to prove persistence;
+- R3/R4 customer/production/formal/external release.
+
+Preserve completed Evidence and resume idempotently after the Human performs that one action.
+
+## 5. Core read-only guard
+
+Every Git-backed local Core cache must have:
 
 ```text
 canonical fetch URL
@@ -91,96 +103,51 @@ canonical fetch URL
 + deny pre-push hook
 + detached canonical checkout
 + clean worktree
-+ HEAD == canonical/recorded SHA
++ HEAD == recorded/canonical SHA
 ```
 
-A checksum-manifested air-gap snapshot is acceptable when Git is unavailable, but its manifest still needs a trusted source/authenticity story for high assurance.
+A checksum-manifested air-gap snapshot is acceptable when Git is unavailable, subject to its authenticity policy.
 
-## 6. Human–AI responsibility split
+## 6. Privacy / safety
 
-```text
-Human Chief Engineer = final authority / irreversible and formal release approval
-Codex               = primary local executor / installer / implementer
-Claude Code         = independent reviewer / acceptance auditor
-Core                = design authority
-Evidence            = basis for engineering truth
-```
+- Default private engineering data = `LOCAL_ONLY`.
+- Never upload local files, customer data, Evidence, measurements or private history to cloud implicitly.
+- Never wipe unrelated/private data, invent credentials, auto-accept licenses, weaken privacy/evidence/Core gates, or silently overwrite a dirty tracked worktree.
+- Application-level privacy is not an OS-wide mathematical zero-egress proof.
 
-Codex must not use model consensus as engineering evidence. Claude agreeing with Codex is not proof.
-
-## 7. Truth and operating states
+## 7. Truth states
 
 Capability maturity:
 
 ```text
 NOT_IMPLEMENTED → IMPLEMENTED → TESTED → VERIFIED
-                         ↘ BLOCKED_EXTERNAL where applicable
+                         ↘ BLOCKED_EXTERNAL
 ```
 
-Operational state is separate:
+Operational state:
 
 ```text
-CLOSED
-BOOTSTRAPPING
-BLOCKED
-OPEN_WITH_LIMITS
-OPEN_VERIFIED_SCOPE
+CLOSED → BOOTSTRAPPING → BLOCKED / OPEN_WITH_LIMITS / OPEN_VERIFIED_SCOPE
 ```
 
-Installation success cannot directly promote a company/capability to VERIFIED.
+`OPEN_VERIFIED_SCOPE` is scope-specific evidence, not permission to claim unavailable licensed tools or unverified acoustic capabilities are complete.
 
-## 8. Human gates — only ask when genuinely blocked
+## 8. Minimal read order
 
-Codex should continue automatically until one of these is encountered:
+1. this `AGENTS.md`;
+2. `aeris.policy.yaml`;
+3. `aeris.autopilot.json`;
+4. `docs/governance/AI_AUTOPILOT_SOP.md`;
+5. `docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md`;
+6. Implementation `AGENTS.md`, `config/autopilot.json`, `config/maturity.json`, `docs/DEFINITION_OF_COMPANY_DONE.md`;
+7. task-specific files only as needed.
 
-- OS denies required administrator/elevation action;
-- proprietary license/EULA requires Human acceptance;
-- secret/customer credential/hardware token is required;
-- physical cable/fixture/chamber/instrument/calibration action is required;
-- a destructive disk/network/firewall change could affect unrelated systems;
-- external publication/customer/formal/production release;
-- changing canonical Core policy.
+Optional reviewer documents are not part of the default deployment path.
 
-When blocked, preserve completed work and ask for the **minimum exact Human action**, not a generic troubleshooting session.
+## 9. Completion evidence
 
-## 9. No destructive convenience
+Every run must leave/report machine-readable evidence for Core SHA, Implementation SHA, target path, machine profile, runtime mode, tests, Core integrity, local/offline inference, company opening, Dashboard/API reachability, persistence/watchdog, Evidence/Audit, unresolved software gaps, external blockers and the minimum Human action if blocked.
 
-Autopilot must be idempotent and conservative:
+## 10. North-star invariant
 
-- never delete customer/private data to make installation easier;
-- never wipe an unrelated non-empty directory;
-- back up before migrations that can overwrite local state;
-- never weaken privacy/checksum/verification gates to obtain a green result;
-- prefer resume/reuse over recreation.
-
-## 10. Required Codex completion evidence
-
-Every deployment/implementation run must report or point to machine-readable evidence containing:
-
-```text
-Canonical Core SHA
-Core remote write performed: NO
-Implementation SHA
-Local target path
-Machine Profile
-Runtime mode
-Private endpoint scope
-Bootstrap result
-Unit/security test result
-Core integrity result
-Local inference result
-Offline result
-Hard-offline result or NOT_TESTED
-Company opening state
-Supervisor/heartbeat state
-Evidence/audit paths
-Unverified capabilities
-External blockers
-Required Human action, if any
-```
-
-## 11. North-star invariant
-
-The automation harness does not replace AERIS engineering maturity. Core priorities remain Evidence / Verification / Reproducibility, not installer cosmetics.
-
-**GitHub Core is the blueprint. The local Implementation is the construction site. Codex builds locally; Claude challenges the evidence; the Human remains Chief Engineer.**
+The Human should not have to remember an orchestration prompt. **The two canonical GitHub URLs are the command.** When a safe target path is already selected, Codex must infer and execute the entire AERIS FULL BUILD lifecycle automatically until only a genuine Human/external gate remains.
