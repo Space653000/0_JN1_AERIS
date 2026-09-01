@@ -18,6 +18,7 @@ REQUIRED_FILES = [
     "docs/research/README.md",
     "docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md",
     "docs/research/AERIS_WEB_UI_CONTROL_PLANE_BASELINE_20260831.md",
+    "docs/research/2026-09-01_Kairos_User_Screenshot_UI_Calibration_v0.5.md",
 ]
 
 
@@ -57,15 +58,18 @@ def main() -> int:
     claude = (ROOT / "CLAUDE.md").read_text(encoding="utf-8-sig") if (ROOT / "CLAUDE.md").exists() else ""
     policy = (ROOT / "aeris.policy.yaml").read_text(encoding="utf-8-sig") if (ROOT / "aeris.policy.yaml").exists() else ""
     read_order = (ROOT / "docs/governance/AI_READ_ORDER.md").read_text(encoding="utf-8-sig") if (ROOT / "docs/governance/AI_READ_ORDER.md").exists() else ""
+    research = (ROOT / "docs/research/README.md").read_text(encoding="utf-8-sig") if (ROOT / "docs/research/README.md").exists() else ""
 
     require("AERIS_AUTOPILOT_REQUEST" in agents, "AGENTS.md missing Autopilot trigger", errors)
     require("MUST NOT modify this canonical GitHub repository" in agents, "AGENTS.md Core no-write rule weakened/missing", errors)
     require("independent reviewer" in claude.lower(), "CLAUDE.md independent-review contract missing", errors)
     require("self_repair_and_same_context_approval: forbidden" in policy, "policy must prohibit same-context repair+approval", errors)
     require("AI_AUTOPILOT_SOP.md" in read_order and "AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md" in read_order, "read order missing canonical documents", errors)
+    require("AERIS UI v0.5" in research and "Current visual authority" in research, "research index must point to v0.5 direct-screenshot authority", errors)
+    require("228px always-expanded labeled sidebar" in research, "research index must record the v0.4 sidebar regression explicitly", errors)
 
-    # Validate relative Markdown links in the two governance SOPs.
-    for rel in ["docs/governance/AI_READ_ORDER.md", "docs/governance/AI_AUTOPILOT_SOP.md"]:
+    # Validate relative Markdown links in the governance SOPs and research index.
+    for rel in ["docs/governance/AI_READ_ORDER.md", "docs/governance/AI_AUTOPILOT_SOP.md", "docs/research/README.md"]:
         path = ROOT / rel
         if not path.exists():
             continue
