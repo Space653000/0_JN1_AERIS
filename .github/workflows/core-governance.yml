@@ -1,0 +1,31 @@
+name: AERIS Core Governance CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  governance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Core
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Compile governance validator
+        run: python -m py_compile tools/validate-core-governance.py
+      - name: Validate Core authority and Autopilot contracts
+        run: python tools/validate-core-governance.py
+      - name: Validate static HTML files are non-empty
+        shell: bash
+        run: |
+          test -s index.html
+          test -s workspace.html
+          test -s services.html
+          test -s aeris.css
+          test -s aeris-data.js
+          test -s aeris-theme.js
