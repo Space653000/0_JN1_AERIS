@@ -11,6 +11,13 @@
     "branch": "main",
     "authority": "local_executable_company_image"
   },
+  "human_ai_roles": {
+    "human_chief_engineer": "final_authority_and_irreversible_release_approval",
+    "codex": "primary_local_executor_installer_implementer",
+    "claude_code": "optional_independent_reviewer_only_when_human_explicitly_requests",
+    "models": "replaceable_compute_not_identity",
+    "evidence": "decision_basis_not_agent_consensus"
+  },
   "trigger": {
     "canonical_urls": [
       "https://github.com/Space653000/0_JN1_AERIS",
@@ -87,5 +94,7 @@
     "ONE_TIME_REBOOT_OR_LOGOFF_FOR_PERSISTENCE_ACCEPTANCE",
     "R3_R4_PRODUCTION_CUSTOMER_FORMAL_RELEASE"
   ],
+  "truth_states": ["NOT_IMPLEMENTED", "IMPLEMENTED", "TESTED", "VERIFIED", "BLOCKED_EXTERNAL"],
+  "operational_states": ["CLOSED", "BOOTSTRAPPING", "BLOCKED", "OPEN_WITH_LIMITS", "OPEN_VERIFIED_SCOPE"],
   "truth_rule": "The two canonical GitHub URLs are the command when a safe target workspace is already selected. Codex must full-build every safely implementable software-only capability before final opening, while never fabricating completion for external licensed/hardware/calibration blockers."
 }
