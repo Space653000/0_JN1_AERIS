@@ -1,30 +1,37 @@
 # AERIS Research Index
 
 **Repository:** `Space653000/0_JN1_AERIS`  
-**Current UI baseline:** **AERIS UI v0.4 — Kairos User-Screenshot Calibration**  
+**Current UI baseline:** **AERIS UI v0.5 — Direct Kairos User-Screenshot Correction**  
 **Updated:** 2026-09-01
 
-此資料夾區分「研究事實」「AERIS 架構決策」「未來 Target」，避免後續 AI 把推論當成已完成實作。
+This folder separates research facts, synthesis, AERIS decisions and future targets so later AI does not treat inference as implemented fact.
 
-## Canonical reading order
+## Canonical architecture/research reading order
 
 1. [`AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md`](AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md)  
-   AERIS 100-seat Acoustic Engineering Organization、Speaker / Microphone × 六工程領域、Evidence / Verification / Reproducibility、Risk / Standards / Tool Bus。
+   100-seat Acoustic Engineering Organization, Speaker/Microphone × engineering disciplines, Evidence / Verification / Reproducibility, Risk, Standards and Tool Bus.
 
 2. [`2026-08-31_Kairos_LifeOS_AERIS_Deep_Research.md`](2026-08-31_Kairos_LifeOS_AERIS_Deep_Research.md)  
-   Kairos / LifeOS Agent Harness、Rules / Skills / Memory / Workflow、portable model runtime、事故與 Evidence-before-Done lessons。
+   Kairos/LifeOS Agent Harness, Rules/Skills/Memory/Workflow, portable model runtime and Evidence-before-Done lessons.
 
 3. [`AERIS_RESEARCH_DATA_INDEX_20260831.md`](AERIS_RESEARCH_DATA_INDEX_20260831.md)  
-   SOURCE-FACT / SYNTHESIS / AERIS-DECISION / TARGET / VERIFY-LATER 的研究資料索引。
+   SOURCE-FACT / SYNTHESIS / AERIS-DECISION / TARGET / VERIFY-LATER index.
 
 4. [`AERIS_WEB_UI_CONTROL_PLANE_BASELINE_20260831.md`](AERIS_WEB_UI_CONTROL_PLANE_BASELINE_20260831.md)  
-   Dashboard / Workspace / Services 三個 canonical web entrances 與 backend five-plane control surface。
+   Dashboard / Workspace / Services and the backend Control / Knowledge / Execution / Trust / Operations planes.
 
 5. [`2026-09-01_Kairos_Dark_Light_UX_UI_Research.md`](2026-09-01_Kairos_Dark_Light_UX_UI_Research.md)  
-   Kairos 第一方 Dashboard、Light/Dark、Collapse、Progressive Disclosure 的前一版 UI/UX 深度研究。
+   Earlier Kairos Light/Dark and progressive-disclosure research.
 
 6. [`2026-09-01_Kairos_User_Screenshot_UI_Calibration_v0.4.md`](2026-09-01_Kairos_User_Screenshot_UI_Calibration_v0.4.md)  
-   **目前最新視覺規格。** 依 Human Chief Engineer 直接操作 `os.lifehacker.tw` 時提供的 Light / Dark 實際截圖重新校準：228px sidebar、低對比灰階 canvas、12px card radius、幾乎無陰影、8–13px compact UI typography、monochrome icons、soft-teal active state、Dark charcoal hierarchy，以及 Identity-first dashboard rhythm。
+   Historical screenshot-calibration attempt. **Its 228px labeled-sidebar / micro-typography assumptions are superseded where they conflict with v0.5 direct-screenshot review.**
+
+7. [`2026-09-01_Kairos_User_Screenshot_UI_Calibration_v0.5.md`](2026-09-01_Kairos_User_Screenshot_UI_Calibration_v0.5.md)  
+   **Current visual authority.** Human-supplied direct Light/Dark screenshots are treated as the strongest visual evidence: narrow ~70px icon rail, rounded-square identity tile, readable body scale, warm dark hierarchy/dotted texture direction and icon-only low-priority utilities.
+
+## AI governance reading order
+
+For Codex/Claude deployment work, architecture research is not the first authority. Read [`../governance/AI_READ_ORDER.md`](../governance/AI_READ_ORDER.md) first. It places `AGENTS.md`, `CLAUDE.md`, policy and Autopilot contracts before research/UI material.
 
 ## Current web entrances
 
@@ -32,7 +39,7 @@
 - Workspace: `https://space653000.github.io/0_JN1_AERIS/workspace.html`
 - Services: `https://space653000.github.io/0_JN1_AERIS/services.html`
 
-> GitHub repository 中 HTML / CSS / JS 存在，不等於 GitHub Pages deployment 已被外部驗證。公開網址必須另外以 HTTP / Pages deployment evidence 驗收。
+Repository HTML/CSS/JS existing does not prove GitHub Pages has been externally verified live. Public deployment needs HTTP/Pages evidence.
 
 ## UI truth rule
 
@@ -44,7 +51,7 @@ Real execution / data
 → Dashboard Projection
 ```
 
-禁止：
+Forbidden:
 
 ```text
 Pretty UI
@@ -59,13 +66,16 @@ Kairos Personal OS restraint
 AERIS Acoustic Engineering evidence rigor
 ```
 
-UI regressions include, unless explicitly approved by the Human:
+Current direct-screenshot regressions include, unless newer Human evidence explicitly overrides them:
 
-- heavy shadows;
-- oversized round cards;
-- giant SaaS KPI typography;
+- default 228px always-expanded labeled sidebar instead of the narrow icon rail;
+- circular identity avatar instead of rounded-square identity tile;
+- 8–13px micro typography for ordinary readable content;
+- heavy shadows / giant SaaS KPI styling;
 - emoji-heavy navigation;
-- high-saturation teal used as large page surfaces;
-- pure-black / neon cyberpunk Dark mode;
+- high-saturation teal as a large page surface;
+- cool pure-black/neon cyberpunk Dark mode instead of warm dark hierarchy;
 - dashboard-first analytics wall before identity/context;
-- remote visual redesign that ignores the v0.4 screenshot calibration.
+- fake operational health not backed by Evidence/Telemetry.
+
+**Visual evidence precedence:** direct Human screenshot > first-party public image > AERIS visual inference > prior CSS/token guess.
