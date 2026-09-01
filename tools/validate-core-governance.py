@@ -41,13 +41,30 @@ def main() -> int:
     core = auto.get("canonical_core", {})
     impl = auto.get("implementation", {})
     roles = auto.get("human_ai_roles", {})
+    trigger = auto.get("trigger", {})
+    policy_auto = auto.get("default_execution_policy", {})
+
     require(core.get("repository") == "Space653000/0_JN1_AERIS", "wrong canonical Core repository", errors)
     require(core.get("branch") == "main", "canonical Core branch must be main", errors)
     require(core.get("authority") == "read_only_design_ssot", "Core must remain read-only design SSOT", errors)
     require(impl.get("repository") == "Space653000/0_JN1_AERIS_Local-computer-implementation", "wrong implementation repository", errors)
     require(roles.get("codex") == "primary_local_executor_installer_implementer", "Codex role drift", errors)
-    require(roles.get("claude_code") == "independent_reviewer_acceptance_auditor", "Claude reviewer role drift", errors)
     require(roles.get("human_chief_engineer") == "final_authority_and_irreversible_release_approval", "Human authority drift", errors)
+    require(roles.get("claude_code") == "optional_independent_reviewer_only_when_human_explicitly_requests", "Claude must be optional by default", errors)
+
+    urls = set(trigger.get("canonical_urls", []))
+    require("https://github.com/Space653000/0_JN1_AERIS" in urls, "Core URL missing from trigger", errors)
+    require("https://github.com/Space653000/0_JN1_AERIS_Local-computer-implementation" in urls, "Implementation URL missing from trigger", errors)
+    require(trigger.get("interpretation") == "AERIS_FULL_BUILD_AUTOPILOT_REQUEST", "wrong Full-Build trigger", errors)
+    require(trigger.get("active_workspace_counts_as_target_path") is True, "active workspace must resolve target path", errors)
+    require(trigger.get("requires_additional_prompt") is False, "second prompt must not be required", errors)
+    require(trigger.get("requires_plan_confirmation") is False, "plan confirmation must not be required", errors)
+
+    require(policy_auto.get("launch_claude_code") is False, "Claude must not launch by default", errors)
+    require(policy_auto.get("launch_second_model_reviewer") is False, "second reviewer must not launch by default", errors)
+    require(policy_auto.get("use_codex_tasks_or_scheduler") is False, "Codex scheduler must not be used", errors)
+    require(policy_auto.get("close_software_only_gaps_before_final_opening") is True, "software-gap closure must be mandatory", errors)
+    require(policy_auto.get("continue_until_no_safe_software_gap_remains") is True, "Full Build must continue through safe software gaps", errors)
 
     states = set(auto.get("truth_states", []))
     require({"NOT_IMPLEMENTED", "IMPLEMENTED", "TESTED", "VERIFIED", "BLOCKED_EXTERNAL"}.issubset(states), "truth states incomplete", errors)
@@ -59,16 +76,20 @@ def main() -> int:
     policy = (ROOT / "aeris.policy.yaml").read_text(encoding="utf-8-sig") if (ROOT / "aeris.policy.yaml").exists() else ""
     read_order = (ROOT / "docs/governance/AI_READ_ORDER.md").read_text(encoding="utf-8-sig") if (ROOT / "docs/governance/AI_READ_ORDER.md").exists() else ""
     research = (ROOT / "docs/research/README.md").read_text(encoding="utf-8-sig") if (ROOT / "docs/research/README.md").exists() else ""
+    sop = (ROOT / "docs/governance/AI_AUTOPILOT_SOP.md").read_text(encoding="utf-8-sig") if (ROOT / "docs/governance/AI_AUTOPILOT_SOP.md").exists() else ""
 
-    require("AERIS_AUTOPILOT_REQUEST" in agents, "AGENTS.md missing Autopilot trigger", errors)
-    require("MUST NOT modify this canonical GitHub repository" in agents, "AGENTS.md Core no-write rule weakened/missing", errors)
-    require("independent reviewer" in claude.lower(), "CLAUDE.md independent-review contract missing", errors)
+    require("AERIS_FULL_BUILD_AUTOPILOT_REQUEST" in agents, "AGENTS.md missing Full-Build trigger", errors)
+    require("MUST NOT push" in agents and "canonical Core" in agents, "AGENTS.md Core no-write rule weakened/missing", errors)
+    require("The two canonical GitHub URLs are the command" in agents, "AGENTS.md must make two URLs the command", errors)
+    require("Software Gap Closure Loop" in agents, "AGENTS.md missing software-gap closure loop", errors)
+    require("two URLs are the command" in sop, "Autopilot SOP must make two URLs sufficient", errors)
+    require("Do not ask `確認執行`" in sop, "Autopilot SOP must forbid redundant plan confirmation", errors)
+    require("independent reviewer" in claude.lower(), "CLAUDE.md optional reviewer contract missing", errors)
     require("self_repair_and_same_context_approval: forbidden" in policy, "policy must prohibit same-context repair+approval", errors)
     require("AI_AUTOPILOT_SOP.md" in read_order and "AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md" in read_order, "read order missing canonical documents", errors)
     require("AERIS UI v0.5" in research and "Current visual authority" in research, "research index must point to v0.5 direct-screenshot authority", errors)
     require("228px always-expanded labeled sidebar" in research, "research index must record the v0.4 sidebar regression explicitly", errors)
 
-    # Validate relative Markdown links in the governance SOPs and research index.
     for rel in ["docs/governance/AI_READ_ORDER.md", "docs/governance/AI_AUTOPILOT_SOP.md", "docs/research/README.md"]:
         path = ROOT / rel
         if not path.exists():
