@@ -44,6 +44,8 @@ def main() -> int:
     trigger = auto.get("trigger", {})
     policy_auto = auto.get("default_execution_policy", {})
 
+    require(auto.get("schema_version") == 2, "Autopilot schema must be v2", errors)
+    require(auto.get("contract_id") == "AERIS-FULL-BUILD-AUTOPILOT-V2", "wrong Autopilot contract id", errors)
     require(core.get("repository") == "Space653000/0_JN1_AERIS", "wrong canonical Core repository", errors)
     require(core.get("branch") == "main", "canonical Core branch must be main", errors)
     require(core.get("authority") == "read_only_design_ssot", "Core must remain read-only design SSOT", errors)
@@ -85,7 +87,20 @@ def main() -> int:
     require("two URLs are the command" in sop, "Autopilot SOP must make two URLs sufficient", errors)
     require("Do not ask `確認執行`" in sop, "Autopilot SOP must forbid redundant plan confirmation", errors)
     require("independent reviewer" in claude.lower(), "CLAUDE.md optional reviewer contract missing", errors)
+
+    # Policy must be semantically aligned with AGENTS/autopilot v2. These checks prevent stale authority text.
+    require("trigger_interpretation: AERIS_FULL_BUILD_AUTOPILOT_REQUEST" in policy, "policy trigger must be Full-Build v2", errors)
+    require("active_workspace_counts_as_target_path: true" in policy, "policy must allow selected workspace as target", errors)
+    require("requires_additional_prompt: false" in policy, "policy must not require a second prompt", errors)
+    require("requires_plan_confirmation: false" in policy, "policy must not require plan confirmation", errors)
+    require("launch_claude_code: false" in policy, "policy must keep Claude off by default", errors)
+    require("use_codex_tasks_or_scheduler: false" in policy, "policy must forbid Codex scheduler continuity", errors)
+    require("close_software_only_gaps_before_final_opening: true" in policy, "policy must require software-gap closure", errors)
+    require("continue_until_no_safe_software_gap_remains: true" in policy, "policy must continue through software-only gaps", errors)
     require("self_repair_and_same_context_approval: forbidden" in policy, "policy must prohibit same-context repair+approval", errors)
+    require("trigger_required_inputs:" not in policy, "stale v1 trigger_required_inputs contract must be removed", errors)
+    require("AERIS_AUTOPILOT_REQUEST" not in policy, "stale v1 AERIS_AUTOPILOT_REQUEST token must be removed", errors)
+
     require("AI_AUTOPILOT_SOP.md" in read_order and "AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md" in read_order, "read order missing canonical documents", errors)
     require("AERIS UI v0.5" in research and "Current visual authority" in research, "research index must point to v0.5 direct-screenshot authority", errors)
     require("228px always-expanded labeled sidebar" in research, "research index must record the v0.4 sidebar regression explicitly", errors)
