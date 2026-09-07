@@ -196,10 +196,20 @@ operational_states:
   - OPEN_VERIFIED_SCOPE
 
 review_admission:
-  revision: 2026-09-07.1
+  revision: 2026-09-07.2
   contract: aeris.review.json
-  state: HOLD_FOR_SOL_RED_TEAM
-  implementation_authorized: false
-  overrides_all_legacy_trigger_and_resume_rules: true
+  traceability_contract: aeris.traceability.json
+  gate: docs/governance/SOL_INDEPENDENT_REVIEW_GATE_V2.md
+  state: AWAITING_INDEPENDENT_SOL_REVIEW
+  core_what_batch: A-D
+  implementation_how_batch_E: NOT_STARTED
+  implementer: gpt-5.6-sol-high
+  independent_reviewer: isolated-gpt-5.6-sol-high
+  return_to_astra_required: false
+  human_final_authority: true
+  automatic_checkout: false
+  automatic_merge: false
+  automatic_push: false
+  overrides_legacy_astra_sol_astra_gate_for_A_D: true
   runtime_enforcement_implemented: false
   core_document_publication: explicitly_human_authorized_governance_only

@@ -1,6 +1,6 @@
 # AERIS Governance Index
 
-> **2026-09-07 審查優先：HOLD_FOR_SOL_RED_TEAM。** 先讀 [Astra → Sol → Astra 閘門](ASTRA_SOL_REVIEW_GATE_V1.md)。下文 Full-Build／兩個 URL／缺口清零／續建命令只適用於閘門解除後的已授權有限批次。本次只修訂與發布文件；第 4 項等待使用者切換 GPT-5.6 Sol High，尚未執行本機總驗收。
+> **2026-09-07 現行審查：SOL_INDEPENDENT_REVIEW_V2。** A–D 由 Sol High implementer 與隔離 Sol High reviewer 分責；E 為 `NOT_STARTED`，Human Chief Engineer 保留最終權限。舊 [Astra → Sol → Astra 閘門](ASTRA_SOL_REVIEW_GATE_V1.md) 僅作歷史記錄。
 
 ## Repository authority model
 
@@ -20,19 +20,31 @@ Local AERIS -X-> GitHub main
 
 ## Canonical governance files
 
-1. [`/AGENTS.md`](../../AGENTS.md)  
+1. [`/docs/AERIS_BLUEPRINT_ZH_TW.md`](../AERIS_BLUEPRINT_ZH_TW.md)
+   白話繁中產品總藍圖，定義 100 席位、五步工作流、Human 權限、成果限制與 WHAT/HOW 邊界。
+
+2. [`/aeris.traceability.json`](../../aeris.traceability.json)
+   A–E requirement IDs、狀態、驗收、Evidence、ownership 與四方版本 tuple。
+
+3. [`SOL_INDEPENDENT_REVIEW_GATE_V2.md`](SOL_INDEPENDENT_REVIEW_GATE_V2.md)
+   現行 A–D Sol implementer／隔離 Sol reviewer 閘門。
+
+4. [`AERIS_DECISION_LOG.md`](AERIS_DECISION_LOG.md) 與 [`AERIS_TRACEABILITY_MATRIX.md`](AERIS_TRACEABILITY_MATRIX.md)
+   人類可讀的治理決策與追溯對照。
+
+5. [`/AGENTS.md`](../../AGENTS.md)
    Human-readable Codex execution contract. Highest-priority repository instruction for Codex.
 
-2. [`/aeris.policy.yaml`](../../aeris.policy.yaml)  
+6. [`/aeris.policy.yaml`](../../aeris.policy.yaml)
    Machine-readable authority policy. `remote_write: forbidden`, `local_execution: required`.
 
-3. [`CODEX_LOCAL_ONLY_WORKFLOW.md`](CODEX_LOCAL_ONLY_WORKFLOW.md)  
+7. [`CODEX_LOCAL_ONLY_WORKFLOW.md`](CODEX_LOCAL_ONLY_WORKFLOW.md)
    Full local implementation SOP: start checks, sync, local branch/worktree, evidence and handoff.
 
-4. [`GITHUB_ACCESS_BOUNDARY.md`](GITHUB_ACCESS_BOUNDARY.md)  
+8. [`GITHUB_ACCESS_BOUNDARY.md`](GITHUB_ACCESS_BOUNDARY.md)
    Defines what GitHub access is permitted and what requires separate Human-controlled publication authority.
 
-5. [`/tools/local-only/`](../../tools/local-only/)  
+9. [`/tools/local-only/`](../../tools/local-only/)
    PowerShell guard and synchronization utilities.
 
 ## Non-negotiable Codex rule

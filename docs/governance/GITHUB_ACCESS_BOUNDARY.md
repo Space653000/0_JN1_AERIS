@@ -1,6 +1,6 @@
 # AERIS GitHub Access Boundary
 
-> **2026-09-07 審查優先：HOLD_FOR_SOL_RED_TEAM。** 先讀 [Astra → Sol → Astra 閘門](ASTRA_SOL_REVIEW_GATE_V1.md)。下文 Full-Build／兩個 URL／缺口清零／續建命令只適用於閘門解除後的已授權有限批次。本次只修訂與發布文件；第 4 項等待使用者切換 GPT-5.6 Sol High，尚未執行本機總驗收。
+> **2026-09-07 現行治理：** A–D 依 [Sol 獨立審查閘門 v2](SOL_INDEPENDENT_REVIEW_GATE_V2.md)。預設自動化不得自行 checkout、merge 或 push；Human 可對特定治理發布給出明確、有界的例外授權。
 
 **Policy:** Codex runtime must have no GitHub write credential for `Space653000/0_JN1_AERIS`.
 

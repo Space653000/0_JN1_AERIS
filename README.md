@@ -1,8 +1,8 @@
 # 0_JN1_AERIS
 
-**Architecture revision: v0.6.0-review.1** — [Current architecture](docs/architecture/AERIS_ARCHITECTURE_V0_6.md) · [Two-proposal evaluation](docs/research/AERIS_PROPOSAL_INTEGRATION_20260907.md) · [Review findings](docs/reviews/ASTRA_REVIEW_20260907.md). UI remains v0.5; runtime completeness is not claimed.
+**Architecture revision: v0.7.0-ad.1** — [繁體中文總藍圖](docs/AERIS_BLUEPRINT_ZH_TW.md) · [A–E 追溯矩陣](docs/governance/AERIS_TRACEABILITY_MATRIX.md) · [現行 Sol 獨立審查 gate](docs/governance/SOL_INDEPENDENT_REVIEW_GATE_V2.md). A–D 是 Core／WHAT 文件與治理契約；E runtime 施工為 `NOT_STARTED`。
 
-> **2026-09-07 審查優先：HOLD_FOR_SOL_RED_TEAM。** 先讀 [Astra → Sol → Astra 閘門](docs/governance/ASTRA_SOL_REVIEW_GATE_V1.md)。下文 Full-Build／兩個 URL／缺口清零／續建命令只適用於閘門解除後的已授權有限批次。本次只修訂與發布文件；第 4 項等待使用者切換 GPT-5.6 Sol High，尚未執行本機總驗收。
+> **2026-09-07 現行審查：SOL_INDEPENDENT_REVIEW_V2。** A–D 由 Sol High implementer 與隔離 Sol High reviewer 分責，不再要求返回 Astra；Human Chief Engineer 保留最終權限。[Astra → Sol → Astra v1](docs/governance/ASTRA_SOL_REVIEW_GATE_V1.md) 僅作歷史記錄。
 
 **AERIS — Acoustic Engineering & Research Intelligence System**
 
@@ -23,6 +23,9 @@ An agent with GitHub + terminal access must interpret that as an AERIS Autopilot
 
 Canonical automation contract:
 
+- Plain-language product blueprint: [`docs/AERIS_BLUEPRINT_ZH_TW.md`](docs/AERIS_BLUEPRINT_ZH_TW.md).
+- Machine-readable requirement traceability: [`aeris.traceability.json`](aeris.traceability.json).
+- Current independent-review contract: [`aeris.review.json`](aeris.review.json).
 - Codex: [`AGENTS.md`](AGENTS.md) — primary local executor/installer/implementer.
 - Claude Code: [`CLAUDE.md`](CLAUDE.md) — independent reviewer/acceptance auditor.
 - Machine-readable contract: [`aeris.autopilot.json`](aeris.autopilot.json).
@@ -47,7 +50,7 @@ Evidence-supported company opening
         ↓
 Local supervisor + heartbeat + audit/evidence
         ↓
-Independent Claude acceptance
+Independent reviewer acceptance
 ```
 
 It is **not** legitimate to bypass a license, secret, physical calibration, unsupported machine, failed test, privacy rule, checksum/signature failure, Core drift or formal release approval merely to make the process zero-touch.
@@ -58,11 +61,11 @@ It is **not** legitimate to bypass a license, secret, physical calibration, unsu
 Human Chief Engineer = final authority
 Canonical Core       = design authority
 Codex                = primary local executor
-Claude Code          = independent reviewer
+Independent reviewer = separate acceptance responsibility
 Evidence             = engineering decision basis
 ```
 
-Agent consensus is not evidence. The reviewer is expected to challenge the executor.
+Agent consensus is not evidence. The reviewer is expected to challenge the executor. Review routing is batch-specific; A–D uses the [Sol independent-review gate](docs/governance/SOL_INDEPENDENT_REVIEW_GATE_V2.md).
 
 ## Core read-only protection
 

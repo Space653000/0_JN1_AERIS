@@ -1,13 +1,15 @@
 # AERIS Research Index
 
-**Current architecture review:** [v0.6.0-review.1](../architecture/AERIS_ARCHITECTURE_V0_6.md), separate from UI v0.5.
-Read [proposal integration](AERIS_PROPOSAL_INTEGRATION_20260907.md), [Voice contract](../architecture/VOICE_PUBLISHING_CAPABILITY_V1.md), and [original inputs](inputs/2026-09-07/README.md). **No implementation authorization.**
+**Current architecture:** [v0.7.0-ad.1 繁中總藍圖](../AERIS_BLUEPRINT_ZH_TW.md), separate from UI v0.5.
+Read [A–E traceability](../governance/AERIS_TRACEABILITY_MATRIX.md), [proposal integration](AERIS_PROPOSAL_INTEGRATION_20260907.md), [Voice contract](../architecture/VOICE_PUBLISHING_CAPABILITY_V1.md), and [original inputs](inputs/2026-09-07/README.md). A–D Core／WHAT 已實作；E Implementation／HOW 為 `NOT_STARTED`。
 
 **Repository:** `Space653000/0_JN1_AERIS`  
 **Current UI baseline:** **AERIS UI v0.5 — Direct Kairos User-Screenshot Correction**  
 **Updated:** 2026-09-01
 
 This folder separates research facts, synthesis, AERIS decisions and future targets so later AI does not treat inference as implemented fact.
+
+External framework reference: [Agent Zero official site](https://www.agent-zero.ai/), checked 2026-09-07. It is provenance for comparison only; this reference does not claim adoption, license acceptance, runtime integration or verified AERIS capability.
 
 ## Canonical architecture/research reading order
 

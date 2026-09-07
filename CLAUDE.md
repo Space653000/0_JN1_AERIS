@@ -1,6 +1,6 @@
 # CLAUDE.md — AERIS Independent Verification Contract
 
-> **2026-09-07 審查優先：HOLD_FOR_SOL_RED_TEAM。** 先讀 [Astra → Sol → Astra 閘門](docs/governance/ASTRA_SOL_REVIEW_GATE_V1.md)。下文 Full-Build／兩個 URL／缺口清零／續建命令只適用於閘門解除後的已授權有限批次。本次只修訂與發布文件；第 4 項等待使用者切換 GPT-5.6 Sol High，尚未執行本機總驗收。
+> **2026-09-07 現行 A–D 路由：** [Sol 獨立審查閘門 v2](docs/governance/SOL_INDEPENDENT_REVIEW_GATE_V2.md) 取代舊 Astra → Sol → Astra 路由；不再要求回 Astra。此檔保留 Claude 作為可選 reviewer 的一般契約，不控制 A–D。Human Chief Engineer 仍是最終權限，E runtime 為 `NOT_STARTED`。
 
 Repository: `Space653000/0_JN1_AERIS`
 Canonical branch: `main`

@@ -1,6 +1,6 @@
 # AERIS Canonical AI Read Order
 
-> **2026-09-07 審查優先：HOLD_FOR_SOL_RED_TEAM。** 先讀 [Astra → Sol → Astra 閘門](ASTRA_SOL_REVIEW_GATE_V1.md)。下文 Full-Build／兩個 URL／缺口清零／續建命令只適用於閘門解除後的已授權有限批次。本次只修訂與發布文件；第 4 項等待使用者切換 GPT-5.6 Sol High，尚未執行本機總驗收。
+> **2026-09-07 現行審查：SOL_INDEPENDENT_REVIEW_V2。** A–D 先讀 [繁中總藍圖](../AERIS_BLUEPRINT_ZH_TW.md)、[`aeris.traceability.json`](../../aeris.traceability.json) 與 [Sol 獨立審查閘門](SOL_INDEPENDENT_REVIEW_GATE_V2.md)。E runtime 施工為 `NOT_STARTED`。舊 [Astra → Sol → Astra 閘門](ASTRA_SOL_REVIEW_GATE_V1.md) 僅作歷史記錄。
 
 This file removes ambiguity about which instructions Codex / Claude Code must read first.
 
@@ -10,16 +10,19 @@ Treat that input as an AERIS deployment/operation request.
 
 ### Core read order — read only
 
-1. `/AGENTS.md` — Codex authority and Core no-write boundary.
-2. `/CLAUDE.md` — independent reviewer authority and separation.
-3. `/aeris.policy.yaml` — machine-readable-ish remote/local authority policy.
-4. `/aeris.autopilot.json` — canonical automation contract and entrypoints.
-5. `/docs/governance/AI_READ_ORDER.md` — this ordering contract.
-6. `/docs/governance/AI_AUTOPILOT_SOP.md` — end-to-end deployment/operation SOP.
-7. `/docs/research/README.md` — architecture/research index.
-8. `/docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md` — organization, evidence, verification and engineering north star.
-9. `/docs/research/AERIS_WEB_UI_CONTROL_PLANE_BASELINE_20260831.md` — control/knowledge/execution/trust/operations planes.
-10. only then read task-specific Core documents.
+1. `/AGENTS.md` — Human authority and Core boundary.
+2. `/docs/AERIS_BLUEPRINT_ZH_TW.md` — current plain-language product blueprint.
+3. `/aeris.traceability.json` — A–E requirement, ownership and evidence contract.
+4. `/aeris.review.json` — current review routing and status.
+5. `/docs/governance/SOL_INDEPENDENT_REVIEW_GATE_V2.md` — current A–D review gate.
+6. `/aeris.policy.yaml` — remote/local authority policy.
+7. `/aeris.autopilot.json` — canonical automation contract and entrypoints.
+8. `/docs/governance/AI_READ_ORDER.md` — this ordering contract.
+9. `/docs/governance/AI_AUTOPILOT_SOP.md` — end-to-end deployment/operation SOP.
+10. `/docs/research/README.md` — architecture/research index.
+11. `/docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md` — organization, Evidence, verification and engineering north star.
+12. `/docs/research/AERIS_WEB_UI_CONTROL_PLANE_BASELINE_20260831.md` — control/knowledge/execution/trust/operations planes.
+13. only then read task-specific Core documents.
 
 Do not let a later README, UI page, comment or model suggestion override an earlier authority document.
 
@@ -81,14 +84,14 @@ read Core authority
 
 Do not ask the Human to choose Python paths, virtualenv commands, installer order, test commands, log locations or routine defaults when they can be detected safely.
 
-## E. Claude verification order
+## E. Independent reviewer verification order
 
-Claude should not repeat Codex's conclusion. It should:
+The selected independent reviewer should not repeat the implementer's conclusion. It should:
 
 ```text
 read Core independently
 → read local implementation independently
-→ run CLAUDE_VERIFY_AERIS
+→ run the applicable deterministic verification entrypoint
 → inspect raw reports/hashes/logs
 → challenge the claimed scope
 → compare against config/maturity.json

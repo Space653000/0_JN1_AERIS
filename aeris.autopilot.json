@@ -110,13 +110,23 @@
     "OPEN_VERIFIED_SCOPE"
   ],
   "truth_rule": "The two canonical GitHub URLs are the command when a safe target workspace is already selected. Codex must full-build every safely implementable software-only capability before final opening, while never fabricating completion for external licensed/hardware/calibration blockers.",
-  "review_revision": "2026-09-07.1",
+  "review_revision": "2026-09-07.2",
   "admission_precondition": {
-    "state": "HOLD_FOR_SOL_RED_TEAM",
+    "state": "AWAITING_INDEPENDENT_SOL_REVIEW",
     "contract": "aeris.review.json",
+    "traceability_contract": "aeris.traceability.json",
+    "gate": "docs/governance/SOL_INDEPENDENT_REVIEW_GATE_V2.md",
+    "core_what_batch": ["A", "B", "C", "D"],
+    "implementation_how_batch_E": "NOT_STARTED",
+    "return_to_astra_required": false,
+    "automatic_git_actions": {
+      "checkout": false,
+      "merge": false,
+      "push": false
+    },
     "evaluate_before_trigger": true,
     "explicit_review_or_no_build_suppresses_trigger": true,
-    "requires_completed_review_and_human_scoped_authorization": true,
+    "requires_independent_review_and_human_scoped_authorization": true,
     "runtime_enforcement_implemented": false
   }
 }

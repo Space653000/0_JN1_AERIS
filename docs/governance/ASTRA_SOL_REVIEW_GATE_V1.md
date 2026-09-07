@@ -1,5 +1,7 @@
 # AERIS Astra → Sol → Astra 審查閘門 v1
 
+> **歷史記錄／已被取代。** 2026-09-07 起，A–D 現行批次改由 [Sol 獨立審查閘門 v2](SOL_INDEPENDENT_REVIEW_GATE_V2.md) 管理，不再要求返回 Astra。以下內容保留當時決策與來源，不代表現行狀態。
+
 日期：2026-09-07。狀態：**HOLD_FOR_SOL_RED_TEAM / 不動工**。
 
 目前使用者已授權第 1～3 項的架構輸入整併、Blueprint／Implementation 文件修訂與 GitHub 發布；尚未授權 AERIS 程式施工、安裝、部署或啟動。此審查契約優先於舊版兩個 URL Full-Build 觸發、所有缺口清零、P01/P02 自動續建及 optional reviewer 預設。

@@ -1,6 +1,6 @@
 # AGENTS.md — AERIS Codex Full-Build Autopilot Contract
 
-> **2026-09-07 審查優先：HOLD_FOR_SOL_RED_TEAM。** 先讀 [Astra → Sol → Astra 閘門](docs/governance/ASTRA_SOL_REVIEW_GATE_V1.md)。下文 Full-Build／兩個 URL／缺口清零／續建命令只適用於閘門解除後的已授權有限批次。本次只修訂與發布文件；第 4 項等待使用者切換 GPT-5.6 Sol High，尚未執行本機總驗收。
+> **2026-09-07 現行審查：SOL_INDEPENDENT_REVIEW_V2。** 先讀 [Sol 獨立審查閘門](docs/governance/SOL_INDEPENDENT_REVIEW_GATE_V2.md) 與 [`aeris.review.json`](aeris.review.json)。A–D 是已授權的 Core／WHAT 治理批次，E runtime 施工為 `NOT_STARTED`；Human Chief Engineer 保留最終權限。舊 [Astra → Sol → Astra 閘門](docs/governance/ASTRA_SOL_REVIEW_GATE_V1.md) 僅作歷史記錄。
 
 Repository: `Space653000/0_JN1_AERIS`  
 Canonical branch: `main`  
@@ -11,6 +11,8 @@ Repository role: **REMOTE READ-ONLY DESIGN SSOT / TARGET BASELINE**
 During normal AERIS deployment/build, Codex may read/clone/fetch/compare this Core but MUST NOT push, PR, merge, change refs/settings/Rulesets, or otherwise write the canonical Core. Core publication is a separate Human-authorized governance action.
 
 Core defines WHAT AERIS must become. `Space653000/0_JN1_AERIS_Local-computer-implementation` and the selected local workspace define HOW it is built and run.
+
+New Core content is limited to product requirements, governance, acceptance criteria and research provenance. Runtime, scripts, prompts and deployment belong to the Implementation repository. The machine-readable ownership and requirement contract is `aeris.traceability.json`.
 
 ## 1. Canonical zero-prompt trigger
 
