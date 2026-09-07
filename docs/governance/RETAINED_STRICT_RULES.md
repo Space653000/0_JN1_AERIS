@@ -15,8 +15,8 @@
 
 > **2026-09-07 現行審查：SOL_INDEPENDENT_REVIEW_V2。** 先讀 [Sol 獨立審查閘門](docs/governance/SOL_INDEPENDENT_REVIEW_GATE_V2.md) 與 [`aeris.review.json`](aeris.review.json)。A–D 是已授權的 Core／WHAT 治理批次，E runtime 施工為 `NOT_STARTED`；Human Chief Engineer 保留最終權限。舊 [Astra → Sol → Astra 閘門](docs/governance/ASTRA_SOL_REVIEW_GATE_V1.md) 僅作歷史記錄。
 
-Repository: `Space653000/0_JN1_AERIS`  
-Canonical branch: `main`  
+Repository: `Space653000/0_JN1_AERIS`
+Canonical branch: `main`
 Repository role: **REMOTE READ-ONLY DESIGN SSOT / TARGET BASELINE**
 
 ## 0. Non-negotiable Core boundary
@@ -673,8 +673,8 @@ Never use `READY`, `COMPLETE`, `HEALTHY`, `100%`, `PRODUCTION READY` without def
 
 > **2026-09-07 現行治理：** A–D 依 [Sol 獨立審查閘門 v2](SOL_INDEPENDENT_REVIEW_GATE_V2.md)；E runtime 施工為 `NOT_STARTED`。本檔描述既有 local workflow，不得擴張 A–D 的 Core／WHAT 範圍。
 
-**Status:** Active governance baseline  
-**Remote SSOT:** `https://github.com/Space653000/0_JN1_AERIS/tree/main`  
+**Status:** Active governance baseline
+**Remote SSOT:** `https://github.com/Space653000/0_JN1_AERIS/tree/main`
 **Execution model:** Remote read-only target → Local implementation only
 
 ---
