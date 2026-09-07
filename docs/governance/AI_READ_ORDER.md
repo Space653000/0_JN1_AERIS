@@ -8,3 +8,5 @@
 6. 任務相關文件。歷史 Sol/Astra 與 local-only 腳本不得覆蓋現行治理。
 
 必讀 [保留較嚴格規則](RETAINED_STRICT_RULES.md)：除精確列出的使用者取代條款，其餘原規範仍有效。schema v3 是治理候選，舊 runtime consumer 尚未遷移；不得宣稱相容或enforcement已完成。
+
+介面及技能任務必讀 [UX／技能範例規格](../architecture/AERIS_UX_SKILL_EXAMPLES_V1.md)。

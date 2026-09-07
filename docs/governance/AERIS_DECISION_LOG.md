@@ -74,3 +74,7 @@ ADR-AD-007 的 E 誤定義被取代：E 是後續全面本機驗收，不是所�
 - 決策：本批不施工 runtime、scripts、prompts 或 deployment；E 固定為 `NOT_STARTED`。
 - 理由：先建立可審查的產品與治理契約，再由另行核准的 Implementation 批次實作 HOW。
 - 後果：A–D 的完成不得被描述成 AERIS runtime 或真機驗收完成。
+
+## ADR-AD-009 — 三方参考與全技能教學（2026-09-08）
+
+依使用者明確要求，Kairos 作主要視覺/導覽參考，Agent Zero 作操作透明度參考，AI時代軟體必修課作互動教學參考。每個Skill須有繁中範例、預期輸出及可重現驗證；缺例或Evidence不可已驗證。來源網站不等於採用其框架，不複製付費教材，不把研究報告推測當事實。延續UI v0.5；不修改100席位、聲學Hard Gates或E停點。詳見 [正式規格](../architecture/AERIS_UX_SKILL_EXAMPLES_V1.md)。

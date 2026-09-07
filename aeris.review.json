@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
   "review_id": "AERIS-ASTRA-GOVERNANCE-V3",
-  "architecture_version": "0.7.0-governance.2",
+  "architecture_version": "0.7.0-governance.3",
   "scope": {
     "current_batch": "governance_only",
     "A_D_delivery": "NOT VERIFIED",

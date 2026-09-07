@@ -25,6 +25,7 @@ class NegativeTests(unittest.TestCase):
  def test_missing_service(self):self.mutate('aeris.traceability.json',lambda t:t['four_way_version_tuple'].update(required_records=['core_blueprint','implementation','local_checkout','evidence_bundle']))
  def test_incomplete_evidence(self):self.mutate('aeris.review.json',lambda r:r['evidence_contract'].update(required_fields=['artifact']))
  def test_runtime_claim(self):self.mutate('aeris.autopilot.json',lambda a:a['admission_precondition'].update(runtime_enforcement_implemented=True))
+ def test_skill_example_requirement_cannot_disappear(self):self.mutate('aeris.traceability.json',lambda t:t.update(requirements=[q for q in t['requirements'] if q['id']!='AERIS-EX-01']))
  def test_empty_requirements(self):self.mutate('aeris.traceability.json',lambda t:t.update(requirements=[]))
  def test_human_authority(self):self.mutate('aeris.review.json',lambda r:r['human_authority'].update(final_authority=False))
  def test_core_branch(self):self.mutate('aeris.autopilot.json',lambda a:a['canonical_core'].update(branch='other'))
