@@ -1,4 +1,12 @@
+## 0.7.0-governance.2 — REVIEW_PENDING
+
+導入完整GATE01–08，更新Astra Low路由、唯一產品根目錄、單批admission、四方含running service、恢復A–E意義、繁中進度與安全同步驗收規格。只治理，未宣稱runtime完成。
+
 # Architecture changelog
+
+## 0.7.0-ad.1 — 2026-09-07
+
+新增白話繁中總藍圖、A–E requirement traceability、decision log 與四方版本一致契約；確立 Core／WHAT 和 Implementation／HOW ownership。A–D 改由 Sol High implementer 加隔離 Sol High reviewer，不再要求回 Astra，Human 仍是最終權限；舊 v1 gate 歷史化。E runtime 施工維持 `NOT_STARTED`，未宣稱真機或營運驗收完成。
 
 ## 0.6.0-review.1 — 2026-09-07
 

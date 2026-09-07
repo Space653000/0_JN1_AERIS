@@ -1,6 +1,6 @@
 {
-  "schema_version": 2,
-  "contract_id": "AERIS-FULL-BUILD-AUTOPILOT-V2",
+  "schema_version": 3,
+  "contract_id": "AERIS-BOUNDED-GATE-V3",
   "canonical_core": {
     "repository": "Space653000/0_JN1_AERIS",
     "branch": "main",
@@ -23,12 +23,10 @@
       "https://github.com/Space653000/0_JN1_AERIS",
       "https://github.com/Space653000/0_JN1_AERIS_Local-computer-implementation"
     ],
-    "active_workspace_counts_as_target_path": true,
-    "explicit_target_path_overrides_active_workspace": true,
-    "interpretation": "AERIS_FULL_BUILD_AUTOPILOT_REQUEST",
-    "requires_additional_prompt": false,
-    "requires_plan_confirmation": false,
-    "ask_for_path_only_if_missing_or_ambiguous": true
+    "interpretation": "PROJECT_IDENTIFICATION_ONLY",
+    "active_workspace_counts_as_target_path": false,
+    "target_root": "C:\\0_JN1_AERIS",
+    "requires_scoped_authorization": true
   },
   "default_execution_policy": {
     "primary_executor": "codex",
@@ -37,41 +35,29 @@
     "use_codex_tasks_or_scheduler": false,
     "ask_human_only_at_human_gate": true,
     "close_software_only_gaps_before_final_opening": true,
-    "continue_until_no_safe_software_gap_remains": true,
+    "continue_until_no_safe_software_gap_remains": false,
     "prefer_github_ci_before_local_debugging": true,
-    "normal_real_machine_acceptance_cycles": 1
+    "normal_real_machine_acceptance_cycles": "evidence_required_not_fixed_count"
   },
   "full_build_phases": [
-    "READ_CORE_AUTHORITY",
-    "SYNC_LATEST_CI_PASSED_IMPLEMENTATION_MAIN",
-    "GAP_INVENTORY",
-    "SOFTWARE_GAP_CLOSURE_LOOP",
-    "MACHINE_INVENTORY",
-    "INSTALL_CONFIGURE",
-    "DETERMINISTIC_SECURITY_TESTS",
-    "REAL_MACHINE_ACCEPTANCE",
-    "COMPANY_OPENING",
-    "DASHBOARD_FRONTEND_BACKEND",
-    "OS_NATIVE_UNATTENDED_PERSISTENCE",
-    "WATCHDOG_SELF_RECOVERY",
-    "EVIDENCE_AUDIT_HANDOFF"
+    "ADMISSION_DRIFT",
+    "PLAN",
+    "IMPLEMENT",
+    "EXECUTE",
+    "EVIDENCE",
+    "VERIFY",
+    "PASS",
+    "NEXT"
   ],
   "software_gap_closure": {
-    "sources": [
-      "config/maturity.json",
-      "docs/DEFINITION_OF_COMPANY_DONE.md",
-      "Core requirements",
-      "tests",
-      "UI/API/workflows"
-    ],
-    "auto_implement_when": "software_only_and_safe_and_not_human_or_external_blocked",
+    "scope": "one_authorized_batch",
     "add_or_update_tests": true,
-    "do_not_stop_just_to_report_not_implemented": true,
     "stop_when": [
-      "no_safe_software_only_gap_remains",
-      "genuine_human_or_external_gate"
-    ],
-    "scope": "Frozen Human-authorized batch only; excludes new backlog and all work while review hold is active."
+      "drift",
+      "failed_gate",
+      "human_or_external_gate",
+      "batch_complete"
+    ]
   },
   "core_remote_policy": {
     "codex_write": "FORBIDDEN_DURING_NORMAL_BUILD_DEPLOYMENT",
@@ -109,14 +95,17 @@
     "OPEN_WITH_LIMITS",
     "OPEN_VERIFIED_SCOPE"
   ],
-  "truth_rule": "The two canonical GitHub URLs are the command when a safe target workspace is already selected. Codex must full-build every safely implementable software-only capability before final opening, while never fabricating completion for external licensed/hardware/calibration blockers.",
-  "review_revision": "2026-09-07.1",
+  "truth_rule": "NO EVIDENCE = NOT DONE; admission before trigger; one bounded gate at a time",
+  "review_revision": "0.7.0-governance.2",
   "admission_precondition": {
-    "state": "HOLD_FOR_SOL_RED_TEAM",
+    "state": "REVIEW_PENDING",
     "contract": "aeris.review.json",
+    "traceability_contract": "aeris.traceability.json",
+    "gate": "docs/governance/ASTRA_EXECUTION_GATE_V3.md",
+    "E_full_local_acceptance": "NOT_STARTED",
     "evaluate_before_trigger": true,
-    "explicit_review_or_no_build_suppresses_trigger": true,
-    "requires_completed_review_and_human_scoped_authorization": true,
+    "requires_scoped_authorization": true,
+    "drift_stops_construction": true,
     "runtime_enforcement_implemented": false
   }
 }

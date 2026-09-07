@@ -1,129 +1,98 @@
 #!/usr/bin/env python3
-"""Deterministic, read-only validation of AERIS Core governance contracts."""
-from __future__ import annotations
-
+"""Read-only governance contract validation. PASS is not product acceptance."""
 import json
 import re
 from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1]
+ACTIVE=['AGENTS.md','CLAUDE.md','README.md','constitution.md','aeris.policy.yaml','docs/AERIS_BLUEPRINT_ZH_TW.md','docs/governance/AI_READ_ORDER.md','docs/governance/AI_AUTOPILOT_SOP.md','docs/governance/ASTRA_EXECUTION_GATE_V3.md','docs/governance/CODEX_LOCAL_ONLY_WORKFLOW.md','docs/governance/GITHUB_ACCESS_BOUNDARY.md','docs/governance/AERIS_TRACEABILITY_MATRIX.md']
+REQUIRED_IDS={'AERIS-AD-UI-001', 'AERIS-AD-D-001', 'AERIS-AD-SYNC-001', 'AERIS-AD-A-002', 'AERIS-AD-VERSIONS-001', 'AERIS-AD-SYNC-002', 'AERIS-AD-B-001', 'AERIS-AD-A-001', 'AERIS-AD-PROGRESS-001', 'AERIS-AD-ROOT-001', 'AERIS-AD-D-002', 'AERIS-AD-C-001', 'AERIS-AD-B-002', 'AERIS-AD-A-003', 'AERIS-AD-E-001', 'AERIS-AD-C-002'}
+RETAINED={'schema_version': 1, 'source_commit': '6a4236c', 'appendix': 'docs/governance/RETAINED_STRICT_RULES.md', 'superseded': {'url_trigger': 'GATE-08', 'workspace': 'GATE-03', 'model_routing': 'GATE-07', 'core_publication': 'GATE-01', 'E_scope': 'ADR-AD-008', 'completion': 'GATE-04', 'public_root': 'GATE-03', 'version_tuple': 'GATE-06'}, 'required_core_guards': ['canonical_fetch_url', 'disabled_push_url', 'deny_pre_push_hook', 'detached_checkout', 'clean_worktree', 'head_equals_recorded_core_sha'], 'never_bypass': ['privacy', 'checksum_or_signature_failure', 'core_drift', 'unsupported_machine', 'failed_verification', 'proprietary_license', 'hardware_calibration', 'irreversible_release_approval'], 'publication_scope': 'normal_deployment_forbidden_explicit_bounded_governance_PR_exception', 'legacy_executables': ['aeris-data.js', 'aeris-theme.js', 'tools/local-only/New-AERISLocalWorkspace.ps1', 'tools/local-only/Protect-AERISReadOnly.ps1', 'tools/local-only/Sync-AERISTarget.ps1', 'tools/local-only/Verify-AERISReadOnly.ps1'], 'governance_executables': ['tools/validate-core-governance.py', 'tools/test_core_governance.py'], 'required_delivery_fields': ['target_sha', 'implementation_sha', 'local_workspace', 'tests', 'core_integrity', 'local_inference', 'offline_state', 'company_opening_state', 'dashboard_frontend_backend_state', 'persistence_watchdog_state', 'evidence_paths', 'unresolved_software_gaps', 'remaining_external_blockers', 'remote_write_performed_no'], 'forbidden_remote_operations': ['push', 'force_push', 'create_remote_branch', 'update_remote_branch', 'delete_remote_branch', 'create_remote_tag', 'update_remote_tag', 'delete_remote_tag', 'create_pull_request', 'update_pull_request', 'merge_pull_request', 'repository_file_write', 'update_ref', 'release_publish', 'repository_settings_change', 'pages_settings_change', 'branch_protection_change', 'ruleset_change', 'auto_accept_core_drift']}
+def validate(root=ROOT):
+ errors=[]
+ def need(ok,msg):
+  if not ok:errors.append(msg)
+ def read(p):
+  try:return (root/p).read_text(encoding='utf-8-sig')
+  except Exception as e:errors.append(f'{p}: {e}');return ''
+ def obj(p):
+  try:return json.loads(read(p))
+  except Exception as e:errors.append(f'{p}: {e}');return {}
+ a=obj('aeris.autopilot.json');t=obj('aeris.traceability.json');v=obj('aeris.review.json')
+ retained=obj('aeris.retained-rules.json')
+ need(retained==RETAINED,'retained strict rules/supersession mapping drift')
+ appendix=read(RETAINED['appendix'])
+ for token in RETAINED['required_core_guards']+RETAINED['never_bypass']+RETAINED['required_delivery_fields']+RETAINED['forbidden_remote_operations']:
+  need(token in appendix,'retained appendix missing '+token)
+ for doc in ['AGENTS.md','constitution.md','docs/governance/AI_READ_ORDER.md']:
+  need('RETAINED_STRICT_RULES.md' in read(doc),'mandatory retained-rule link absent '+doc)
+ allowed=set(RETAINED['legacy_executables']+RETAINED['governance_executables'])
+ for file in root.rglob('*'):
+  if file.is_file() and file.suffix.lower() in {'.py','.ps1','.js','.sh','.bat','.cmd','.exe','.dll'}:
+   rel=file.relative_to(ROOT).as_posix()
+   need(rel in allowed,'Core executable outside narrow allowlist: '+rel)
+ need(a.get('canonical_core',{}).get('branch')=='main','Core branch drift')
+ need(a.get('canonical_core',{}).get('authority')=='read_only_design_ssot','Core authority drift')
+ need(a.get('human_ai_roles',{}).get('human_chief_engineer')=='final_authority_and_irreversible_release_approval','Human role drift')
+ need(v.get('human_authority',{}).get('final_authority') is True,'Human final authority missing')
+ need(v.get('human_authority',{}).get('reviewer_pass_is_release_authority') is False,'review cannot release')
+ for flag in ['launch_claude_code','launch_second_model_reviewer','use_codex_tasks_or_scheduler']:
+  need(a.get('default_execution_policy',{}).get(flag) is False,'unsafe execution policy '+flag)
+ for action in ['checkout','merge','push']:
+  need(v.get('automatic_git_actions',{}).get(action) is False,'automatic Git '+action)
+ need(v.get('review_routing',{}).get('same_context_repair_approval') is False,'self approval')
+ need(v.get('review_routing',{}).get('independent_verification')=='isolated_reviewer_or_independent_rerun','independent verification missing')
+ need('independent_verification' in v.get('admission',{}).get('required_before_human_decision',[]),'review admission bypass')
 
-ROOT = Path(__file__).resolve().parents[1]
-
-REQUIRED_FILES = [
-    "AGENTS.md",
-    "CLAUDE.md",
-    "aeris.policy.yaml",
-    "aeris.autopilot.json",
-    "docs/governance/AI_READ_ORDER.md",
-    "docs/governance/AI_AUTOPILOT_SOP.md",
-    "docs/research/README.md",
-    "docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md",
-    "docs/research/AERIS_WEB_UI_CONTROL_PLANE_BASELINE_20260831.md",
-    "docs/research/2026-09-01_Kairos_User_Screenshot_UI_Calibration_v0.5.md",
-]
-
-
-def require(condition: bool, message: str, errors: list[str]) -> None:
-    if not condition:
-        errors.append(message)
-
-
-def main() -> int:
-    errors: list[str] = []
-    for rel in REQUIRED_FILES:
-        require((ROOT / rel).is_file(), f"missing required governance/read-order file: {rel}", errors)
-
-    try:
-        auto = json.loads((ROOT / "aeris.autopilot.json").read_text(encoding="utf-8-sig"))
-    except Exception as exc:
-        errors.append(f"aeris.autopilot.json unreadable: {exc}")
-        auto = {}
-
-    core = auto.get("canonical_core", {})
-    impl = auto.get("implementation", {})
-    roles = auto.get("human_ai_roles", {})
-    trigger = auto.get("trigger", {})
-    policy_auto = auto.get("default_execution_policy", {})
-
-    require(auto.get("schema_version") == 2, "Autopilot schema must be v2", errors)
-    require(auto.get("contract_id") == "AERIS-FULL-BUILD-AUTOPILOT-V2", "wrong Autopilot contract id", errors)
-    require(core.get("repository") == "Space653000/0_JN1_AERIS", "wrong canonical Core repository", errors)
-    require(core.get("branch") == "main", "canonical Core branch must be main", errors)
-    require(core.get("authority") == "read_only_design_ssot", "Core must remain read-only design SSOT", errors)
-    require(impl.get("repository") == "Space653000/0_JN1_AERIS_Local-computer-implementation", "wrong implementation repository", errors)
-    require(roles.get("codex") == "primary_local_executor_installer_implementer", "Codex role drift", errors)
-    require(roles.get("human_chief_engineer") == "final_authority_and_irreversible_release_approval", "Human authority drift", errors)
-    require(roles.get("claude_code") == "optional_independent_reviewer_only_when_human_explicitly_requests", "Claude must be optional by default", errors)
-
-    urls = set(trigger.get("canonical_urls", []))
-    require("https://github.com/Space653000/0_JN1_AERIS" in urls, "Core URL missing from trigger", errors)
-    require("https://github.com/Space653000/0_JN1_AERIS_Local-computer-implementation" in urls, "Implementation URL missing from trigger", errors)
-    require(trigger.get("interpretation") == "AERIS_FULL_BUILD_AUTOPILOT_REQUEST", "wrong Full-Build trigger", errors)
-    require(trigger.get("active_workspace_counts_as_target_path") is True, "active workspace must resolve target path", errors)
-    require(trigger.get("requires_additional_prompt") is False, "second prompt must not be required", errors)
-    require(trigger.get("requires_plan_confirmation") is False, "plan confirmation must not be required", errors)
-
-    require(policy_auto.get("launch_claude_code") is False, "Claude must not launch by default", errors)
-    require(policy_auto.get("launch_second_model_reviewer") is False, "second reviewer must not launch by default", errors)
-    require(policy_auto.get("use_codex_tasks_or_scheduler") is False, "Codex scheduler must not be used", errors)
-    require(policy_auto.get("close_software_only_gaps_before_final_opening") is True, "software-gap closure must be mandatory", errors)
-    require(policy_auto.get("continue_until_no_safe_software_gap_remains") is True, "Full Build must continue through safe software gaps", errors)
-
-    states = set(auto.get("truth_states", []))
-    require({"NOT_IMPLEMENTED", "IMPLEMENTED", "TESTED", "VERIFIED", "BLOCKED_EXTERNAL"}.issubset(states), "truth states incomplete", errors)
-    op_states = set(auto.get("operational_states", []))
-    require({"CLOSED", "BOOTSTRAPPING", "BLOCKED", "OPEN_WITH_LIMITS", "OPEN_VERIFIED_SCOPE"}.issubset(op_states), "operational states incomplete", errors)
-
-    agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8-sig") if (ROOT / "AGENTS.md").exists() else ""
-    claude = (ROOT / "CLAUDE.md").read_text(encoding="utf-8-sig") if (ROOT / "CLAUDE.md").exists() else ""
-    policy = (ROOT / "aeris.policy.yaml").read_text(encoding="utf-8-sig") if (ROOT / "aeris.policy.yaml").exists() else ""
-    read_order = (ROOT / "docs/governance/AI_READ_ORDER.md").read_text(encoding="utf-8-sig") if (ROOT / "docs/governance/AI_READ_ORDER.md").exists() else ""
-    research = (ROOT / "docs/research/README.md").read_text(encoding="utf-8-sig") if (ROOT / "docs/research/README.md").exists() else ""
-    sop = (ROOT / "docs/governance/AI_AUTOPILOT_SOP.md").read_text(encoding="utf-8-sig") if (ROOT / "docs/governance/AI_AUTOPILOT_SOP.md").exists() else ""
-
-    require("AERIS_FULL_BUILD_AUTOPILOT_REQUEST" in agents, "AGENTS.md missing Full-Build trigger", errors)
-    require("MUST NOT push" in agents and "canonical Core" in agents, "AGENTS.md Core no-write rule weakened/missing", errors)
-    require("The two canonical GitHub URLs are the command" in agents, "AGENTS.md must make two URLs the command", errors)
-    require("Software Gap Closure Loop" in agents, "AGENTS.md missing software-gap closure loop", errors)
-    require("two URLs are the command" in sop, "Autopilot SOP must make two URLs sufficient", errors)
-    require("Do not ask `確認執行`" in sop, "Autopilot SOP must forbid redundant plan confirmation", errors)
-    require("independent reviewer" in claude.lower(), "CLAUDE.md optional reviewer contract missing", errors)
-
-    # Policy must be semantically aligned with AGENTS/autopilot v2. These checks prevent stale authority text.
-    require("trigger_interpretation: AERIS_FULL_BUILD_AUTOPILOT_REQUEST" in policy, "policy trigger must be Full-Build v2", errors)
-    require("active_workspace_counts_as_target_path: true" in policy, "policy must allow selected workspace as target", errors)
-    require("requires_additional_prompt: false" in policy, "policy must not require a second prompt", errors)
-    require("requires_plan_confirmation: false" in policy, "policy must not require plan confirmation", errors)
-    require("launch_claude_code: false" in policy, "policy must keep Claude off by default", errors)
-    require("use_codex_tasks_or_scheduler: false" in policy, "policy must forbid Codex scheduler continuity", errors)
-    require("close_software_only_gaps_before_final_opening: true" in policy, "policy must require software-gap closure", errors)
-    require("continue_until_no_safe_software_gap_remains: true" in policy, "policy must continue through software-only gaps", errors)
-    require("self_repair_and_same_context_approval: forbidden" in policy, "policy must prohibit same-context repair+approval", errors)
-    require("trigger_required_inputs:" not in policy, "stale v1 trigger_required_inputs contract must be removed", errors)
-    require("AERIS_AUTOPILOT_REQUEST" not in policy, "stale v1 AERIS_AUTOPILOT_REQUEST token must be removed", errors)
-
-    require("AI_AUTOPILOT_SOP.md" in read_order and "AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md" in read_order, "read order missing canonical documents", errors)
-    require("AERIS UI v0.5" in research and "Current visual authority" in research, "research index must point to v0.5 direct-screenshot authority", errors)
-    require("228px always-expanded labeled sidebar" in research, "research index must record the v0.4 sidebar regression explicitly", errors)
-
-    for rel in ["docs/governance/AI_READ_ORDER.md", "docs/governance/AI_AUTOPILOT_SOP.md", "docs/research/README.md"]:
-        path = ROOT / rel
-        if not path.exists():
-            continue
-        text = path.read_text(encoding="utf-8-sig")
-        for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", text):
-            if "://" in target or target.startswith("#"):
-                continue
-            resolved = (path.parent / target).resolve()
-            require(resolved.exists(), f"broken relative link in {rel}: {target}", errors)
-
-    if errors:
-        print("AERIS_CORE_GOVERNANCE=FAIL")
-        for item in errors:
-            print(f"- {item}")
-        return 1
-    print("AERIS_CORE_GOVERNANCE=PASS")
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+ need(a.get('schema_version')==3,'autopilot schema drift')
+ need(a.get('canonical_core',{}).get('repository')=='Space653000/0_JN1_AERIS','wrong Core')
+ need(a.get('implementation',{}).get('repository')=='Space653000/0_JN1_AERIS_Local-computer-implementation','wrong Implementation')
+ trigger=a.get('trigger',{})
+ need(trigger.get('interpretation')=='PROJECT_IDENTIFICATION_ONLY','unsafe URL trigger')
+ need(trigger.get('active_workspace_counts_as_target_path') is False,'arbitrary workspace')
+ need(trigger.get('target_root')==r'C:\0_JN1_AERIS','wrong root')
+ need(trigger.get('requires_scoped_authorization') is True,'missing authorization')
+ admission=a.get('admission_precondition',{})
+ for key in ['evaluate_before_trigger','requires_scoped_authorization','drift_stops_construction']:need(admission.get(key) is True,'admission missing '+key)
+ need(admission.get('runtime_enforcement_implemented') is False,'false runtime claim')
+ need(a.get('full_build_phases')==['ADMISSION_DRIFT','PLAN','IMPLEMENT','EXECUTE','EVIDENCE','VERIFY','PASS','NEXT'],'batch ordering drift')
+ need(a.get('default_execution_policy',{}).get('continue_until_no_safe_software_gap_remains') is False,'unbounded build')
+ need(v.get('state')=='REVIEW_PENDING','unreviewed governance claim')
+ need(v.get('review_result',{}).get('status')=='PENDING','review not independently recorded yet')
+ need(v.get('review_routing',{}).get('default_model')=='gpt-6-astra','routing drift')
+ need(v.get('review_routing',{}).get('reasoning_effort')=='low','effort drift')
+ need(v.get('review_routing',{}).get('domain_contract_model_binding') is False,'model domain binding')
+ fields=set(v.get('evidence_contract',{}).get('required_fields',[]))
+ need({'requirement_id','reproduce_command','expected_result','actual_result','result','artifact','artifact_sha256','versions','timestamp'}<=fields,'incomplete Evidence contract')
+ need(set(t.get('four_way_version_tuple',{}).get('required_records',[]))=={'core_blueprint','implementation','local_checkout','running_service'},'four-way tuple missing service')
+ need(t.get('four_way_version_tuple',{}).get('current_end_to_end_alignment_claim')=='NOT_CLAIMED','false alignment')
+ need(t.get('workstreams',{}).get('E',{}).get('name')=='full_local_acceptance','E meaning drift')
+ need(t.get('workstreams',{}).get('E',{}).get('status')=='NOT_STARTED','E started')
+ for key in 'ABCD':need(t.get('workstreams',{}).get(key,{}).get('status') in ['REVIEW_PENDING','NOT VERIFIED'],'unsupported workstream completion '+key)
+ req=t.get('requirements',[]);ids=[q.get('id') for q in req]
+ need(bool(ids) and REQUIRED_IDS.issubset(set(ids)),'required requirement IDs missing')
+ need(len(ids)==len(set(ids)) and None not in ids,'duplicate/empty requirements')
+ matrix=read('docs/governance/AERIS_TRACEABILITY_MATRIX.md')
+ rows=[line for line in matrix.splitlines() if line.startswith('| AERIS-')]
+ expected_rows=[f"| {q['id']} | {q['workstream']} | {q['requirement']} | {q['status']} |" for q in req]
+ need(sorted(rows)==sorted(expected_rows),'matrix and JSON rows differ')
+ for q in req:
+  need(q.get('status') in ['REVIEW_PENDING','NOT_STARTED','NOT VERIFIED'],'unsupported requirement completion')
+  need(bool(q.get('requirement')) and bool(q.get('acceptance')),'missing requirement/acceptance')
+  for e in q.get('evidence',[]):need((root/e.split('#')[0]).is_file(),'missing reference '+e)
+ c=read('constitution.md')
+ for i in range(1,9):need(f'GATE-{i:02}' in c,'missing gate')
+ for token in ['calibration state','noise、distance、azimuth、speaker、language','margin','offline','NO EVIDENCE = NOT DONE']:need(token in c,'weakened engineering rule '+token)
+ for p in ACTIVE:
+  text=read(p)
+  need('C:\\Users\\' not in text,'private user path '+p)
+  for forbidden in ['that alone is a complete','active_workspace_counts_as_target_path: true','The two canonical GitHub URLs are the command','Codex may not publish that package','AWAITING_INDEPENDENT_SOL_REVIEW']:
+   need(forbidden not in text,'legacy authority '+p+': '+forbidden)
+  for link in re.findall(r'\[[^\]]+\]\(([^)]+)\)',text):
+   if '://' in link or link.startswith('#'):continue
+   need((root/p).parent.joinpath(link.split('#')[0]).exists(),'broken link '+p+': '+link)
+ return errors
+if __name__=='__main__':
+ errors=validate()
+ print('AERIS_CORE_GOVERNANCE='+('FAIL' if errors else 'PASS'))
+ for error in errors:print('- '+error)
+ raise SystemExit(bool(errors))
