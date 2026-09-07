@@ -194,3 +194,12 @@ operational_states:
   - BLOCKED
   - OPEN_WITH_LIMITS
   - OPEN_VERIFIED_SCOPE
+
+review_admission:
+  revision: 2026-09-07.1
+  contract: aeris.review.json
+  state: HOLD_FOR_SOL_RED_TEAM
+  implementation_authorized: false
+  overrides_all_legacy_trigger_and_resume_rules: true
+  runtime_enforcement_implemented: false
+  core_document_publication: explicitly_human_authorized_governance_only

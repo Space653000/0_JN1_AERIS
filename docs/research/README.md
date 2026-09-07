@@ -1,5 +1,8 @@
 # AERIS Research Index
 
+**Current architecture review:** [v0.6.0-review.1](../architecture/AERIS_ARCHITECTURE_V0_6.md), separate from UI v0.5.
+Read [proposal integration](AERIS_PROPOSAL_INTEGRATION_20260907.md), [Voice contract](../architecture/VOICE_PUBLISHING_CAPABILITY_V1.md), and [original inputs](inputs/2026-09-07/README.md). **No implementation authorization.**
+
 **Repository:** `Space653000/0_JN1_AERIS`  
 **Current UI baseline:** **AERIS UI v0.5 — Direct Kairos User-Screenshot Correction**  
 **Updated:** 2026-09-01

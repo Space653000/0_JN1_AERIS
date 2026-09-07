@@ -1,0 +1,17 @@
+{
+  "sources": [
+    {
+      "filename": "AERIS Voice Publishing Skill Blueprint Proposal.md",
+      "bytes": 18540,
+      "sha256": "1080ee525711add29f4965ad76f89f234239408905fca06f82a7bc680d76d52f",
+      "status": "USER_SUPPLIED_ARCHITECTURE_INPUT_NOT_EXECUTION_AUTHORIZATION"
+    },
+    {
+      "filename": "AERIS_100_Specialist_AI_Company_Blueprint_Evaluation.md",
+      "bytes": 36177,
+      "sha256": "f27f09c56adef962573bfd129ae5076858c5d5329dad8a28c2bdf02572292e8d",
+      "status": "USER_SUPPLIED_ARCHITECTURE_INPUT_NOT_EXECUTION_AUTHORIZATION"
+    }
+  ],
+  "publication_authorization": "User request item 1, 2026-09-07; only these two local source documents are uploaded."
+}
