@@ -1,4 +1,7 @@
 # AERIS Master Research & Architecture Baseline
+
+> **Architecture update 2026-09-07:** [v0.6.0-review.1](../architecture/AERIS_ARCHITECTURE_V0_6.md) governs current model-review routing, stable role identity, maturity interpretation, risk/approval, Mission/Task boundaries and bounded delivery. This historical research remains background; its model defaults and unbounded build wording do not override the [active hold](../governance/ASTRA_SOL_REVIEW_GATE_V1.md). UI v0.5 remains the visual baseline.
+
 ## Kairos / AI-Native Solo Company / 100-Seat Acoustic Engineering Organization
 **Repository:** `Space653000/0_JN1_AERIS`  
 **Baseline date:** 2026-08-31 (Asia/Taipei)  

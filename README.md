@@ -1,5 +1,9 @@
 # 0_JN1_AERIS
 
+**Architecture revision: v0.6.0-review.1** — [Current architecture](docs/architecture/AERIS_ARCHITECTURE_V0_6.md) · [Two-proposal evaluation](docs/research/AERIS_PROPOSAL_INTEGRATION_20260907.md) · [Review findings](docs/reviews/ASTRA_REVIEW_20260907.md). UI remains v0.5; runtime completeness is not claimed.
+
+> **2026-09-07 審查優先：HOLD_FOR_SOL_RED_TEAM。** 先讀 [Astra → Sol → Astra 閘門](docs/governance/ASTRA_SOL_REVIEW_GATE_V1.md)。下文 Full-Build／兩個 URL／缺口清零／續建命令只適用於閘門解除後的已授權有限批次。本次只修訂與發布文件；第 4 項等待使用者切換 GPT-5.6 Sol High，尚未執行本機總驗收。
+
 **AERIS — Acoustic Engineering & Research Intelligence System**
 
 > **Canonical Core / Remote Read-Only SSOT**  

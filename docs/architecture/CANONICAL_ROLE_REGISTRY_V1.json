@@ -1,0 +1,508 @@
+{
+  "schema_version": 1,
+  "status": "DESIGN_IDENTITY_BASELINE_NOT_CAPABILITY_ACCEPTANCE",
+  "source_implementation_sha": "32ca69baa778959d01c10a72bba1a8f0c0ac7eb5",
+  "identity_policy": "IDs are immutable and independent of ordering. Axxx proposal IDs are a distinct namespace and are not automatic aliases. Runtime adoption awaits implementation authorization.",
+  "roles": [
+    {
+      "role_id": "R001",
+      "name": "Chief Acoustic Architect",
+      "group": "Chief Council"
+    },
+    {
+      "role_id": "R002",
+      "name": "Speaker Engineering Director",
+      "group": "Chief Council"
+    },
+    {
+      "role_id": "R003",
+      "name": "Microphone Engineering Director",
+      "group": "Chief Council"
+    },
+    {
+      "role_id": "R004",
+      "name": "Product Audio System Architect",
+      "group": "Chief Council"
+    },
+    {
+      "role_id": "R005",
+      "name": "DSP & Algorithm Director",
+      "group": "Chief Council"
+    },
+    {
+      "role_id": "R006",
+      "name": "Validation & Quality Director",
+      "group": "Chief Council"
+    },
+    {
+      "role_id": "R007",
+      "name": "NPI & Manufacturing Director",
+      "group": "Chief Council"
+    },
+    {
+      "role_id": "R008",
+      "name": "Research / Standards / Knowledge Director",
+      "group": "Chief Council"
+    },
+    {
+      "role_id": "R009",
+      "name": "Speaker Acoustic System Architect",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R010",
+      "name": "Transducer / T-S / Nonlinear Specialist",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R011",
+      "name": "Enclosure / Port / Waveguide Specialist",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R012",
+      "name": "Audio Circuit Architect",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R013",
+      "name": "Amp / Codec / Power Integrity Specialist",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R014",
+      "name": "Embedded Audio Interface Specialist",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R015",
+      "name": "Speaker Measurement Engineer",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R016",
+      "name": "Nonlinear / Power / Reliability Validation Engineer",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R017",
+      "name": "Directivity / Spatial Validation Engineer",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R018",
+      "name": "Tonal Tuning Engineer",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R019",
+      "name": "Dynamics / Bass / Protection Tuning Engineer",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R020",
+      "name": "Psychoacoustic Speaker Tuning Engineer",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R021",
+      "name": "Lumped / FEM Acoustic Simulation Engineer",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R022",
+      "name": "BEM / Vibro-acoustic Simulation Engineer",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R023",
+      "name": "Room / Ray / System Simulation Engineer",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R024",
+      "name": "Speaker DSP Engineer",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R025",
+      "name": "Smart-Amp / Protection Algorithm Engineer",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R026",
+      "name": "Spatial / Room-Correction Algorithm Engineer",
+      "group": "Speaker CoE"
+    },
+    {
+      "role_id": "R027",
+      "name": "Microphone Acoustic Architect",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R028",
+      "name": "MEMS / ECM Capsule Specialist",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R029",
+      "name": "Port / Mesh / Wind / Isolation Specialist",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R030",
+      "name": "Microphone Audio Circuit Architect",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R031",
+      "name": "ADC / PDM / Clock / Noise Specialist",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R032",
+      "name": "Embedded Capture Pipeline Engineer",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R033",
+      "name": "Microphone Measurement Engineer",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R034",
+      "name": "Array / Directivity Validation Engineer",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R035",
+      "name": "Far-field / Noise Scenario Validation Engineer",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R036",
+      "name": "Microphone Tonal Tuning Engineer",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R037",
+      "name": "Array Pattern Tuning Engineer",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R038",
+      "name": "Speech Quality Tuning Engineer",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R039",
+      "name": "Mic-Port / Thermoviscous Simulation Engineer",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R040",
+      "name": "Array / Wave Propagation Simulation Engineer",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R041",
+      "name": "Room / Wind / Structure Simulation Engineer",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R042",
+      "name": "AEC / Echo Control Engineer",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R043",
+      "name": "Beamforming / DOA Engineer",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R044",
+      "name": "NR / AGC / Dereverb / Speech Enhancement Engineer",
+      "group": "Microphone CoE"
+    },
+    {
+      "role_id": "R045",
+      "name": "Medical Hearing Aid",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R046",
+      "name": "OTC Hearing Aid / PSAP",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R047",
+      "name": "Assistive Listening / Auracast",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R048",
+      "name": "TWS Earbuds",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R049",
+      "name": "ANC Over-Ear Headphone",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R050",
+      "name": "Gaming / Communication Headset",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R051",
+      "name": "Smartphone",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R052",
+      "name": "Tablet",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R053",
+      "name": "Laptop",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R054",
+      "name": "Monitor / All-in-One",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R055",
+      "name": "Smart Speaker",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R056",
+      "name": "Soundbar",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R057",
+      "name": "Home Theater / Multichannel",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R058",
+      "name": "TV / Display Audio",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R059",
+      "name": "Doorbell / Security Camera",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R060",
+      "name": "IoT / Smart Appliance",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R061",
+      "name": "AR Glasses",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R062",
+      "name": "VR / XR Headset",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R063",
+      "name": "Automotive Audio / Hands-Free",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R064",
+      "name": "AMR / Robot Vehicle",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R065",
+      "name": "Quadruped Robot",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R066",
+      "name": "Humanoid / Service Robot",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R067",
+      "name": "Conference / UC Device",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R068",
+      "name": "Directional / Array Microphone System",
+      "group": "Product Chiefs"
+    },
+    {
+      "role_id": "R069",
+      "name": "Psychoacoustics",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R070",
+      "name": "Objective Perceptual Metrics / MOS",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R071",
+      "name": "Spatial Audio / Binaural / HRTF",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R072",
+      "name": "Room Acoustics",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R073",
+      "name": "Vibration / NVH",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R074",
+      "name": "Acoustic Materials / Foam / Mesh / Porous Media",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R075",
+      "name": "Thermal / Power / Reliability",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R076",
+      "name": "EMC / EMI / Ground Noise",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R077",
+      "name": "Mechanical Tolerance / Leakage / Assembly",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R078",
+      "name": "DOE / Statistics / Monte-Carlo",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R079",
+      "name": "Metrology / Measurement Uncertainty",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R080",
+      "name": "Sensor Fusion / IMU / Head Tracking",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R081",
+      "name": "Bluetooth / LE Audio / Wireless Audio",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R082",
+      "name": "OS Audio Stack / Latency / Sync",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R083",
+      "name": "Codec / Transport / Network Audio",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R084",
+      "name": "Audio Machine Learning",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R085",
+      "name": "Acoustic Data Engineering",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R086",
+      "name": "Competitive Benchmark / Teardown",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R087",
+      "name": "Patent / Prior-Art Intelligence",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R088",
+      "name": "Frontier Acoustic Research Scientist",
+      "group": "Distinguished Experts"
+    },
+    {
+      "role_id": "R089",
+      "name": "International Standards & Regulation Engineer",
+      "group": "Engineering Ops"
+    },
+    {
+      "role_id": "R090",
+      "name": "OEM / Customer Certification Engineer",
+      "group": "Engineering Ops"
+    },
+    {
+      "role_id": "R091",
+      "name": "Test Automation Engineer",
+      "group": "Engineering Ops"
+    },
+    {
+      "role_id": "R092",
+      "name": "Laboratory Instrument Controller",
+      "group": "Engineering Ops"
+    },
+    {
+      "role_id": "R093",
+      "name": "Factory EOL / QC Engineer",
+      "group": "Engineering Ops"
+    },
+    {
+      "role_id": "R094",
+      "name": "Failure Analysis / FACA Engineer",
+      "group": "Engineering Ops"
+    },
+    {
+      "role_id": "R095",
+      "name": "Supplier Quality / Incoming Quality Engineer",
+      "group": "Engineering Ops"
+    },
+    {
+      "role_id": "R096",
+      "name": "Reliability / HALT / Environmental Engineer",
+      "group": "Engineering Ops"
+    },
+    {
+      "role_id": "R097",
+      "name": "Requirement / Traceability / Configuration Manager",
+      "group": "Engineering Ops"
+    },
+    {
+      "role_id": "R098",
+      "name": "Acoustic Red-Team / DFMEA Reviewer",
+      "group": "Engineering Ops"
+    },
+    {
+      "role_id": "R099",
+      "name": "Technical Report / Evidence / Knowledge Curator",
+      "group": "Engineering Ops"
+    },
+    {
+      "role_id": "R100",
+      "name": "Autonomous Experiment & Optimization Engineer",
+      "group": "Engineering Ops"
+    }
+  ]
+}
