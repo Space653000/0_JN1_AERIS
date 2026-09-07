@@ -1239,3 +1239,4 @@ if __name__ == "__main__":
     raise SystemExit(main())
 
 ```
+`aeris.retained-rules.json` 是精確取代與保留清單的機器契約；validator 同時核對原文token、mandatory links及固定安全斷言。
