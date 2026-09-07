@@ -1,3 +1,5 @@
+> SUPERSEDED_HISTORICAL：僅歷史。現行依 [Astra Gate v3](ASTRA_EXECUTION_GATE_V3.md) 與 constitution.md；下文不再授權施工或模型路由。
+
 # AERIS Sol 獨立審查閘門 v2
 
 日期：2026-09-07

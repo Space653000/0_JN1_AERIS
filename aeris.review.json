@@ -1,27 +1,20 @@
 {
-  "schema_version": 2,
-  "review_id": "AERIS-SOL-INDEPENDENT-REVIEW-20260907",
-  "architecture_version": "0.7.0-ad.1",
+  "schema_version": 3,
+  "review_id": "AERIS-ASTRA-GOVERNANCE-V3",
+  "architecture_version": "0.7.0-governance.2",
   "scope": {
-    "included_workstreams": ["A", "B", "C", "D"],
-    "excluded_workstreams": {"E": "NOT_STARTED"},
-    "repository_role": "Core WHAT only"
+    "current_batch": "governance_only",
+    "A_D_delivery": "NOT VERIFIED",
+    "E_full_local_acceptance": "NOT_STARTED"
   },
-  "state": "AWAITING_INDEPENDENT_SOL_REVIEW",
+  "state": "REVIEW_PENDING",
   "review_routing": {
-    "implementer": {
-      "model": "gpt-5.6-sol",
-      "reasoning_effort": "high",
-      "role": "author"
-    },
-    "independent_reviewer": {
-      "model": "gpt-5.6-sol",
-      "reasoning_effort": "high",
-      "role": "read_only_reviewer",
-      "isolated_context": true,
-      "may_self_approve_repairs": false
-    },
-    "return_to_astra_required": false
+    "default_model": "gpt-6-astra",
+    "reasoning_effort": "low",
+    "domain_contract_model_binding": false,
+    "independent_verification": "isolated_reviewer_or_independent_rerun",
+    "same_context_repair_approval": false,
+    "actual_model_evidence_required": true
   },
   "human_authority": {
     "role": "Human Chief Engineer",
@@ -36,12 +29,12 @@
   },
   "admission": {
     "requirement_contract": "aeris.traceability.json",
-    "gate_document": "docs/governance/SOL_INDEPENDENT_REVIEW_GATE_V2.md",
+    "gate_document": "docs/governance/ASTRA_EXECUTION_GATE_V3.md",
     "required_before_human_decision": [
-      "all_A_D_requirement_ids_have_acceptance_and_evidence",
-      "E_is_NOT_STARTED",
-      "isolated_reviewer_result_recorded",
-      "validator_and_required_CI_pass"
+      "governance_evidence",
+      "independent_verification",
+      "validator_negative_tests_CI",
+      "E_NOT_STARTED"
     ],
     "runtime_or_real_machine_acceptance_claimed": false
   },
@@ -60,5 +53,24 @@
       "source_implementation_sha": "32ca69baa778959d01c10a72bba1a8f0c0ac7eb5",
       "superseded_rule": "The mandatory return to Astra and old active hold no longer govern A-D."
     }
-  ]
+  ],
+  "evidence_contract": {
+    "required_fields": [
+      "requirement_id",
+      "reproduce_command",
+      "expected_result",
+      "actual_result",
+      "result",
+      "artifact",
+      "artifact_sha256",
+      "versions",
+      "timestamp"
+    ],
+    "missing_evidence_state": "NOT VERIFIED",
+    "document_presence_is_runtime_evidence": false,
+    "required_ci": [
+      "Blueprint governance PR and merged-main CI",
+      "Implementation Windows and Ubuntu PR and merged-main CI for implementation changes"
+    ]
+  }
 }

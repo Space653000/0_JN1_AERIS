@@ -1,164 +1,17 @@
-# 0_JN1_AERIS
+# AERIS — 聲學工程一人 AI 公司
 
-**Architecture revision: v0.7.0-ad.1** — [繁體中文總藍圖](docs/AERIS_BLUEPRINT_ZH_TW.md) · [A–E 追溯矩陣](docs/governance/AERIS_TRACEABILITY_MATRIX.md) · [現行 Sol 獨立審查 gate](docs/governance/SOL_INDEPENDENT_REVIEW_GATE_V2.md). A–D 是 Core／WHAT 文件與治理契約；E runtime 施工為 `NOT_STARTED`。
+Architecture revision: v0.7.0-governance.2；REVIEW_PENDING / NOT VERIFIED。
+[繁體中文總藍圖](docs/AERIS_BLUEPRINT_ZH_TW.md) 是產品入口；[constitution](constitution.md) 是 GATE-01～08 強制治理。
+Blueprint 是 WHAT；Implementation 是 HOW；`C:\0_JN1_AERIS` 是唯一正式產品與本機寫入根目錄。
+本批僅治理整合，A–D 尚未完成，E 後續全面本機驗收 NOT_STARTED。CI 文件檢查不能證明產品完成。
 
-> **2026-09-07 現行審查：SOL_INDEPENDENT_REVIEW_V2。** A–D 由 Sol High implementer 與隔離 Sol High reviewer 分責，不再要求返回 Astra；Human Chief Engineer 保留最終權限。[Astra → Sol → Astra v1](docs/governance/ASTRA_SOL_REVIEW_GATE_V1.md) 僅作歷史記錄。
+- [執行規則](AGENTS.md)
+- [讀取順序](docs/governance/AI_READ_ORDER.md)
+- [現行 Gate](docs/governance/ASTRA_EXECUTION_GATE_V3.md)
+- [追溯矩陣](docs/governance/AERIS_TRACEABILITY_MATRIX.md)
+- [機器可讀契約](aeris.traceability.json)
+- [審查狀態](aeris.review.json)
+- [研究整合](docs/research/AERIS_PROPOSAL_INTEGRATION_20260907.md)
 
-**AERIS — Acoustic Engineering & Research Intelligence System**
-
-> **Canonical Core / Remote Read-Only SSOT**  
-> This repository defines **WHAT AERIS must be**. Normal Codex/Claude deployment may READ / CLONE / FETCH / COMPARE it, but must not write this Core remotely.
-
-## Zero-experience AERIS Autopilot entry
-
-The intended Human input is only:
-
-```text
-https://github.com/Space653000/0_JN1_AERIS
-https://github.com/Space653000/0_JN1_AERIS_Local-computer-implementation
-<LOCAL_TARGET_PATH>
-```
-
-An agent with GitHub + terminal access must interpret that as an AERIS Autopilot request and continue automatically until a genuine Human gate is reached.
-
-Canonical automation contract:
-
-- Plain-language product blueprint: [`docs/AERIS_BLUEPRINT_ZH_TW.md`](docs/AERIS_BLUEPRINT_ZH_TW.md).
-- Machine-readable requirement traceability: [`aeris.traceability.json`](aeris.traceability.json).
-- Current independent-review contract: [`aeris.review.json`](aeris.review.json).
-- Codex: [`AGENTS.md`](AGENTS.md) — primary local executor/installer/implementer.
-- Claude Code: [`CLAUDE.md`](CLAUDE.md) — independent reviewer/acceptance auditor.
-- Machine-readable contract: [`aeris.autopilot.json`](aeris.autopilot.json).
-- Authority policy: [`aeris.policy.yaml`](aeris.policy.yaml).
-- Exact read order: [`docs/governance/AI_READ_ORDER.md`](docs/governance/AI_READ_ORDER.md).
-- End-to-end SOP: [`docs/governance/AI_AUTOPILOT_SOP.md`](docs/governance/AI_AUTOPILOT_SOP.md).
-
-The automation target is:
-
-```text
-Core main (read-only blueprint)
-        ↓
-Implementation repo (executable company image)
-        ↓
-Human-specified local path
-        ↓
-Detect / inventory / install / configure
-        ↓
-Tests / Core integrity / real-machine acceptance
-        ↓
-Evidence-supported company opening
-        ↓
-Local supervisor + heartbeat + audit/evidence
-        ↓
-Independent reviewer acceptance
-```
-
-It is **not** legitimate to bypass a license, secret, physical calibration, unsupported machine, failed test, privacy rule, checksum/signature failure, Core drift or formal release approval merely to make the process zero-touch.
-
-## Human + AI authority model
-
-```text
-Human Chief Engineer = final authority
-Canonical Core       = design authority
-Codex                = primary local executor
-Independent reviewer = separate acceptance responsibility
-Evidence             = engineering decision basis
-```
-
-Agent consensus is not evidence. The reviewer is expected to challenge the executor. Review routing is batch-specific; A–D uses the [Sol independent-review gate](docs/governance/SOL_INDEPENDENT_REVIEW_GATE_V2.md).
-
-## Core read-only protection
-
-For a Git-backed local Core cache, the required state is:
-
-```text
-fetch URL = canonical Core
-push URL  = DISABLED
-pre-push  = DENY
-detached canonical checkout
-clean working tree
-HEAD == recorded canonical Core SHA
-```
-
-Legacy/manual PowerShell helpers remain under [`tools/local-only/`](tools/local-only/). In the normal two-repo Autopilot path, the Implementation repository owns the executable synchronization/verification flow.
-
-Normal direction:
-
-```text
-GitHub Core main ─────► Local AERIS
-```
-
-Not:
-
-```text
-Normal Codex deployment ─X─► GitHub Core main
-```
-
-A Core publication is a separate Human-controlled governance process.
-
-## Core Architecture
-
-> **1 Human Chief Engineer + 100 Virtual Acoustic Engineering capability seats + model-neutral orchestration + real engineering tools + Evidence + Independent Verification + Human Approval + Reproducibility.**
-
-100 seats are capability/authority/evidence/review boundaries, not 100 permanently running LLM processes. Ordinary Temporary Pods target **2–8 roles**; complex work targets **5–15 roles**.
-
-Permanent truth rules:
-
-```text
-Model != Identity
-Memory != Evidence
-Execution != Completion
-Dashboard != Truth
-Agent consensus != engineering truth
-Implemented != Tested != Verified
-```
-
-## Engineering priority
-
-AERIS is not primarily an installer or dashboard project. The deployment harness exists to make the engineering organization reproducible. Core trust priorities remain:
-
-```text
-Task identity/state
-→ Evidence Bundle
-→ G0–G5 verification
-→ Independent Reviewer
-→ R0–R4 authority / Human approval
-→ Golden acoustic cases
-→ Audit / Health / Reproduction
-→ mature Skills / Methods / Standards
-→ professional tool adapters
-→ Dynamic Pods
-```
-
-## Web UI
-
-The three canonical static target entrances are:
-
-1. [Dashboard / Mission Control](index.html)
-2. [Engineering Workspace](workspace.html)
-3. [Service Console](services.html)
-
-Target Pages URLs:
-
-- `https://space653000.github.io/0_JN1_AERIS/`
-- `https://space653000.github.io/0_JN1_AERIS/workspace.html`
-- `https://space653000.github.io/0_JN1_AERIS/services.html`
-
-Repository files existing does not prove Pages is externally deployed or live. UI status is always a projection of real Evidence/Telemetry, never the source of truth.
-
-The current direct-screenshot visual calibration is indexed in [`docs/research/README.md`](docs/research/README.md). If an older visual document conflicts with the latest screenshot calibration, the latest Human-supplied screenshot evidence wins.
-
-## Research / Architecture
-
-Canonical index: [`docs/research/README.md`](docs/research/README.md)
-
-Primary architecture documents:
-
-1. [AERIS Master Research & Architecture Baseline](docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md)
-2. [Kairos / LifeOS Deep Research](docs/research/2026-08-31_Kairos_LifeOS_AERIS_Deep_Research.md)
-3. [AERIS Research Data Index](docs/research/AERIS_RESEARCH_DATA_INDEX_20260831.md)
-4. [AERIS Web UI / Control Plane Baseline](docs/research/AERIS_WEB_UI_CONTROL_PLANE_BASELINE_20260831.md)
-
-## North Star
-
-> **AERIS is not an AI-agent demo. It is an Acoustic Engineering Organization OS whose conclusions remain traceable, verifiable and reproducible even after today's models are replaced.**
+參考 [Agent Zero](https://www.agent-zero.ai/) 的代理、工具、記憶與工作流程呈現；不是已採用或已驗證聲學能力的證據。100席位是責任/能力邊界，不是100個常駐代理或100名已驗證真人工程師。
+兩個 GitHub URL 只識別專案；先 admission/drift，再單批驗證。

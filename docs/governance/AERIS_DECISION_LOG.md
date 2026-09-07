@@ -1,3 +1,16 @@
+# 現行治理決策與歷史
+
+## ADR-AD-008 — 使用者最新授權，0.7.0-governance.2
+
+決策狀態 ACCEPTED（使用者裁定）；實作驗證 REVIEW_PENDING / NOT VERIFIED。
+最新指示全面 Astra Low、自主解決可判斷矛盾、Blueprint寫好、Implementation連動唯一產品 `C:\0_JN1_AERIS`，其他本機目錄不動。取代 ADR-AD-005 的 Sol 路由及早期強制Medium；模型選擇只是操作路由。
+ADR-AD-003 四方 tuple 修正為 Blueprint、Implementation、Local checkout、Running service；Evidence 綁定tuple。
+ADR-AD-004 公開唯一產品根目錄是使用者契約，禁止私人帳戶路徑仍保留；Core唯讀治理validator/負例/CI是窄例外。
+ADR-AD-007 的 E 誤定義被取代：E 是後續全面本機驗收，不是所有HOW；A/B/C/D恢復使用者原始意義。A–D仍待逐批驗證，不因文件存在而完成。
+無條件Full Build、任意workspace及正常部署之外永久禁止Core發布，分別改成admission/單批、唯一根目錄、明確授權治理PR。此決策不弱化聲學、隱私、Evidence、獨立驗證及不可逆發布規則。
+
+## 下列是歷史來源，不是现行执行授权
+
 # AERIS 治理決策記錄
 
 決策集：`AERIS-A-D-GOVERNANCE-20260907`

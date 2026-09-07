@@ -1,8 +1,8 @@
 # AERIS 繁體中文總藍圖
 
-版本：`0.7.0-ad.1`
+版本：`0.7.0-governance.2`
 
-範圍：A–D Core／WHAT；E 尚未開始
+範圍：本批治理規格；A–D 尚未完成，E 全面本機驗收尚未開始。REVIEW_PENDING / NOT VERIFIED。
 
 狀態依據：[機器可讀追溯契約](../aeris.traceability.json)
 
@@ -26,7 +26,7 @@ AERIS 是由一位 Human Chief Engineer 掌握最終權限、以聲學工程需�
 4. **用證據審查**：把成果對照需求與驗收條件；Evidence 不足、測試失敗或來源不明時，狀態不能升級。獨立 reviewer 應找反例，而不是附和執行者。
 5. **由 Human 決定採用**：Human Chief Engineer 保留最終裁決、範圍核准與不可逆發布權。通過的結果可成為受控知識；未通過的結果保留限制與下一個最小行動。
 
-這五步是產品行為契約。執行引擎、script、prompt、部署方式與本機路徑屬於 Implementation repo 的 HOW，不在 Core 指定。
+這五步是產品行為契約。執行引擎、script、prompt、部署方式屬於 Implementation repo 的 HOW；唯一產品根目錄由使用者公開治理契約指定為 `C:\0_JN1_AERIS`。
 
 ## 角色、技能、證據與審查
 
@@ -62,7 +62,7 @@ AERIS 的成果可以是需求、設計決策、計算、分析報告、測試�
 
 進度以 requirement ID 為最小單位。每個 ID 必須同時指向：需求文字、owner、狀態、驗收條件與 Evidence。狀態只能由對應證據支持，不能靠百分比、聊天摘要或人工改字升級。
 
-本批 A–D 的人類可讀對照在 [追溯矩陣](governance/AERIS_TRACEABILITY_MATRIX.md)，機器可讀真相在 [`aeris.traceability.json`](../aeris.traceability.json)。A–D 表示 Core 文件與治理契約已建立；它不代表 Implementation runtime 已完成。E 明確為 `NOT_STARTED`。
+本批 A–D 的人類可讀對照在 [追溯矩陣](governance/AERIS_TRACEABILITY_MATRIX.md)，機器可讀真相在 [`aeris.traceability.json`](../aeris.traceability.json)。A–D 保留使用者原始工作意義，尚未完成；E 是後續全面本機驗收，明確為 `NOT_STARTED`。文件鏈接是規格參照，不是執行 Evidence。
 
 ## 四方版本一致
 
@@ -71,7 +71,9 @@ AERIS 的成果可以是需求、設計決策、計算、分析報告、測試�
 1. **Core Blueprint**：Core repository、branch、commit SHA 與架構版本。
 2. **Implementation**：Implementation repository、branch、commit SHA 與所宣稱支援的 Core SHA。
 3. **Local checkout**：實際執行環境的 HEAD、dirty state／overlay digest 與設定或資產版本。
-4. **Evidence Bundle**：驗收範圍、產物 digest、測試結果、時間與 reviewer decision。
+4. **Running service**：實際載入的程式 SHA、啟動時間、設定/資產 digest。
+
+Evidence Bundle 必須綁定上述四方 tuple、驗收範圍、產物 digest、測試結果、時間與 reviewer decision，不可用證據包取代執行中服務版本。
 
 四方資料缺一，就只能說明已知的文件或程式狀態，不能宣稱端到端一致。Core SHA 相同也不代表 Local 沒有未提交差異；CI 成功也不能代替 Evidence Bundle 內的真機結果。
 
@@ -91,17 +93,28 @@ Implementation 擁有 HOW：
 - prompts、模型/provider 組態與執行策略；
 - 部署、服務、OS persistence 與機器特定設定。
 
-Core 可以要求某個結果可驗證，但不指定私人本機路徑、shell 命令、服務啟動方法或某一個 provider 的執行細節。既有 Core 中超出此邊界的歷史材料視為待遷移債務，不構成新增 HOW 的先例。
+Core 可以要求結果可驗證；使用者已公開授權唯一正式根目錄 `C:\0_JN1_AERIS`，其他本機目錄不得寫入。Core 不公開私人帳戶路徑、不指定 runtime shell 命令或 provider 細節；唯讀治理 validator/負例/CI 是窄例外。既有 Core 中超出此邊界的歷史材料視為待遷移債務，不構成新增 HOW 的先例。
 
 ## A–E 範圍
 
-| 工作流 | 名稱 | 本批成果 | 狀態 |
+| 使用者工作 | 意義 | 狀態 |
 |---|---|---|
-| A | 白話繁中總藍圖、100 席位正確語義、五步工作流 | IMPLEMENTED |
-| B | decision log、requirement traceability、可證明進度、四方版本一致 | IMPLEMENTED |
-| C | Core／Implementation 的 WHAT／HOW ownership | IMPLEMENTED |
-| D | Sol implementer＋隔離 Sol reviewer、Human 最終權限、舊 Astra 記錄歷史化 | IMPLEMENTED；需依現行 gate 記錄審查結果 |
-| E | runtime、scripts、prompts、deployment 的實際施工 | NOT_STARTED |
+| A | Blueprint repo 保存完整藍圖 | REVIEW_PENDING |
+| B | Implementation repo 保存落實架構、執行檔案與提示詞 | NOT VERIFIED |
+| C | 舊產物搬回及唯一產品根目錄，其他本機目錄不動 | NOT VERIFIED（歷史搬移證據待追溯） |
+| D | 解決四問題：整合、繁中成果/進度、版本正確性、安全同步 | NOT VERIFIED |
+| E | A–D 後續全面本機可落地與真實運作驗收 | NOT_STARTED |
+
+## 繁中介面與真實進度要求
+
+主要導覽、表單、錯誤、空白狀態與說明使用繁體中文；專有名詞首次附白話解釋。首頁清楚呈現「說明問題 → 挑選專家 → 執行分析 → 檢查證據 → 由你核准」。
+狀態分已登錄、已實作、已測試、專業驗證、實體驗證、可正式使用，逐 requirement 顯示證據及阻擋原因；不能以角色數、目錄數或無分母百分比宣稱成熟。不可用離線/未連線模型虛報可用。
+
+## 安全同步要求
+
+顯示 Blueprint、Implementation、Local HEAD/dirty digest、Running service loaded SHA，附最後讀取時間與查詢失敗狀態；未知不是已同步。服務版本過舊、未提交內容與 branch 分岔明確標示。
+自動 fetch 只讀更新狀態；dirty 時不自動 checkout/merge/reset/push。先保存 checkpoint、敏感資料檢查、比對版本、測試、受控 PR，通過才能整併。不得 force push 或覆蓋未提交工作；模型、secret、私人 Evidence、資料庫及客戶量測預設 LOCAL_ONLY，加密備份另依授权。
+UI/API、同步脚本與部署實作留給 Implementation；以上尚為規格，NOT VERIFIED。
 
 ## 研究來源與採用界線
 
@@ -113,3 +126,7 @@ Core 可以要求某個結果可驗證，但不指定私人本機路徑、shell 
 - [AERIS Research Data Index](research/AERIS_RESEARCH_DATA_INDEX_20260831.md)
 - [本批治理決策記錄](governance/AERIS_DECISION_LOG.md)
 - [本批追溯矩陣](governance/AERIS_TRACEABILITY_MATRIX.md)
+
+同步驗收另須：remote_main_sha 必須來自當次成功遠端查詢，不能把舊 origin/main 當最新；wrong origin 必須拒絕；dirty digest hash 實際內容而非只有路徑。服務 identity、載入版本及觀測時間必須有證據，缺少則 UNKNOWN。無網路時不能宣告 stale=false 或同步完成。Implementation 變更需 Windows/Ubuntu PR 與 merged-main CI；Blueprint治理需PR及merged-main CI，兩者均不取代本機驗收。
+
+原始兩提案：[來源原文與雜湊](research/inputs/2026-09-07/README.md)、[提案整合](research/AERIS_PROPOSAL_INTEGRATION_20260907.md)、[Voice Publishing](architecture/VOICE_PUBLISHING_CAPABILITY_V1.md)。原文僅來源，經架構整合決策才成執行要求。

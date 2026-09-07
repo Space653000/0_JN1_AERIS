@@ -1,3 +1,7 @@
+## 0.7.0-governance.2 — REVIEW_PENDING
+
+導入完整GATE01–08，更新Astra Low路由、唯一產品根目錄、單批admission、四方含running service、恢復A–E意義、繁中進度與安全同步驗收規格。只治理，未宣稱runtime完成。
+
 # Architecture changelog
 
 ## 0.7.0-ad.1 — 2026-09-07
