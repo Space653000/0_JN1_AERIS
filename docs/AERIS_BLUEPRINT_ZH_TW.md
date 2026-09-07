@@ -1,6 +1,6 @@
 # AERIS 繁體中文總藍圖
 
-版本：`0.7.0-governance.2`
+版本：`0.7.0-governance.3`
 
 範圍：本批治理規格；A–D 尚未完成，E 全面本機驗收尚未開始。REVIEW_PENDING / NOT VERIFIED。
 
@@ -130,3 +130,7 @@ UI/API、同步脚本與部署實作留給 Implementation；以上尚為規格�
 同步驗收另須：remote_main_sha 必須來自當次成功遠端查詢，不能把舊 origin/main 當最新；wrong origin 必須拒絕；dirty digest hash 實際內容而非只有路徑。服務 identity、載入版本及觀測時間必須有證據，缺少則 UNKNOWN。無網路時不能宣告 stale=false 或同步完成。Implementation 變更需 Windows/Ubuntu PR 與 merged-main CI；Blueprint治理需PR及merged-main CI，兩者均不取代本機驗收。
 
 原始兩提案：[來源原文與雜湊](research/inputs/2026-09-07/README.md)、[提案整合](research/AERIS_PROPOSAL_INTEGRATION_20260907.md)、[Voice Publishing](architecture/VOICE_PUBLISHING_CAPABILITY_V1.md)。原文僅來源，經架構整合決策才成執行要求。
+
+## 三個參考與所有技能範例
+
+[介面與技能範例正式規格](architecture/AERIS_UX_SKILL_EXAMPLES_V1.md)：Kairos 為主要 UX/UI 參考；Agent Zero 為角色、工具、記憶與工作流程透明度參考；AI 時代軟體必修課為繁中互動教學參考。所有登錄技能都須有範例及預期結果，可執行範例須有可重現 Evidence；展示、合成與真實量測分開，缺範例或證據不得已驗證。這是規格新增，不代表功能完成。

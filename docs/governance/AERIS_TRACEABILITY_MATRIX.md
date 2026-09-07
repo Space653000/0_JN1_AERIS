@@ -20,3 +20,9 @@
 | AERIS-AD-ROOT-001 | C | Only authorized root can contain local construction and evidence. | REVIEW_PENDING |
 | AERIS-AD-VERSIONS-001 | D | Show four real versions including running service. | REVIEW_PENDING |
 | AERIS-AD-SYNC-002 | D | Fresh remote query, origin identity, content dirty digest, timestamped service identity and unknown on offline. | REVIEW_PENDING |
+
+| AERIS-UX-01 | D | 採用 Kairos 的窄導覽、留白、青綠重點、卡片與繁中可存取介面。 | NOT_STARTED |
+| AERIS-UX-02 | D | 參考 Agent Zero 呈現角色、工具、記憶及五步工作流程。 | NOT_STARTED |
+| AERIS-EX-01 | D | 所有登錄技能必有繁中情境、輸入、步驟、預期輸出、解說及失敗範例。 | NOT_STARTED |
+| AERIS-EX-02 | D | 區分展示、合成練習及真實量測；範例結果不升級專業驗證。 | NOT_STARTED |
+| AERIS-EX-03 | D | 頻譜教學採固定參數的1 kHz合成音示例與可重現oracle。 | NOT_STARTED |

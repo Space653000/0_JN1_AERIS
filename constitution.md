@@ -1,6 +1,6 @@
 # AERIS CORE EXECUTION DISCIPLINE
 
-版本：0.7.0-governance.2；狀態：REVIEW_PENDING / NOT VERIFIED。
+版本：0.7.0-governance.3；狀態：REVIEW_PENDING / NOT VERIFIED。
 這是 AERIS 專案治理，不覆蓋平台安全規則。使用者最新明確裁定高於舊專案契約；其餘更嚴格的聲學、隱私、Evidence 與人類權限保留。任何無法依已授權目標解決的矛盾，STOP → REPORT；可解矛盾先記錄來源及決策，再重驗。此批僅治理整合，沒有功能施工或 E 驗收授權。
 
 ## GATE-01 — Blueprint 是唯一設計真相
