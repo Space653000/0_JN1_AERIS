@@ -22,10 +22,12 @@ def validate(root=ROOT):
  need(bool(re.fullmatch(r'0\.7\.0-governance\.\d+',revision)),'invalid governance revision')
  need(t.get('architecture_version')==revision,'traceability architecture version mismatch')
  need(a.get('review_revision')==revision,'autopilot review revision mismatch')
- version_docs=['README.md','constitution.md','docs/AERIS_BLUEPRINT_ZH_TW.md','docs/architecture/AERIS_UX_SKILL_EXAMPLES_V1.md','docs/governance/ASTRA_EXECUTION_GATE_V3.md','docs/architecture/AERIS_ARCHITECTURE_V0_6.md']
+ version_docs=['docs/research/README.md','docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md','README.md','constitution.md','docs/AERIS_BLUEPRINT_ZH_TW.md','docs/architecture/AERIS_UX_SKILL_EXAMPLES_V1.md','docs/governance/ASTRA_EXECUTION_GATE_V3.md','docs/architecture/AERIS_ARCHITECTURE_V0_6.md']
  for doc in version_docs:
   need(set(re.findall(r'0\.7\.0-governance\.\d+',read(doc)))=={revision},'active document revision mismatch '+doc)
  architecture=read('docs/architecture/AERIS_ARCHITECTURE_V0_6.md')
+ research_header=read('docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md').split('## ',1)[0]
+ need('ASTRA_EXECUTION_GATE_V3.md' in research_header and 'ASTRA_SOL_REVIEW_GATE_V1.md' not in research_header,'research entry authority stale')
  need('../../constitution.md' in architecture and 'ASTRA_EXECUTION_GATE_V3.md' in architecture,'architecture current authority missing')
  for stale in ['ASTRA_SOL_REVIEW_GATE_V1.md','SOL_INDEPENDENT_REVIEW_GATE_V2.md','本次 Astra High']:
   need(stale not in architecture,'architecture legacy authority '+stale)

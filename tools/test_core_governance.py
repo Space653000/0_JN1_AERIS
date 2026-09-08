@@ -16,6 +16,10 @@ class NegativeTests(unittest.TestCase):
  def mutate(self,file,change):
   data=json.loads((v.ROOT/file).read_text(encoding='utf-8-sig'));change(data)
   self.assertTrue(v.validate(Overlay({file:json.dumps(data)})))
+ def test_research_index_revision_mismatch(self):
+  p='docs/research/README.md';s=(v.ROOT/p).read_text(encoding='utf-8-sig');self.assertTrue(v.validate(Overlay({p:s.replace('0.7.0-governance.4','0.7.0-governance.3')})))
+ def test_research_header_old_gate(self):
+  p='docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md';s=(v.ROOT/p).read_text(encoding='utf-8-sig');self.assertTrue(v.validate(Overlay({p:s.replace('ASTRA_EXECUTION_GATE_V3.md','ASTRA_SOL_REVIEW_GATE_V1.md')})))
  def test_baseline(self):self.assertEqual(v.validate(),[])
  def test_empty_ux_spec_rejected(self):self.assertTrue(v.validate(Overlay({'docs/architecture/AERIS_UX_SKILL_EXAMPLES_V1.md':''})))
  def test_missing_example_section_rejected(self):

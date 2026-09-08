@@ -1,6 +1,6 @@
 # AERIS Master Research & Architecture Baseline
 
-> **Architecture update 2026-09-07:** [v0.6.0-review.1](../architecture/AERIS_ARCHITECTURE_V0_6.md) governs current model-review routing, stable role identity, maturity interpretation, risk/approval, Mission/Task boundaries and bounded delivery. This historical research remains background; its model defaults and unbounded build wording do not override the [active hold](../governance/ASTRA_SOL_REVIEW_GATE_V1.md). UI v0.5 remains the visual baseline.
+> **現行治理 0.7.0-governance.4：** 模型路由、授權與單批驗收依 [constitution](../../constitution.md) 及 [Astra Gate v3](../governance/ASTRA_EXECUTION_GATE_V3.md)。[v0.6 設計基線](../architecture/AERIS_ARCHITECTURE_V0_6.md) 保留角色身分、成熟度、風險及任務邊界。以下為歷史研究，舊模型預設與無界施工文字不得覆蓋現行治理；UI v0.5 視覺基線保留。
 
 ## Kairos / AI-Native Solo Company / 100-Seat Acoustic Engineering Organization
 **Repository:** `Space653000/0_JN1_AERIS`  
