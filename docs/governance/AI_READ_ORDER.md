@@ -1,5 +1,7 @@
 # AERIS 必讀順序
 
+接手或回報進度時，先依 [接手入口](../../HANDOFF.md) 取得當下遠端 SHA，再按以下順序從固定版本讀取。
+
 1. [AGENTS](../../AGENTS.md) 與 [constitution](../../constitution.md)
 2. [現行 gate](ASTRA_EXECUTION_GATE_V3.md)、[review](../../aeris.review.json)、[policy](../../aeris.policy.yaml)、[autopilot](../../aeris.autopilot.json)
 3. [繁中總藍圖](../AERIS_BLUEPRINT_ZH_TW.md)、[traceability](../../aeris.traceability.json)、[矩陣](AERIS_TRACEABILITY_MATRIX.md)

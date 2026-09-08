@@ -1,5 +1,7 @@
 # AERIS — 聲學工程一人 AI 公司
 
+每次接手先讀 [接手入口與進度說明](HANDOFF.md)；[版本觀測紀錄](aeris.handoff.json) 是快照，最新版本需即時核對。
+
 Architecture revision: v0.7.0-governance.3；REVIEW_PENDING / NOT VERIFIED。
 [繁體中文總藍圖](docs/AERIS_BLUEPRINT_ZH_TW.md) 是產品入口；[constitution](constitution.md) 是 GATE-01～08 強制治理。
 Blueprint 是 WHAT；Implementation 是 HOW；`C:\0_JN1_AERIS` 是唯一正式產品與本機寫入根目錄。
