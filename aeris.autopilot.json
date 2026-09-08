@@ -96,7 +96,7 @@
     "OPEN_VERIFIED_SCOPE"
   ],
   "truth_rule": "NO EVIDENCE = NOT DONE; admission before trigger; one bounded gate at a time",
-  "review_revision": "0.7.0-governance.3",
+  "review_revision": "0.7.0-governance.4",
   "admission_precondition": {
     "state": "REVIEW_PENDING",
     "contract": "aeris.review.json",

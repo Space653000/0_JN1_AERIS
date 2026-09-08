@@ -1,7 +1,7 @@
-# AERIS Architecture v0.6.0-review.1
+# AERIS Architecture — v0.6 設計基線與現行治理
 
 日期：2026-09-07；**REVIEW BASELINE / NO IMPLEMENTATION AUTHORIZATION**。
-與舊 2026-08-31 主研究基線衝突的模型分工、ID、成熟度、風險、續建順序，以本文件和 [審查閘門](../governance/ASTRA_SOL_REVIEW_GATE_V1.md) 為準。其餘 Speaker/Microphone 全領域願景保留。
+現行治理版本：0.7.0-governance.4。模型路由、授權、目錄、續建順序與驗收依 [constitution](../../constitution.md) 及 [Astra Gate v3](../governance/ASTRA_EXECUTION_GATE_V3.md)；本文件保留 v0.6 的聲學設計基線，檔名不代表現行治理版本。與舊研究衝突的 ID、成熟度、風險採本設計基線，其餘 Speaker/Microphone 全領域願景及更嚴格工程要求保留。
 
 ## 可落地的產品定義
 
@@ -17,7 +17,7 @@ Canonical 為 [100 個穩定 R-ID](CANONICAL_ROLE_REGISTRY_V1.json)：8/18/18/24
 
 ## 模型與資源
 
-本次 Astra High 審查、Sol High Red-Team、Astra 複核是 authoring/review 工作流，與 AERIS 本地 runtime 模型分離；不因此加入 paid API 或移動私密資料。官方模型文件確認 `gpt-6-astra` 與 `gpt-5.6-sol` 支援 `high`，但不證明本機可運行這些模型，也不證明 active UI/effort 設定。見 [官方 Astra](https://developers.openai.com/api/docs/models/gpt-6-astra)、[官方 Sol](https://developers.openai.com/api/docs/models/gpt-5.6-sol)，查閱 2026-09-07。
+現行 authoring/review 預設 GPT-6 Astra Low，依 constitution GATE-07；不強制 Sol High、升 Medium 或回 Astra。獨立驗證仍依 GATE-05。此操作路由與 AERIS 本地 runtime 模型分離，不因此加入 paid API 或移動私密資料；模型與 effort 必須以執行 metadata 證明，不能用文件設定推定。
 
 普通 Pod 2–8／複雜 5–15 指參與職能數，不是同時載入模型數。初始單機配置先限制一個重型 inference job；TTS 與 LLM 共用 accelerator 時排隊，不以 16GB 標稱 RAM 直接推論 VRAM 足夠。可提高 concurrency 前先取得模型 digest、KV cache、context、量化、峰值 RAM/VRAM、p95 latency、溫度、功耗及故障復原量測。允許拒絕、deadline、cancel、有限 retries；不以雲端靜默 fallback 解決私密模型 OOM。
 

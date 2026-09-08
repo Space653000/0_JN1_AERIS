@@ -18,6 +18,31 @@ def validate(root=ROOT):
   try:return json.loads(read(p))
   except Exception as e:errors.append(f'{p}: {e}');return {}
  a=obj('aeris.autopilot.json');t=obj('aeris.traceability.json');v=obj('aeris.review.json')
+ revision=v.get('architecture_version','')
+ need(bool(re.fullmatch(r'0\.7\.0-governance\.\d+',revision)),'invalid governance revision')
+ need(t.get('architecture_version')==revision,'traceability architecture version mismatch')
+ need(a.get('review_revision')==revision,'autopilot review revision mismatch')
+ version_docs=['docs/research/README.md','docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md','README.md','constitution.md','docs/AERIS_BLUEPRINT_ZH_TW.md','docs/architecture/AERIS_UX_SKILL_EXAMPLES_V1.md','docs/governance/ASTRA_EXECUTION_GATE_V3.md','docs/architecture/AERIS_ARCHITECTURE_V0_6.md']
+ for doc in version_docs:
+  need(set(re.findall(r'0\.7\.0-governance\.\d+',read(doc)))=={revision},'active document revision mismatch '+doc)
+ architecture=read('docs/architecture/AERIS_ARCHITECTURE_V0_6.md')
+ research_header=read('docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md').split('## ',1)[0]
+ need('ASTRA_EXECUTION_GATE_V3.md' in research_header and 'ASTRA_SOL_REVIEW_GATE_V1.md' not in research_header,'research entry authority stale')
+ need('../../constitution.md' in architecture and 'ASTRA_EXECUTION_GATE_V3.md' in architecture,'architecture current authority missing')
+ for stale in ['ASTRA_SOL_REVIEW_GATE_V1.md','SOL_INDEPENDENT_REVIEW_GATE_V2.md','本次 Astra High']:
+  need(stale not in architecture,'architecture legacy authority '+stale)
+ ux=read('docs/architecture/AERIS_UX_SKILL_EXAMPLES_V1.md')
+ sections={m.group(1):m.group(2) for m in re.finditer(r'^## ((?:UX|EX)-\d+) [^\n]*\n(.*?)(?=^## |\Z)',ux,re.M|re.S)}
+ ux_requirements={
+  'UX-01':['窄側邊導覽','留白','青綠色','工作紀錄','能力圖譜','繁體中文','驗收：'],
+  'UX-02':['Agent Zero','工具','記憶','工作流程','驗收：'],
+  'EX-01':['所有登錄 Skill','預期結果','可重現紀錄','結果圖解','失敗與限制'],
+  'EX-02':['展示預覽','合成資料練習','真實量測案例','缺少範例或必要 Evidence','不得標示為已驗證','驗收：'],
+  'EX-03':['合成訊號','未執行','未宣稱測試通過']}
+ for section,tokens in ux_requirements.items():
+  for token in tokens:need(token in sections.get(section,''),'UX contract missing '+section+': '+token)
+ for token in ['授權、安全性、相容性及維護成本','哈利','互動練習']:
+  need(token in ux,'UX reference boundary missing '+token)
  h=obj('aeris.handoff.json')
  need(h.get('live_refresh_required') is True,'handoff must refresh live versions')
  need(h.get('observation_semantics')=='HISTORICAL_SNAPSHOT_LIVE_REFRESH_REQUIRED','snapshot is not latest')
@@ -105,7 +130,7 @@ def validate(root=ROOT):
  c=read('constitution.md')
  for i in range(1,9):need(f'GATE-{i:02}' in c,'missing gate')
  for token in ['calibration state','noise、distance、azimuth、speaker、language','margin','offline','NO EVIDENCE = NOT DONE']:need(token in c,'weakened engineering rule '+token)
- for p in ACTIVE+['HANDOFF.md']:
+ for p in ACTIVE+['HANDOFF.md','docs/architecture/AERIS_ARCHITECTURE_V0_6.md']:
   text=read(p)
   need('C:\\Users\\' not in text,'private user path '+p)
   for forbidden in ['that alone is a complete','active_workspace_counts_as_target_path: true','The two canonical GitHub URLs are the command','Codex may not publish that package','AWAITING_INDEPENDENT_SOL_REVIEW']:

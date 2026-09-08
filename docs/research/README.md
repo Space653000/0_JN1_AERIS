@@ -1,6 +1,6 @@
 # AERIS Research Index
 
-**Current architecture:** [v0.7.0-governance.3 繁中總藍圖](../AERIS_BLUEPRINT_ZH_TW.md), separate from UI v0.5.
+**Current architecture:** [v0.7.0-governance.4 繁中總藍圖](../AERIS_BLUEPRINT_ZH_TW.md), separate from UI v0.5.
 Read [A–E traceability](../governance/AERIS_TRACEABILITY_MATRIX.md), [proposal integration](AERIS_PROPOSAL_INTEGRATION_20260907.md), [Voice contract](../architecture/VOICE_PUBLISHING_CAPABILITY_V1.md), and [original inputs](inputs/2026-09-07/README.md). A–D 整體仍 NOT VERIFIED；E 是後續全面本機驗收，NOT_STARTED。規格發布不代表 runtime 已實作。
 
 **Repository:** `Space653000/0_JN1_AERIS`  

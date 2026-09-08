@@ -1,6 +1,6 @@
 # AERIS 繁體中文總藍圖
 
-版本：`0.7.0-governance.3`
+版本：`0.7.0-governance.4`
 
 範圍：本批治理規格；A–D 尚未完成，E 全面本機驗收尚未開始。REVIEW_PENDING / NOT VERIFIED。
 

@@ -16,7 +16,17 @@ class NegativeTests(unittest.TestCase):
  def mutate(self,file,change):
   data=json.loads((v.ROOT/file).read_text(encoding='utf-8-sig'));change(data)
   self.assertTrue(v.validate(Overlay({file:json.dumps(data)})))
+ def test_research_index_revision_mismatch(self):
+  p='docs/research/README.md';s=(v.ROOT/p).read_text(encoding='utf-8-sig');self.assertTrue(v.validate(Overlay({p:s.replace('0.7.0-governance.4','0.7.0-governance.3')})))
+ def test_research_header_old_gate(self):
+  p='docs/research/AERIS_MASTER_RESEARCH_ARCHITECTURE_BASELINE_20260831.md';s=(v.ROOT/p).read_text(encoding='utf-8-sig');self.assertTrue(v.validate(Overlay({p:s.replace('ASTRA_EXECUTION_GATE_V3.md','ASTRA_SOL_REVIEW_GATE_V1.md')})))
  def test_baseline(self):self.assertEqual(v.validate(),[])
+ def test_empty_ux_spec_rejected(self):self.assertTrue(v.validate(Overlay({'docs/architecture/AERIS_UX_SKILL_EXAMPLES_V1.md':''})))
+ def test_missing_example_section_rejected(self):
+  p='docs/architecture/AERIS_UX_SKILL_EXAMPLES_V1.md';s=(v.ROOT/p).read_text(encoding='utf-8-sig');start=s.index('## EX-02');end=s.index('## EX-03');self.assertTrue(v.validate(Overlay({p:s[:start]+s[end:]})))
+ def test_trace_version_mismatch(self):self.mutate('aeris.traceability.json',lambda t:t.update(architecture_version='0.0.0-stale'))
+ def test_legacy_architecture_gate_rejected(self):
+  p='docs/architecture/AERIS_ARCHITECTURE_V0_6.md';s=(v.ROOT/p).read_text(encoding='utf-8-sig');self.assertTrue(v.validate(Overlay({p:s+'\n現行審查依 ASTRA_SOL_REVIEW_GATE_V1.md。\n'})))
  def test_handoff_cannot_be_cached_latest(self):self.mutate('aeris.handoff.json',lambda h:h.update(live_refresh_required=False))
  def test_handoff_cannot_claim_alignment(self):self.mutate('aeris.handoff.json',lambda h:h.update(alignment='PASS'))
  def test_handoff_cannot_authorize_runtime(self):self.mutate('aeris.handoff.json',lambda h:h.update(runtime_authorized_by_this_manifest=True))

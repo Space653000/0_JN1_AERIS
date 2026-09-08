@@ -31,7 +31,7 @@ AERIS 的目標是「一位人類主管，搭配 100 個聲學專業能力席位
 
 ## 藍圖版本與治理入口
 
-Architecture revision: v0.7.0-governance.3；REVIEW_PENDING / NOT VERIFIED。
+Architecture revision: v0.7.0-governance.4；REVIEW_PENDING / NOT VERIFIED。
 [繁體中文總藍圖](docs/AERIS_BLUEPRINT_ZH_TW.md) 是產品入口；[constitution](constitution.md) 是 GATE-01～08 強制治理。
 Blueprint 是 WHAT；Implementation 是 HOW；`C:\0_JN1_AERIS` 是唯一正式產品與本機寫入根目錄。
 本批僅治理整合，A–D 尚未完成，E 後續全面本機驗收 NOT_STARTED。CI 文件檢查不能證明產品完成。
