@@ -1,5 +1,7 @@
 # AERIS 工程代理契約
 
+每次接手或回報最新進度，必讀 [HANDOFF.md](HANDOFF.md) 並即時核對遠端 SHA；歷史文件審查與本機產品驗收分開判定。
+
 每次先讀 [constitution.md](constitution.md) 全部 GATE-01～08，再依 [讀取順序](docs/governance/AI_READ_ORDER.md) 檢查授權、版本及 drift，才處理單一批次。
 Blueprint 是唯一 WHAT；Implementation 是已核准設計的 HOW；唯一正式本機產品與所有寫入根目錄是 `C:\0_JN1_AERIS`。
 目前僅治理批次，狀態 REVIEW_PENDING / NOT VERIFIED；E 後續全面本機驗收 NOT_STARTED。

@@ -18,6 +18,29 @@ def validate(root=ROOT):
   try:return json.loads(read(p))
   except Exception as e:errors.append(f'{p}: {e}');return {}
  a=obj('aeris.autopilot.json');t=obj('aeris.traceability.json');v=obj('aeris.review.json')
+ h=obj('aeris.handoff.json')
+ need(h.get('live_refresh_required') is True,'handoff must refresh live versions')
+ need(h.get('observation_semantics')=='HISTORICAL_SNAPSHOT_LIVE_REFRESH_REQUIRED','snapshot is not latest')
+ for name in ['blueprint','implementation']:
+  need(bool(re.fullmatch(r'[0-9a-f]{40}',str(h.get('last_observed_main',{}).get(name,'')))),'missing observed SHA '+name)
+ need(h.get('alignment')=='NOT VERIFIED','handoff false alignment')
+ need(h.get('runtime_authorized_by_this_manifest') is False,'handoff cannot authorize runtime')
+ need(h.get('running_service')=={'status':'UNKNOWN','loaded_sha':None},'service is not verified by this batch')
+ need(h.get('E_full_local_acceptance')=='NOT_STARTED','handoff E started')
+ reviews=v.get('completed_reviews',[])
+ need(len(reviews)>=2,'historical completed reviews missing')
+ for review in reviews:
+  need(review.get('status')=='PASS' and review.get('claim_boundary')=='DOCUMENT_VERIFICATION_ONLY','historical review scope')
+  for key in ['reviewed_commit','merged_commit']:
+   need(bool(re.fullmatch(r'[0-9a-f]{40}',str(review.get(key,'')))),'historical review unpinned '+key)
+  for key in ['timestamp','requirement_ids','expected_result','actual_result','reproduce_commands']:
+   need(bool(review.get(key)),'historical review missing '+key)
+  evidence=review.get('evidence',{})
+  for key in ['review_url','pr_ci','merged_main_ci']:
+   need(str(evidence.get(key,'')).startswith('https://github.com/Space653000/0_JN1_AERIS/'),'historical evidence link missing '+key)
+  need(bool(evidence.get('artifacts')),'historical artifacts absent')
+  for artifact in evidence.get('artifacts',[]):
+   need(bool(re.fullmatch(r'[0-9a-fA-F]{64}',str(artifact.get('Hash','')))),'historical artifact hash absent')
  retained=obj('aeris.retained-rules.json')
  need(retained==RETAINED,'retained strict rules/supersession mapping drift')
  appendix=read(RETAINED['appendix'])
@@ -82,7 +105,7 @@ def validate(root=ROOT):
  c=read('constitution.md')
  for i in range(1,9):need(f'GATE-{i:02}' in c,'missing gate')
  for token in ['calibration state','noise、distance、azimuth、speaker、language','margin','offline','NO EVIDENCE = NOT DONE']:need(token in c,'weakened engineering rule '+token)
- for p in ACTIVE:
+ for p in ACTIVE+['HANDOFF.md']:
   text=read(p)
   need('C:\\Users\\' not in text,'private user path '+p)
   for forbidden in ['that alone is a complete','active_workspace_counts_as_target_path: true','The two canonical GitHub URLs are the command','Codex may not publish that package','AWAITING_INDEPENDENT_SOL_REVIEW']:

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-08T03:48:28.694143+00:00",
+  "observation_semantics": "HISTORICAL_SNAPSHOT_LIVE_REFRESH_REQUIRED",
+  "live_refresh_required": true,
+  "design_source": "Space653000/0_JN1_AERIS",
+  "implementation_source": "Space653000/0_JN1_AERIS_Local-computer-implementation",
+  "last_observed_main": {
+    "blueprint": "c1a596f8c4b6fddebc8664e5e57c57d33cfbc3ce",
+    "implementation": "5f591f2dbde75e30fe7f61d7f8fbfb56a2c0e433"
+  },
+  "local_checkout": {
+    "status": "NOT VERIFIED",
+    "last_observed_head": "c1f50b1bc9e990684377a6e0c794e2dd728e1923",
+    "observation_note": "Prior batch observation; dirty digest not captured here. Refresh before use."
+  },
+  "running_service": {
+    "status": "UNKNOWN",
+    "loaded_sha": null
+  },
+  "alignment": "NOT VERIFIED",
+  "A_D_delivery": "NOT VERIFIED",
+  "E_full_local_acceptance": "NOT_STARTED",
+  "runtime_authorized_by_this_manifest": false,
+  "review_registry": "aeris.review.json#completed_reviews",
+  "next_gate": "Implementation governance alignment, then schema-v3 consumer compatibility and atomic Core-pointer migration with evidence; no runtime cutover in this batch."
+}
