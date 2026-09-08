@@ -1,6 +1,6 @@
 # AERIS 介面、操作透明度與技能範例規格
 
-版本：1.0；Blueprint revision：0.7.0-governance.3；日期：2026-09-08。
+版本：1.0；Blueprint revision：0.7.0-governance.4；日期：2026-09-08。
 範圍：100 席聲學工程 AI 公司的設計與驗收要求。本文發布不代表介面、技能範例或真實工程能力已實作；實作狀態 NOT VERIFIED，E 全面本機驗收 NOT_STARTED。
 
 ## 三個參考各自負責什麼

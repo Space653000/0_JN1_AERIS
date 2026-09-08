@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "traceability_id": "AERIS-A-D-TRACEABILITY-20260907",
-  "architecture_version": "0.7.0-governance.2",
+  "architecture_version": "0.7.0-governance.4",
   "scope": "Current batch governance only; original user A-D delivery pending; E later full local acceptance",
   "source_baseline": {
     "core_repository": "Space653000/0_JN1_AERIS",

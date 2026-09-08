@@ -1,6 +1,6 @@
 # Astra 有界執行與獨立驗證 Gate v3
 
-版本 0.7.0-governance.2；REVIEW_PENDING / NOT VERIFIED。
+版本 0.7.0-governance.4；REVIEW_PENDING / NOT VERIFIED。
 現行權威為 ../../constitution.md；完整 GATE-01～08 必讀。
 使用者已取代 Sol High、強制 Astra Medium/回 Astra、任意工作目錄及無條件 Full Build 的旧路由。Astra Low 操作路由不綁 domain contract。
 

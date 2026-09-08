@@ -1,3 +1,7 @@
+## 0.7.0-governance.4 — 2026-09-08
+
+修正現行版本欄位與必讀 v0.6 架構的舊審查權威；新增 UX 必要內容、版本一致性及舊 Gate 回流負例。保留歷史版本與更嚴格工程規則。僅文件治理修復，非定稿鎖定或 runtime 驗收。
+
 ## 0.7.0-governance.2 — REVIEW_PENDING
 
 導入完整GATE01–08，更新Astra Low路由、唯一產品根目錄、單批admission、四方含running service、恢復A–E意義、繁中進度與安全同步驗收規格。只治理，未宣稱runtime完成。
