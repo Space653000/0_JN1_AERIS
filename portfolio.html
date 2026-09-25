@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#62c5ba">
+  <title>AI Engineering Portfolio — Unified Portal</title>
+  <meta name="description" content="AERIS、MEGIS、Offline Local Voice Agent、SuperBrain 與 AECP 的統一人工智慧工程入口。">
+  <link rel="stylesheet" href="aeris.css">
+  <script src="aeris-theme.js"></script>
+  <style>
+    .portal-hero{padding:28px}.portal-eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+    .portal-title{font-size:38px;line-height:1.15;margin:8px 0 12px}.portal-sub{max-width:980px;line-height:1.8}
+    .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .project-card{display:flex;flex-direction:column;gap:12px}.project-card h3{margin:0}.project-card p{margin:0;line-height:1.65}
+    .project-meta{font-size:12px;opacity:.7}.project-links{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
+    .project-links a{text-decoration:none}.architecture{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;line-height:1.55}
+    .rule-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .rule-card{padding:16px;border:1px solid var(--border,rgba(127,127,127,.2));border-radius:14px}
+    .scope-note{font-size:13px;line-height:1.7;opacity:.8}
+    @media (max-width:700px){.portal-title{font-size:30px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">AI</div><div class="brand-copy"><div class="brand-name">AI Portfolio</div><div class="brand-sub">Unified Engineering Portal</div></div></div>
+    <div class="sidebar-live"><span class="live-dot"></span><span>PUBLIC PROJECTION</span></div>
+    <div class="nav-group"><div class="nav-label">Portfolio</div><nav class="nav">
+      <a class="active" href="#overview"><span class="nav-icon">◎</span><span class="nav-copy"><b>Overview</b><small>統一入口</small></span></a>
+      <a href="#architecture"><span class="nav-icon">⌁</span><span class="nav-copy"><b>Architecture</b><small>整合架構</small></span></a>
+      <a href="#projects"><span class="nav-icon">◇</span><span class="nav-copy"><b>Projects</b><small>五大 AI 系統</small></span></a>
+      <a href="#trust"><span class="nav-icon">✓</span><span class="nav-copy"><b>Trust</b><small>共同治理規則</small></span></a>
+    </nav></div>
+    <div class="nav-group"><div class="nav-label">Projects</div><nav class="nav">
+      <a href="index.html"><span class="nav-icon">A</span><span class="nav-copy"><b>AERIS</b><small>Acoustic Engineering</small></span></a>
+      <a href="https://github.com/Space653000/0_JN1_MEGIS"><span class="nav-icon">M</span><span class="nav-copy"><b>MEGIS</b><small>Mechanical Engineering</small></span></a>
+      <a href="https://github.com/Space653000/Offline-Local-Voice-Agent"><span class="nav-icon">V</span><span class="nav-copy"><b>Voice Agent</b><small>Offline Voice / HMI</small></span></a>
+      <a href="https://github.com/Space653000/0_JN1_2AGAVE128-1MAERA64"><span class="nav-icon">S</span><span class="nav-copy"><b>SuperBrain</b><small>Multi-PC Local AI</small></span></a>
+      <a href="https://github.com/Space653000/0_JN1_AIECP"><span class="nav-icon">C</span><span class="nav-copy"><b>AECP</b><small>Control Plane</small></span></a>
+    </nav></div>
+    <div class="spacer"></div>
+    <div class="sidebar-note">Portal = projection, not truth.</div>
+  </aside>
+
+  <main class="main"><div class="content">
+    <header class="topbar"><div><div class="page-title">AI Engineering Portfolio</div><div class="page-meta">AERIS · MEGIS · Voice Agent · SuperBrain · AECP</div></div></header>
+
+    <section id="overview" class="panel portal-hero">
+      <div class="portal-eyebrow">Unified AI Engineering Window</div>
+      <h1 class="portal-title">一個入口，看懂所有 AI 專案。</h1>
+      <div class="portal-sub">
+        這個 Portal 不把五個系統硬塞成同一個程式，而是把它們整理成一套可理解的整體：
+        Voice Agent 負責人機入口，AECP 負責控制與派工，AERIS 與 MEGIS 負責專業工程領域，
+        SuperBrain 負責多機與本地算力。GitHub、驗證與 Evidence 負責證明成果。
+      </div>
+      <div class="chips" style="margin-top:18px">
+        <span class="chip">LOCAL-FIRST</span>
+        <span class="chip">EVIDENCE-FIRST</span>
+        <span class="chip">MULTI-REPO</span>
+        <span class="chip">HUMAN AUTHORITY</span>
+      </div>
+    </section>
+
+    <section id="architecture" class="section">
+      <div class="section-title"><div><div class="section-kicker">Architecture</div><h2>五個系統不是互相競爭，而是分層合作</h2></div></div>
+      <div class="panel architecture">Human
+  ↓ Voice / Text / Approval
+Offline Local Voice Agent
+  ↓ Structured Intent / Handoff
+AECP — Engineering Control Plane
+  ├─ AERIS — Acoustic Engineering Domain
+  ├─ MEGIS — Mechanical / Generative Engineering Domain
+  └─ SuperBrain — Multi-PC / Local AI Compute Fabric
+        ↓
+GitHub / CI / Evidence / Review
+        ↓
+Human Approval
+
+AERIS Supervision = immutable audit / snapshot publication companion</div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="section-title"><div><div class="section-kicker">Projects</div><h2>五個 AI 系統，各自有清楚責任</h2></div></div>
+      <div class="project-grid">
+        <div class="panel project-card">
+          <div class="project-meta">DOMAIN SYSTEM</div><h3>AERIS</h3>
+          <p>聲學工程 AI 組織系統。核心資產是角色、技能、方法、標準、Evidence 與驗證規則，不是單一模型。</p>
+          <div class="project-links"><a class="btn" href="index.html">開啟 AERIS</a><a class="btn" href="https://github.com/Space653000/0_JN1_AERIS">GitHub</a></div>
+        </div>
+        <div class="panel project-card">
+          <div class="project-meta">DOMAIN SYSTEM</div><h3>MEGIS</h3>
+          <p>Generative Mechanical Engineering。用 Engineering IR、Deterministic Rules、Constrained Geometry 與 Gate 驗證建立可追溯機構設計流程。</p>
+          <div class="project-links"><a class="btn" href="https://github.com/Space653000/0_JN1_MEGIS/tree/main/MEGIS_Blueprint">Blueprint</a></div>
+        </div>
+        <div class="panel project-card">
+          <div class="project-meta">HUMAN INTERFACE</div><h3>Offline Local Voice Agent</h3>
+          <p>離線語音與桌面操作入口。負責 STT、Intent、Safety、UI Automation、視覺備援與 Guided Conversation。</p>
+          <div class="project-links"><a class="btn" href="https://github.com/Space653000/Offline-Local-Voice-Agent/tree/main/docs">Docs</a></div>
+        </div>
+        <div class="panel project-card">
+          <div class="project-meta">COMPUTE FABRIC</div><h3>SuperBrain</h3>
+          <p>ULTRA-MAERA-2 + SPARK-AGAVE-3 + SPARK-AGAVE-4 的多機混合式 AI 架構，負責本地算力、隔離、Routing 與 Worker 執行。</p>
+          <div class="project-links"><a class="btn" href="https://github.com/Space653000/0_JN1_2AGAVE128-1MAERA64">Blueprint</a></div>
+        </div>
+        <div class="panel project-card">
+          <div class="project-meta">CONTROL PLANE</div><h3>AECP</h3>
+          <p>AI Engineering Control Plane。負責 Workspace、Task、Queue、Harness、Provider/Worker、Git/CI、Evidence、Approval 與多 Repo 協作。</p>
+          <div class="project-links"><a class="btn" href="https://github.com/Space653000/0_JN1_AIECP/tree/main/Blueprint">Blueprint</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="trust" class="section">
+      <div class="section-title"><div><div class="section-kicker">Shared Rules</div><h2>跨專案共同治理原則</h2></div></div>
+      <div class="rule-grid">
+        <div class="rule-card"><b>Evidence &gt; Self-report</b><div class="scope-note">Agent 說完成，不等於真的完成。</div></div>
+        <div class="rule-card"><b>Execution ≠ Completion</b><div class="scope-note">做過只是執行；驗證通過才有資格升級狀態。</div></div>
+        <div class="rule-card"><b>Dashboard ≠ Truth</b><div class="scope-note">畫面是投影，GitHub / Evidence / Runtime 才是依據。</div></div>
+        <div class="rule-card"><b>Model ≠ Identity</b><div class="scope-note">模型可以替換，角色、規則與契約不能跟著漂移。</div></div>
+        <div class="rule-card"><b>CI ≠ Real Machine</b><div class="scope-note">CI 綠燈不等於真機、硬體、量測與實體環境都驗證過。</div></div>
+        <div class="rule-card"><b>Human Final Authority</b><div class="scope-note">高風險、不可逆、正式發布與範圍裁決由 Human 決定。</div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="panel">
+        <div class="section-title"><h2>下一步</h2><span class="pill amber">PROTOTYPE</span></div>
+        <p class="scope-note">
+          這是第一版統一入口 Prototype。正式版下一步會加入每個專案的 Blueprint / Acceptance / Status /
+          Evidence 摘要、統一 Status 頁、Roadmap、Docs、sitemap.xml、robots.txt 與 Search Console 可索引頁面。
+          Public Portal 只顯示可公開摘要；真正執行與私有資料仍留在 AECP / 本機。
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">AI Engineering Portfolio · Public projection only · Source of truth remains in project repositories</div>
+  </div></main>
+</div>
+</body>
+</html>
